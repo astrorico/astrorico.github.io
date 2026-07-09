@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Máscara de Marquardt · φ</title>
+  <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:wght@400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:    #c9a96e;
+      --gold-lt: #e8cb90;
+      --gold-dk: #8a6a3a;
+      --bg:      #07070d;
+      --surface: #0f0f1a;
+      --border:  #1e1e2e;
+      --text:    #d8d0c0;
+      --muted:   #ffffff;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cormorant Garamond', 'Georgia', serif;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 36px 20px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-phi {
+      font-size: 2.2rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+
+    h1 {
+      font-size: 1.05rem;
+      font-weight: 400;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .tagline {
+      margin-top: 6px;
+      font-size: 0.88rem;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-style: italic;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 20px 60px;
+    }
+
+    #statusBar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      min-height: 28px;
+      font-size: 0.88rem;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .spinner {
+      width: 14px; height: 14px;
+      border: 1.5px solid var(--border);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    #dropZone {
+      width: 100%;
+      max-width: 620px;
+      border: 1px solid var(--gold-dk);
+      padding: 56px 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    #dropZone:hover, #dropZone.drag-over {
+      border-color: var(--gold);
+      background: rgba(201,169,110,0.03);
+    }
+
+    #dropZone.hidden { display: none; }
+
+    .upload-icon {
+      font-size: 2.4rem;
+      color: var(--gold-dk);
+      margin-bottom: 14px;
+      display: block;
+      transition: color 0.25s;
+    }
+
+    #dropZone:hover .upload-icon { color: var(--gold); }
+
+    .upload-title {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .upload-hint {
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.8;
+    }
+
+    #fileInput { display: none; }
+
+    /* Camera button */
+    #cameraBtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 10px 22px;
+      border: 1px solid var(--gold-dk);
+      background: transparent;
+      color: var(--gold);
+      font-family: inherit;
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    #cameraBtn:hover { border-color: var(--gold); background: rgba(201,169,110,0.05); }
+    #cameraBtn.hidden { display: none; }
+
+    /* Video preview for camera capture */
+    #cameraWrap {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      max-width: 620px;
+    }
+    #cameraWrap.active { display: flex; }
+    #cameraVideo {
+      width: 100%;
+      max-width: 620px;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+    #captureBtn {
+      padding: 10px 28px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      font-family: inherit;
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #captureBtn:hover { background: rgba(201,169,110,0.1); }
+    #closeCameraBtn {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Loading overlay on canvas */
+    #canvasOverlay {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: rgba(7,7,13,0.75);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      z-index: 10;
+    }
+    #canvasOverlay.active { display: flex; }
+    .overlay-spinner {
+      width: 32px; height: 32px;
+      border: 2px solid var(--border);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    .overlay-text {
+      font-size: 0.82rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    #canvasWrap {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 720px;
+      position: relative;
+    }
+
+    #canvasWrap.active { display: flex; }
+
+    #photoCanvas {
+      max-width: 100%;
+      display: block;
+      border: 1px solid var(--border);
+    }
+
+    #controls {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      max-width: 620px;
+      margin-top: 24px;
+      border: 1px solid var(--border);
+    }
+
+    #controls.active { display: flex; }
+
+    .ctrl-group {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ctrl-group:last-child { border-bottom: none; }
+
+    .ctrl-label {
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      width: 100px;
+      flex-shrink: 0;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 1px;
+      background: var(--border);
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer;
+      border: 2px solid var(--bg);
+    }
+
+    input[type="color"] {
+      -webkit-appearance: none;
+      width: 28px; height: 28px;
+      border: 1px solid var(--border);
+      background: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    input[type="color"]::-webkit-color-swatch-wrapper { padding: 2px; }
+    input[type="color"]::-webkit-color-swatch { border: none; }
+
+    .ctrl-val {
+      font-size: 0.85rem;
+      color: var(--gold);
+      width: 40px;
+      text-align: right;
+    }
+
+    .chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .chip {
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      font-family: inherit;
+    }
+
+    .chip.on {
+      border-color: var(--gold-dk);
+      color: var(--gold);
+      background: rgba(201,169,110,0.07);
+    }
+
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .btn {
+      padding: 9px 22px;
+      background: transparent;
+      border: 1px solid var(--gold-dk);
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.88rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:hover { border-color: var(--gold); background: rgba(201,169,110,0.07); }
+
+    .btn.secondary { border-color: var(--border); color: var(--muted); }
+    .btn.secondary:hover { border-color: var(--muted); color: var(--text); }
+
+    /* ── HEMISFÉRIOS ──────────────────────────────── */
+    .hemi-section {
+      display: block;
+      width: 100%;
+      max-width: 720px;
+      margin-top: 36px;
+    }
+    .hemi-section.hidden { display: none; }
+
+    .hemi-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .hemi-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .hemi-heading {
+      font-size: 0.78rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .hemi-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .hemi-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .hemi-item canvas {
+      width: 100%;
+      max-width: 340px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .hemi-label {
+      font-size: 0.75rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hemi-meaning {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-style: italic;
+      text-align: center;
+    }
+
+    .hand-toggle-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .hemi-info {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .hemi-info b { color: var(--gold); }
+
+    footer {
+      margin-top: 48px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: #cccccc;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    /* ── Análise da Boca ── */
+    .mouth-section {
+      margin-top: 1.4rem;
+      padding: 1rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .mouth-section-title {
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .9rem;
+      display: block;
+    }
+    .mouth-corners {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: .9rem;
+    }
+    .mouth-corner {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .7rem .9rem;
+    }
+    .mouth-corner-label {
+      font-size: .7rem;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: .25rem;
+    }
+    .mouth-corner-role {
+      font-size: .68rem;
+      color: var(--muted);
+      opacity: .55;
+      display: block;
+      margin-bottom: .3rem;
+    }
+    .mouth-corner-dir {
+      font-size: .82rem;
+      font-weight: 600;
+    }
+    .mouth-corner-dir.up   { color: #7ec98a; }
+    .mouth-corner-dir.down { color: #e07070; }
+    .mouth-corner-dir.flat { color: var(--muted); opacity: .7; }
+    .mouth-interp {
+      font-size: .82rem;
+      line-height: 1.55;
+      color: var(--text);
+      border-top: 1px solid var(--border);
+      padding-top: .75rem;
+    }
+    .mouth-interp b { color: var(--gold-lt); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-phi">φ</div>
+  <h1>Máscara de Marquardt</h1>
+  <p class="tagline">Análise de proporção áurea · Golden Decagon</p>
+</header>
+
+<main>
+  <div id="statusBar">
+    <div class="spinner" id="spinner"></div>
+    <span id="statusText">Carregando modelos de detecção facial…</span>
+  </div>
+
+  <div id="dropZone" onclick="document.getElementById('fileInput').click()">
+    <span class="upload-icon">◇</span>
+    <div class="upload-title">Envie uma foto de rosto frontal</div>
+    <div class="upload-hint">
+      JPG · PNG · arraste ou clique<br>
+      Rosto direto para a câmera · boa iluminação
+    </div>
+    <button id="cameraBtn" onclick="event.stopPropagation(); openCamera()">⊙ Usar câmera</button>
+  </div>
+  <input type="file" id="fileInput" accept="image/*">
+
+  <div id="cameraWrap">
+    <video id="cameraVideo" autoplay playsinline muted></video>
+    <button id="captureBtn" onclick="capturePhoto()">◎ Capturar foto</button>
+    <button id="closeCameraBtn" onclick="closeCamera()">× Cancelar</button>
+  </div>
+
+  <div id="canvasWrap">
+    <canvas id="photoCanvas"></canvas>
+    <div id="canvasOverlay">
+      <div class="overlay-spinner"></div>
+      <div class="overlay-text">Analisando…</div>
+    </div>
+  </div>
+
+  <div id="controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Opacidade</span>
+      <input type="range" id="opacity" min="10" max="100" value="75" oninput="onCtrl()">
+      <span class="ctrl-val" id="opacityVal">75%</span>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Espessura</span>
+      <input type="range" id="thickness" min="3" max="30" value="10" oninput="onCtrl()">
+      <span class="ctrl-val" id="thickVal">1.0</span>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Cor</span>
+      <input type="color" id="maskColor" value="#ffffff" oninput="onCtrl()">
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Camadas</span>
+      <div class="chip-row">
+        <button class="chip on" data-layer="face"  onclick="toggleLayer(this)">Rosto</button>
+        <button class="chip on" data-layer="eyes"  onclick="toggleLayer(this)">Olhos</button>
+        <button class="chip on" data-layer="nose"  onclick="toggleLayer(this)">Nariz</button>
+        <button class="chip on" data-layer="lips"  onclick="toggleLayer(this)">Lábios</button>
+        <button class="chip on" data-layer="grid"  onclick="toggleLayer(this)">Grade φ</button>
+        <button class="chip on" data-layer="penta" onclick="toggleLayer(this)">Pentágono</button>
+      </div>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label"></span>
+      <div class="btn-row">
+        <button class="btn" onclick="downloadImg()">⬇ Baixar</button>
+        <button class="btn secondary" onclick="resetApp()">↺ Nova foto</button>
+      </div>
+    </div>
+  </div>
+  <div id="hemisphereWrap" class="hemi-section hidden">
+    <div class="hemi-divider">
+      <div class="hemi-divider-line"></div>
+      <span class="hemi-heading">Hemisférios da Face</span>
+      <div class="hemi-divider-line"></div>
+    </div>
+    <div class="hand-toggle-row">
+      <button class="chip on" data-hand="destro" onclick="setHandedness(this)">Sou Destro</button>
+      <button class="chip" data-hand="canhoto" onclick="setHandedness(this)">Sou Canhoto</button>
+    </div>
+    <div class="hemi-row">
+      <div class="hemi-item">
+        <canvas id="hemiLeft"></canvas>
+        <span class="hemi-label">Hemisfério Esquerdo</span>
+        <span class="hemi-meaning" id="meaningLeft"></span>
+        <button class="btn secondary" onclick="downloadHemi('left')">⬇ Baixar</button>
+      </div>
+      <div class="hemi-item">
+        <canvas id="hemiRight"></canvas>
+        <span class="hemi-label">Hemisfério Direito</span>
+        <span class="hemi-meaning" id="meaningRight"></span>
+        <button class="btn secondary" onclick="downloadHemi('right')">⬇ Baixar</button>
+      </div>
+    </div>
+    <div class="hemi-info">
+      Cada hemisfério é comandado pelo lado oposto do cérebro. O lado voltado a
+      <b>futuro / apresentação</b> reflete como a pessoa planeja se mostrar para
+      a sociedade (mais racional, mais controlado). O lado voltado a
+      <b>passado / expressão</b> reflete o estado emocional mais espontâneo,
+      mais difícil de disfarçar. Em destros, o lado direito do rosto tende à
+      apresentação e o esquerdo à expressão — em canhotos, o padrão se inverte.
+      Isso é um modelo interpretativo de morfopsicologia, não um diagnóstico.
+    </div>
+
+    <!-- Análise da Boca -->
+    <div class="mouth-section" id="mouthAnalysis">
+      <span class="mouth-section-title">⟁ Análise da Boca · Morfopsicologia</span>
+      <div class="mouth-corners">
+        <div class="mouth-corner" id="mouthCornerPhotoLeft">
+          <span class="mouth-corner-label">Canto Esquerdo da Foto</span>
+          <span class="mouth-corner-role" id="mouthRolePhotoLeft">—</span>
+          <span class="mouth-corner-dir flat" id="mouthDirPhotoLeft">—</span>
+        </div>
+        <div class="mouth-corner" id="mouthCornerPhotoRight">
+          <span class="mouth-corner-label">Canto Direito da Foto</span>
+          <span class="mouth-corner-role" id="mouthRolePhotoRight">—</span>
+          <span class="mouth-corner-dir flat" id="mouthDirPhotoRight">—</span>
+        </div>
+      </div>
+      <div class="mouth-interp" id="mouthInterp">—</div>
+    </div>
+  </div>
+</main>
+
+<footer>Baseado na Máscara de Beleza de Marquardt · Dr. Stephen R. Marquardt · φ = 1.6180339887…</footer>
+
+<script>
+const PHI = 1.6180339887;
+const MODEL_URL = 'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@0.22.2/weights';
+
+let modelsReady = false;
+let landmarks   = null;
+let srcImage    = null;
+const layers = { face:true, eyes:true, nose:true, lips:true, grid:true, penta:true };
+let handedness = 'destro'; // 'destro' | 'canhoto'
+
+window.addEventListener('DOMContentLoaded', loadModels);
+
+async function loadModels() {
+  try {
+    await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+    await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
+    modelsReady = true;
+    setStatus('idle', 'Modelos prontos · envie uma foto');
+  } catch(e) {
+    setStatus('err', 'Erro ao carregar modelos. Verifique sua conexão.');
+  }
+}
+
+function setStatus(type, msg) {
+  document.getElementById('spinner').style.display = (type === 'loading') ? 'block' : 'none';
+  document.getElementById('statusText').textContent = msg;
+  const bar = document.getElementById('statusBar');
+  const existing = bar.querySelector('.dot');
+  if (existing) existing.remove();
+  if (type === 'ok' || type === 'idle') {
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    if (type === 'idle') dot.style.background = 'var(--muted)';
+    bar.prepend(dot);
+  }
+}
+
+document.getElementById('fileInput').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (f) readFile(f);
+});
+
+const dz = document.getElementById('dropZone');
+dz.addEventListener('dragover',  e => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', ()  => dz.classList.remove('drag-over'));
+dz.addEventListener('drop', e => {
+  e.preventDefault();
+  dz.classList.remove('drag-over');
+  const f = e.dataTransfer.files[0];
+  if (f && f.type.startsWith('image/')) readFile(f);
+});
+
+// ── Camera ──────────────────────────────────────────────
+let cameraStream = null;
+
+async function openCamera() {
+  // Prefer front camera; fall back to rear/any
+  const constraints = [
+    { video: { facingMode: 'user' } },
+    { video: { facingMode: 'environment' } },
+    { video: true }
+  ];
+
+  for (const c of constraints) {
+    try {
+      cameraStream = await navigator.mediaDevices.getUserMedia(c);
+      break;
+    } catch(e) { /* try next */ }
+  }
+
+  if (!cameraStream) {
+    setStatus('err', 'Câmera não disponível neste dispositivo.');
+    return;
+  }
+
+  const video = document.getElementById('cameraVideo');
+  video.srcObject = cameraStream;
+  document.getElementById('dropZone').classList.add('hidden');
+  document.getElementById('cameraWrap').classList.add('active');
+}
+
+function capturePhoto() {
+  const video = document.getElementById('cameraVideo');
+  const tmp = document.createElement('canvas');
+  tmp.width  = video.videoWidth;
+  tmp.height = video.videoHeight;
+  tmp.getContext('2d').drawImage(video, 0, 0);
+  closeCamera();
+
+  const img = new Image();
+  img.onload = () => { srcImage = img; processImage(); };
+  img.src = tmp.toDataURL('image/jpeg', 0.92);
+}
+
+function closeCamera() {
+  if (cameraStream) { cameraStream.getTracks().forEach(t => t.stop()); cameraStream = null; }
+  const video = document.getElementById('cameraVideo');
+  video.srcObject = null;
+  document.getElementById('cameraWrap').classList.remove('active');
+  document.getElementById('dropZone').classList.remove('hidden');
+}
+// ────────────────────────────────────────────────────────
+
+function readFile(file) {
+  setStatus('loading', 'Carregando imagem…');
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => { srcImage = img; processImage(); };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function processImage() {
+  setStatus('loading', 'Detectando rosto…');
+  const canvas = document.getElementById('photoCanvas');
+  const maxW   = Math.min(window.innerWidth - 40, 720);
+  const scale  = Math.min(1, maxW / srcImage.width);
+  canvas.width  = srcImage.width  * scale;
+  canvas.height = srcImage.height * scale;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(srcImage, 0, 0, canvas.width, canvas.height);
+
+  document.getElementById('dropZone').classList.add('hidden');
+  document.getElementById('canvasWrap').classList.add('active');
+  document.getElementById('canvasOverlay').classList.add('active');
+
+  // Yield to browser so overlay paints before heavy computation starts
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+  if (!modelsReady) { setStatus('err', 'Modelos ainda carregando…'); return; }
+
+  try {
+    const det = await faceapi
+      .detectSingleFace(canvas, new faceapi.TinyFaceDetectorOptions({ scoreThreshold: 0.3 }))
+      .withFaceLandmarks();
+
+    if (!det) {
+      document.getElementById('canvasOverlay').classList.remove('active');
+      setStatus('err', 'Nenhum rosto detectado. Tente foto mais frontal e iluminada.');
+      return;
+    }
+
+    landmarks = det.landmarks.positions;
+    redraw();
+    buildHemispheres();
+    document.getElementById('controls').classList.add('active');
+    document.getElementById('canvasOverlay').classList.remove('active');
+    setStatus('ok', `Rosto detectado · confiança ${Math.round(det.detection.score * 100)}%`);
+  } catch(e) {
+    document.getElementById('canvasOverlay').classList.remove('active');
+    setStatus('err', 'Erro na detecção: ' + e.message);
+  }
+}
+
+function onCtrl() {
+  document.getElementById('opacityVal').textContent = document.getElementById('opacity').value + '%';
+  document.getElementById('thickVal').textContent   = (document.getElementById('thickness').value / 10).toFixed(1);
+  redraw();
+}
+
+function toggleLayer(btn) {
+  layers[btn.dataset.layer] = !layers[btn.dataset.layer];
+  btn.classList.toggle('on', layers[btn.dataset.layer]);
+  redraw();
+}
+
+function redraw() {
+  if (!srcImage || !landmarks) return;
+  const canvas = document.getElementById('photoCanvas');
+  const ctx    = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(srcImage, 0, 0, canvas.width, canvas.height);
+  drawMask(ctx, landmarks, {
+    opacity : document.getElementById('opacity').value / 100,
+    lw      : document.getElementById('thickness').value / 10,
+    color   : document.getElementById('maskColor').value
+  });
+}
+
+// ── MASK DRAWING ──────────────────────────────────────────
+function drawMask(ctx, pts, { opacity, lw, color }) {
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.fillStyle   = 'transparent';
+  ctx.lineCap     = 'round';
+  ctx.lineJoin    = 'round';
+
+  const p   = i => ({ x: pts[i].x, y: pts[i].y });
+  const avg = arr => ({
+    x: arr.reduce((s,i) => s + pts[i].x, 0) / arr.length,
+    y: arr.reduce((s,i) => s + pts[i].y, 0) / arr.length
+  });
+  const mid = (a,b) => ({ x:(a.x+b.x)/2, y:(a.y+b.y)/2 });
+  const dst = (a,b) => Math.hypot(b.x-a.x, b.y-a.y);
+
+  function path(points, close=false, dash=[]) {
+    if (!points.length) return;
+    ctx.setLineDash(dash);
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (let i=1;i<points.length;i++) ctx.lineTo(points[i].x, points[i].y);
+    if (close) ctx.closePath();
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  function line(a, b, dash=[]) {
+    ctx.setLineDash(dash);
+    ctx.beginPath();
+    ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  const leftEye   = avg([36,37,38,39,40,41]);
+  const rightEye  = avg([42,43,44,45,46,47]);
+  const eyeCenter = mid(leftEye, rightEye);
+  const eyeDist   = dst(leftEye, rightEye);
+  const angle     = Math.atan2(rightEye.y - leftEye.y, rightEye.x - leftEye.x);
+
+  const noseBase  = p(33);
+  const noseL     = p(31); const noseR = p(35);
+  const upperLip  = p(51); const lowerLip = p(57);
+  const mouthL    = p(48); const mouthR = p(54);
+  const chin      = p(8);
+  const browYL    = avg([17,18,19,20,21]);
+  const browYR    = avg([22,23,24,25,26]);
+  const browY     = (browYL.y + browYR.y) / 2;
+  const faceL     = Math.min(...[0,1,2,3].map(i=>pts[i].x)) - 4;
+  const faceR     = Math.max(...[13,14,15,16].map(i=>pts[i].x)) + 4;
+  const topY      = eyeCenter.y - eyeDist * 1.3;
+
+  // GRID
+  if (layers.grid) {
+    ctx.lineWidth = lw * 0.6;
+    ctx.globalAlpha = opacity * 0.35;
+    for (const [y, dash] of [
+      [browY,      [5,5]],
+      [leftEye.y,  []],
+      [noseBase.y, [5,5]],
+      [upperLip.y, [5,5]],
+      [chin.y,     []]
+    ]) {
+      line({x:faceL,y}, {x:faceR,y}, dash);
+    }
+
+    ctx.globalAlpha = opacity * 0.28;
+    line({x:eyeCenter.x,y:topY}, {x:eyeCenter.x,y:chin.y}, [6,5]);
+
+    for (const vx of [pts[36].x, pts[39].x, pts[42].x, pts[45].x]) {
+      line({x:vx,y:browY}, {x:vx,y:chin.y}, [3,6]);
+    }
+
+    ctx.globalAlpha = opacity * 0.45;
+    const ts = eyeDist * 0.07;
+    for (const y of [browY, leftEye.y, noseBase.y, upperLip.y, chin.y]) {
+      line({x:eyeCenter.x-ts,y}, {x:eyeCenter.x+ts,y});
+    }
+  }
+
+  // FACE
+  if (layers.face) {
+    ctx.lineWidth = lw;
+    ctx.globalAlpha = opacity * 0.7;
+    path(Array.from({length:17},(_,i)=>p(i)));
+
+    ctx.globalAlpha = opacity * 0.32;
+    const fhL = {x:p(0).x+(p(17).x-p(0).x)*0.25, y:topY};
+    const fhR = {x:p(16).x+(p(26).x-p(16).x)*0.25, y:topY};
+    line(p(0), fhL, [6,5]);
+    line(p(16),fhR, [6,5]);
+    line(fhL,  fhR, [6,5]);
+
+    ctx.globalAlpha = opacity * 0.6;
+    path(Array.from({length:5},(_,i)=>p(17+i)));
+    path(Array.from({length:5},(_,i)=>p(22+i)));
+  }
+
+  // EYES
+  if (layers.eyes) {
+    ctx.lineWidth = lw;
+    ctx.globalAlpha = opacity;
+    for (const range of [[36,37,38,39,40,41],[42,43,44,45,46,47]]) {
+      path(range.map(i=>p(i)), true);
+      const ec = avg(range);
+      const cs = eyeDist * 0.04;
+      ctx.globalAlpha = opacity * 0.55;
+      line({x:ec.x-cs,y:ec.y},{x:ec.x+cs,y:ec.y});
+      line({x:ec.x,y:ec.y-cs},{x:ec.x,y:ec.y+cs});
+      ctx.globalAlpha = opacity;
+    }
+
+    ctx.globalAlpha = opacity * 0.22;
+    ctx.lineWidth = lw * 0.55;
+    for (const [l,r,t,b] of [[36,39,37,41],[42,45,43,47]]) {
+      const ex = pts[l].x - eyeDist*0.05;
+      const ew = pts[r].x - pts[l].x + eyeDist*0.1;
+      const eh = ew / PHI;
+      const ey = (pts[t].y + pts[b].y)/2 - eh/2;
+      ctx.setLineDash([3,4]);
+      ctx.strokeRect(ex, ey, ew, eh);
+      ctx.setLineDash([]);
+    }
+    ctx.lineWidth = lw;
+  }
+
+  // NOSE
+  if (layers.nose) {
+    ctx.lineWidth = lw * 0.9;
+    ctx.globalAlpha = opacity * 0.9;
+    path([p(27),p(28),p(29),p(30)]);
+    path([p(31),p(32),p(33),p(34),p(35)]);
+    line(p(31),p(28)); line(p(35),p(28));
+
+    ctx.globalAlpha = opacity * 0.35;
+    for (const [cx,cy] of [[p(32).x,p(32).y],[p(34).x,p(34).y]]) {
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, eyeDist*0.07, eyeDist*0.05, angle, 0, Math.PI*2);
+      ctx.stroke();
+    }
+  }
+
+  // LIPS
+  if (layers.lips) {
+    ctx.lineWidth = lw * 0.9;
+    ctx.globalAlpha = opacity * 0.9;
+    path([p(48),p(49),p(50),p(51),p(52),p(53),p(54)]);
+    path([p(48),p(59),p(58),p(57),p(56),p(55),p(54)]);
+    ctx.globalAlpha = opacity * 0.5;
+    path([p(60),p(61),p(62),p(63),p(64)], false, [3,3]);
+    path([p(64),p(65),p(66),p(67),p(60)], false, [3,3]);
+
+    ctx.globalAlpha = opacity * 0.32;
+    ctx.lineWidth = lw * 0.55;
+    const bh = eyeDist * 0.08;
+    for (const bx of [mouthL.x, mouthR.x]) {
+      line({x:bx,y:lowerLip.y+bh*0.3},{x:bx,y:lowerLip.y+bh*1.3});
+    }
+    line({x:mouthL.x,y:lowerLip.y+bh},{x:mouthR.x,y:lowerLip.y+bh});
+  }
+
+  // PENTAGON
+  if (layers.penta) {
+    ctx.lineWidth = lw * 0.75;
+
+    const cy1 = eyeCenter.y + eyeDist * 0.42;
+    drawPentagon(ctx, eyeCenter.x, cy1, eyeDist*1.08, angle-Math.PI/2,       opacity*0.28, color, []);
+    drawPentagon(ctx, eyeCenter.x, cy1, eyeDist*1.08/PHI, angle-Math.PI/2+Math.PI/5, opacity*0.16, color, [4,4]);
+
+    const nc = mid(p(27), mid(noseBase, upperLip));
+    drawPentagon(ctx, nc.x, nc.y, dst(noseL,noseR)*0.85, angle-Math.PI/2, opacity*0.2, color, [3,5]);
+
+    // Golden spiral arcs
+    ctx.globalAlpha = opacity * 0.16;
+    ctx.lineWidth = lw * 0.5;
+    ctx.setLineDash([2,4]);
+    let r = eyeDist * 0.18;
+    let scx = leftEye.x, scy = leftEye.y;
+    for (let i=0;i<5;i++) {
+      ctx.beginPath();
+      ctx.arc(scx, scy, r, 0, Math.PI*1.5);
+      ctx.stroke();
+      const nr = r * PHI;
+      scx -= (nr-r)*0.4; scy += (nr-r)*0.3; r = nr;
+    }
+    ctx.setLineDash([]);
+
+    ctx.globalAlpha = opacity * 0.26;
+    ctx.font = `${Math.max(11, eyeDist*0.18)}px 'Cormorant Garamond', Georgia, serif`;
+    ctx.fillStyle = color;
+    ctx.fillText('φ', eyeCenter.x - eyeDist*0.06, topY + eyeDist*0.22);
+  }
+
+  ctx.restore();
+}
+
+function drawPentagon(ctx, cx, cy, r, startAngle, alpha, color, dash) {
+  ctx.globalAlpha = alpha;
+  ctx.strokeStyle = color;
+  ctx.setLineDash(dash);
+  ctx.beginPath();
+  for (let i=0;i<5;i++) {
+    const a = startAngle + i*(2*Math.PI/5);
+    const x = cx + r*Math.cos(a), y = cy + r*Math.sin(a);
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  }
+  ctx.closePath();
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+// ── HEMISFÉRIOS ───────────────────────────────────────────
+function buildHemispheres() {
+  if (!srcImage || !landmarks) return;
+
+  const mainCanvas = document.getElementById('photoCanvas');
+  const w  = mainCanvas.width;
+  const h  = mainCanvas.height;
+  const sx = w / srcImage.width;   // horizontal scale factor
+  const sy = h / srcImage.height;
+
+  // Centro X = ponto médio entre os dois olhos (em coords do canvas)
+  const pts  = landmarks;
+  const avgX = arr => arr.reduce((s, i) => s + pts[i].x, 0) / arr.length;
+  const cx   = (avgX([36,37,38,39,40,41]) + avgX([42,43,44,45,46,47])) / 2;
+
+  // Posição correspondente na imagem original
+  const srcCx    = cx / sx;
+  const rightW   = w  - cx;
+  const srcRightW = srcImage.width - srcCx;
+
+  // ── Hemisfério Esquerdo: lado esquerdo espelhado nos dois lados ──
+  const cL = document.getElementById('hemiLeft');
+  cL.width  = Math.round(cx * 2);
+  cL.height = h;
+  const ctxL = cL.getContext('2d');
+  // Lado esquerdo original
+  ctxL.drawImage(srcImage, 0, 0, srcCx, srcImage.height, 0, 0, cx, h);
+  // Espelho do lado esquerdo
+  ctxL.save();
+  ctxL.translate(cx * 2, 0);
+  ctxL.scale(-1, 1);
+  ctxL.drawImage(srcImage, 0, 0, srcCx, srcImage.height, 0, 0, cx, h);
+  ctxL.restore();
+
+  // ── Hemisfério Direito: lado direito espelhado nos dois lados ──
+  const cR = document.getElementById('hemiRight');
+  cR.width  = Math.round(rightW * 2);
+  cR.height = h;
+  const ctxR = cR.getContext('2d');
+  // Lado direito original (na metade direita do canvas)
+  ctxR.drawImage(srcImage, srcCx, 0, srcRightW, srcImage.height, rightW, 0, rightW, h);
+  // Espelho do lado direito (na metade esquerda)
+  ctxR.save();
+  ctxR.translate(rightW * 2, 0);
+  ctxR.scale(-1, 1);
+  ctxR.drawImage(srcImage, srcCx, 0, srcRightW, srcImage.height, rightW, 0, rightW, h);
+  ctxR.restore();
+
+  document.getElementById('hemisphereWrap').classList.remove('hidden');
+  updateHemiMeanings();
+  analyzeMouth();
+}
+
+function setHandedness(btn) {
+  handedness = btn.dataset.hand;
+  document.querySelectorAll('.hand-toggle-row .chip').forEach(c => {
+    c.classList.toggle('on', c.dataset.hand === handedness);
+  });
+  updateHemiMeanings();
+  analyzeMouth();
+}
+
+function updateHemiMeanings() {
+  const futuro  = 'Futuro · Apresentação';
+  const passado = 'Passado · Expressão';
+  const rightMeans = (handedness === 'destro') ? futuro : passado;
+  const leftMeans  = (handedness === 'destro') ? passado : futuro;
+  document.getElementById('meaningRight').textContent = rightMeans;
+  document.getElementById('meaningLeft').textContent  = leftMeans;
+}
+
+function downloadHemi(side) {
+  const id = side === 'left' ? 'hemiLeft' : 'hemiRight';
+  const label = side === 'left' ? 'hemisferio-esquerdo' : 'hemisferio-direito';
+  const c = document.getElementById(id);
+  const a = document.createElement('a');
+  a.download = label + '.png';
+  a.href = c.toDataURL('image/png');
+  a.click();
+}
+
+function downloadImg() {
+  const c = document.getElementById('photoCanvas');
+  const a = document.createElement('a');
+  a.download = 'mascara-marquardt.png';
+  a.href = c.toDataURL('image/png');
+  a.click();
+}
+
+/* ── Análise Morfopsicológica da Boca ── */
+function analyzeMouth() {
+  if (!landmarks) return;
+
+  const pts = landmarks;
+  const p   = i => pts[i];
+
+  // Cantos da boca na imagem (índices face-api 68 pts)
+  // 48 = canto esquerdo da FOTO, 54 = canto direito da FOTO
+  const cornerL = p(48); // esquerdo na foto  = lado DIREITO da pessoa
+  const cornerR = p(54); // direito na foto   = lado ESQUERDO da pessoa
+
+  // Linha de base neutra: média Y dos dois cantos
+  const baseY = (cornerL.y + cornerR.y) / 2;
+
+  // Limiar: 1.5% da distância intercantal como margem de "plano"
+  const eyeDist = Math.hypot(
+    (pts[36].x+pts[37].x+pts[38].x+pts[39].x+pts[40].x+pts[41].x)/6 -
+    (pts[42].x+pts[43].x+pts[44].x+pts[45].x+pts[46].x+pts[47].x)/6,
+    (pts[36].y+pts[37].y+pts[38].y+pts[39].y+pts[40].y+pts[41].y)/6 -
+    (pts[42].y+pts[43].y+pts[44].y+pts[45].y+pts[46].y+pts[47].y)/6
+  );
+  const thr = eyeDist * 0.015;
+
+  // dirOf: y menor = mais alto na imagem = canto para CIMA
+  const dirOf = (corner) => {
+    const delta = baseY - corner.y; // positivo = acima da média
+    if (delta >  thr) return 'up';
+    if (delta < -thr) return 'down';
+    return 'flat';
+  };
+
+  const dirPhotoLeft  = dirOf(cornerL); // foto-esquerdo = pessoa-direito
+  const dirPhotoRight = dirOf(cornerR); // foto-direito  = pessoa-esquerdo
+
+  // Papéis dependem de lateralidade
+  // Destro: rosto-direito da PESSOA = máscara; rosto-esquerdo da PESSOA = interior
+  // Foto-esquerdo mostra DIREITO da pessoa; foto-direito mostra ESQUERDO da pessoa
+  const isMaskPhotoLeft  = (handedness === 'destro');  // foto-esq = rosto-dir pessoa
+  const maskLabel   = 'Máscara · Como se mostra ao mundo';
+  const innerLabel  = 'Interior · O que sente de verdade';
+
+  const rolePhotoLeft  = isMaskPhotoLeft  ? maskLabel : innerLabel;
+  const rolePhotoRight = isMaskPhotoLeft  ? innerLabel : maskLabel;
+
+  // Direção do lado MÁSCARA e do lado INTERIOR (em coords da pessoa)
+  const maskDir  = isMaskPhotoLeft  ? dirPhotoLeft  : dirPhotoRight;
+  const innerDir = isMaskPhotoLeft  ? dirPhotoRight : dirPhotoLeft;
+
+  // Atualiza UI dos cantos
+  const setCorner = (id, roleId, dir, role) => {
+    const el = document.getElementById(id);
+    const labelMap = { up: '▲ Para cima', down: '▼ Para baixo', flat: '→ Neutro / plano' };
+    el.textContent = labelMap[dir];
+    el.className   = 'mouth-corner-dir ' + dir;
+    document.getElementById(roleId).textContent = role;
+  };
+  setCorner('mouthDirPhotoLeft',  'mouthRolePhotoLeft',  dirPhotoLeft,  rolePhotoLeft);
+  setCorner('mouthDirPhotoRight', 'mouthRolePhotoRight', dirPhotoRight, rolePhotoRight);
+
+  // Interpretação geral
+  document.getElementById('mouthInterp').innerHTML =
+    getMouthInterpretation(maskDir, innerDir, dirPhotoLeft, dirPhotoRight);
+}
+
+function getMouthInterpretation(maskDir, innerDir, dL, dR) {
+  const ambos  = dL === dR;
+  const assym  = !ambos;
+  const unilat = assym && (
+    (dL === 'up'   && dR === 'down') ||
+    (dL === 'down' && dR === 'up')
+  );
+
+  let geral = '';
+  if (ambos && dL === 'up') {
+    geral = '<b>Cantos para cima nos dois lados.</b> Sinal morfopsicológico de '
+          + 'otimismo, entusiasmo e receptividade. A pessoa projeta boa disposição '
+          + 'tanto em público quanto na intimidade — o que se mostra ao mundo tende '
+          + 'a coincidir com o que se sente por dentro.';
+  } else if (ambos && dL === 'down') {
+    geral = '<b>Cantos para baixo nos dois lados.</b> Perfil de recolhimento, '
+          + 'ceticismo e seriedade. Indica uma tendência a enxergar a vida de forma '
+          + 'mais crítica e realista. A postura defensiva aparece tanto na '
+          + 'apresentação pública quanto no interior — sem disfarce, sem máscara.';
+  } else if (ambos && dL === 'flat') {
+    geral = '<b>Cantos neutros / planos.</b> A boca não sinaliza tensão nem '
+          + 'euforia evidente. Expressividade contida ou equilíbrio emocional '
+          + 'no momento da foto.';
+  } else if (unilat) {
+    // Determina qual é sorriso unilateral
+    const upSide  = dL === 'up' ? 'esquerdo da foto' : 'direito da foto';
+    const downSide= dL === 'down' ? 'esquerdo da foto' : 'direito da foto';
+    geral = `<b>Sorriso unilateral</b> (canto ${upSide} levantado, canto ${downSide} `
+          + 'descido). Na morfopsicologia isso pode indicar deboche, ironia ou '
+          + 'arrogância velada — uma expressão que não é inteiramente sincera.';
+  } else {
+    // Assimétrico mas não puro unilateral (ex: flat + up, flat + down)
+    const dirLabel = { up: 'para cima', down: 'para baixo', flat: 'neutro' };
+    geral = `<b>Cantos assimétricos</b> (máscara ${dirLabel[maskDir]}, interior `
+          + `${dirLabel[innerDir]}). `;
+    if (maskDir === 'up' && innerDir === 'down') {
+      geral += 'A face pública projeta otimismo e simpatia, mas o interior carrega '
+             + 'peso, ceticismo ou tristeza. O que a pessoa mostra ao mundo pode '
+             + 'não refletir o que sente de verdade.';
+    } else if (maskDir === 'down' && innerDir === 'up') {
+      geral += 'A face pública é mais séria e reservada, mas por dentro há mais '
+             + 'leveza e entusiasmo do que aparenta. A pessoa guarda o melhor de si '
+             + 'para quem é próximo.';
+    } else {
+      geral += 'Há algum grau de divergência entre a expressão pública e o estado '
+             + 'emocional interno.';
+    }
+  }
+
+  const aviso = '<br><br><span style="font-size:.72rem;opacity:.5">'
+              + 'Leitura morfopsicológica interpretativa — não é diagnóstico.</span>';
+  return geral + aviso;
+}
+
+function resetApp() {
+  landmarks = null; srcImage = null;
+  if (cameraStream) closeCamera();
+  document.getElementById('dropZone').classList.remove('hidden');
+  document.getElementById('canvasWrap').classList.remove('active');
+  document.getElementById('canvasOverlay').classList.remove('active');
+  document.getElementById('controls').classList.remove('active');
+  document.getElementById('fileInput').value = '';
+  document.getElementById('hemisphereWrap').classList.add('hidden');
+  setStatus('idle', 'Modelos prontos · envie uma foto');
+}
+</script>
+</body>
+</html>

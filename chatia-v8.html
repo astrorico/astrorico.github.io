@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chatia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── Variáveis (modo claro — mesmo padrão do projeto) ── */
+:root {
+  --bg:           #f0f4f8;
+  --card-bg:      #ffffff;
+  --card-border:  #e2e8f0;
+  --text:         #1a2332;
+  --text-muted:   #64748b;
+  --accent:       #1e6fb5;
+  --btn-bg:       #1e6fb5;
+  --input-bg:     #ffffff;
+  --input-border: #e2e8f0;
+  --hover-bg:     rgba(30,111,181,.08);
+  --shadow:       0 2px 12px rgba(0,0,0,.08);
+}
+
+/* ── Modo escuro ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:           #0f1623;
+    --card-bg:      #1a2235;
+    --card-border:  #2d3a50;
+    --text:         #e2e8f0;
+    --text-muted:   #8899aa;
+    --accent:       #4a9ede;
+    --btn-bg:       #1e6fb5;
+    --input-bg:     #1a2235;
+    --input-border: #2d3a50;
+    --hover-bg:     rgba(74,158,222,.1);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 12px 40px;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.header-logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.header p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ── Container principal ── */
+.container {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+/* ── Toggle cfg ── */
+.cfg-toggle-btn {
+  background: none;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  padding: 7px 14px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  transition: background .15s;
+}
+.cfg-toggle-btn:hover { background: var(--hover-bg); }
+#cfg-arrow { transition: transform .2s; }
+
+#cfg-body {
+  display: none;
+  margin-top: 12px;
+}
+
+/* ── Grupos de config ── */
+.cfg-group {
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.cfg-group.brain  { background: #f8faff; border: 1px solid #d0daf8; }
+.cfg-group.search { background: #fffaf5; border: 1px solid #e8d0a8; }
+.cfg-group.models { background: #f5f0ff; border: 1px solid #d0c0e8; }
+
+@media (prefers-color-scheme: dark) {
+  .cfg-group.brain  { background: #1a2040; border-color: #2d3a6a; }
+  .cfg-group.search { background: #201a0f; border-color: #4a3a1a; }
+  .cfg-group.models { background: #1a1530; border-color: #3a2a5a; }
+}
+
+.cfg-group-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin-bottom: 4px;
+}
+.cfg-group.brain  .cfg-group-title { color: #3a4a80; }
+.cfg-group.search .cfg-group-title { color: #7a4a10; }
+.cfg-group.models .cfg-group-title { color: #5a3a80; }
+
+@media (prefers-color-scheme: dark) {
+  .cfg-group.brain  .cfg-group-title { color: #8899dd; }
+  .cfg-group.search .cfg-group-title { color: #cc8844; }
+  .cfg-group.models .cfg-group-title { color: #aa88dd; }
+}
+
+.cfg-group p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+  color: var(--text);
+}
+.field-label a { color: var(--accent); }
+.field-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  display: block;
+  line-height: 1.4;
+}
+
+.input-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.input-row input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+}
+.input-row input:focus { outline: none; border-color: var(--accent); }
+.vis-btn {
+  padding: 6px 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background: var(--input-bg);
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 14px;
+  transition: background .15s;
+}
+.vis-btn:hover { background: var(--hover-bg); }
+
+/* Seletor de modelo */
+.model-select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.model-select:focus { outline: none; border-color: var(--accent); }
+
+/* Saved badge */
+.saved-badge {
+  font-size: 10px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 1px 7px;
+  border-radius: 10px;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+/* ── Botões de ação cfg ── */
+.cfg-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.btn-primary {
+  padding: 8px 20px;
+  background: var(--btn-bg);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  transition: opacity .15s;
+}
+.btn-primary:hover { opacity: .88; }
+.btn-secondary {
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: inherit;
+  transition: background .15s;
+}
+.btn-secondary:hover { background: var(--hover-bg); }
+#cfg-msg { font-size: 12px; color: var(--accent); }
+
+/* ── Banner sem chave ── */
+#no-key-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #fff8e1;
+  border: 1px solid #f39c12;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #7d5a00;
+}
+@media (prefers-color-scheme: dark) {
+  #no-key-banner { background: #2a2000; border-color: #7a5000; color: #ddaa44; }
+}
+#no-key-banner button {
+  margin-left: 6px;
+  padding: 3px 10px;
+  background: #f39c12;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+/* ── Textarea ── */
+#agent-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text);
+  font-size: 14px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  transition: border-color .15s;
+}
+#agent-input:focus { outline: none; border-color: var(--accent); }
+
+/* ── Barra de botões ── */
+.chat-toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.tool-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background .15s, border-color .15s;
+}
+.tool-btn:hover { background: var(--hover-bg); border-color: var(--accent); }
+.tool-btn.send-btn {
+  background: var(--btn-bg);
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.15);
+}
+.tool-btn.send-btn:hover { opacity: .88; background: var(--btn-bg); border-color: transparent; }
+
+/* ── Select de modelo inline no chat ── */
+.chat-model-select {
+  flex: 1;
+  min-width: 0;
+  max-width: 200px;
+  padding: 6px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color .15s;
+}
+.chat-model-select:focus { outline: none; border-color: var(--accent); }
+.chat-model-select:hover { border-color: var(--accent); }
+
+/* ── Chat box ── */
+#agent-chat-box {
+  height: 400px;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  scroll-behavior: smooth;
+}
+
+/* ── Mensagens ── */
+.ag-msg     { display: flex; flex-direction: column; gap: 3px; }
+.ag-user    { align-self: flex-end;  align-items: flex-end;  max-width: 80%; }
+.ag-ia      { align-self: flex-start; align-items: flex-start; max-width: 90%; }
+
+.ag-bubble  { padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.6; word-break: break-word; }
+.ag-user .ag-bubble { background: var(--accent); color: #fff; border-bottom-right-radius: 3px; }
+.ag-ia   .ag-bubble { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text); border-bottom-left-radius: 3px; }
+
+.ag-ia .ag-bubble strong { font-weight: 700; }
+.ag-ia .ag-bubble em     { font-style: italic; }
+.ag-ia .ag-bubble code   { background: rgba(127,127,127,.15); padding: 1px 4px; border-radius: 3px; font-size: 13px; }
+.ag-ia .ag-bubble pre    { background: rgba(127,127,127,.1); padding: 10px; border-radius: 6px; overflow-x: auto; margin: 6px 0; }
+.ag-ia .ag-bubble pre code { background: none; padding: 0; }
+.ag-ia .ag-bubble ul, .ag-ia .ag-bubble ol { margin: 6px 0 6px 18px; }
+.ag-ia .ag-bubble li     { margin: 2px 0; }
+.ag-ia .ag-bubble h3, .ag-ia .ag-bubble h4 { margin: 8px 0 4px; font-size: 1em; font-weight: 700; }
+.ag-ia .ag-bubble hr     { border: none; border-top: 1px solid var(--card-border); margin: 8px 0; }
+.ag-ia .ag-bubble table  { border-collapse: collapse; width: 100%; margin: 6px 0; font-size: 13px; }
+.ag-ia .ag-bubble th, .ag-ia .ag-bubble td { padding: 4px 8px; border-bottom: 1px solid var(--card-border); }
+.ag-ia .ag-bubble th     { background: rgba(127,127,127,.1); font-weight: 600; }
+
+.ag-meta     { font-size: 10px; color: var(--text-muted); padding: 0 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.ag-meta-fb  { color: #e67e22; }
+
+/* TTS btn */
+.ag-tts-btn {
+  background: none;
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--text-muted);
+  transition: background .15s;
+  font-family: inherit;
+}
+.ag-tts-btn:hover  { background: var(--hover-bg); }
+.ag-tts-btn.active { border-color: var(--accent); color: var(--accent); }
+
+/* Typing indicator */
+@keyframes ag-bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} }
+.ag-typing       { display: flex; gap: 5px; align-items: center; }
+.ag-typing span  { width: 7px; height: 7px; border-radius: 50%; background: var(--text-muted); display: inline-block; animation: ag-bounce .9s infinite; }
+.ag-typing span:nth-child(2) { animation-delay: .15s; }
+.ag-typing span:nth-child(3) { animation-delay: .30s; }
+
+/* Empty state */
+.chat-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  gap: 8px;
+  opacity: .5;
+}
+
+.chat-empty p    { font-size: 13px; text-align: center; }
+
+/* ── Responsivo ── */
+@media (max-width: 480px) {
+  body { padding: 12px 8px 32px; }
+  .ag-user { max-width: 90%; }
+  .ag-ia   { max-width: 95%; }
+  #agent-chat-box { height: 320px; }
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="index.html" class="header-logo" style="display:inline-flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;font-family:Arial,sans-serif;">
+    <img src="logo_astro.png" alt="Início" style="width:32px;height:32px;border-radius:50%;object-fit:cover;display:block;">
+    <span style="font-size:12px;color:#333;text-align:center;line-height:1.3;background:#fff;padding:2px 8px;border-radius:6px;">Home</span>
+  </a>
+  <h1>Chatia</h1>
+</div>
+
+<div class="container">
+
+  <!-- Banner sem chave (visível até configurar) -->
+  <div id="no-key-banner" style="display:none;">
+    <span style="font-size:20px;">⚠️</span>
+    <span>
+      <strong>Nenhuma chave de API configurada.</strong>
+      O agente não conseguirá responder. Configure ao menos OpenRouter, Groq, Google AI Studio, Z.AI (GLM) ou DeepSeek abaixo.
+      <button onclick="toggleCfg()">Configurar agora ▸</button>
+    </span>
+  </div>
+
+  <!-- Card de configurações -->
+  <div class="card">
+    <button class="cfg-toggle-btn" onclick="toggleCfg()">
+      ⚙️ <span>Configurações</span>
+      <span id="cfg-arrow">▼</span>
+    </button>
+
+    <form id="cfg-body" autocomplete="on" action="javascript:void(0)" onsubmit="saveCfg()">
+
+      <!-- Campo username oculto — necessário para o browser associar as senhas a uma "conta" -->
+      <input type="text" name="username" value="chatia" autocomplete="username"
+             style="display:none;" aria-hidden="true" tabindex="-1">
+
+      <!-- Grupo 1: LLM -->
+      <div class="cfg-group brain" style="margin-top:12px;">
+        <div class="cfg-group-title">🧠 CÉREBRO DA IA — preencha pelo menos uma</div>
+        <p>As chaves ficam salvas pelo <strong>gerenciador de senhas do seu navegador</strong> — o Chrome vai perguntar se quer salvar, igual a uma senha de site.</p>
+
+        <label class="field-label">
+          OpenRouter Key <span id="or-badge" class="saved-badge" style="display:none;">✓ salva</span>
+          <span style="font-weight:400;color:var(--text-muted);"> — <a href="https://openrouter.ai" target="_blank">openrouter.ai</a></span>
+        </label>
+        <span class="field-hint">Dá acesso a vários modelos de IA (Llama, Qwen, Gemma). Tem plano gratuito.</span>
+        <div class="input-row">
+          <input type="password" id="cfg-or-key" name="openrouter-key"
+                 autocomplete="current-password" placeholder="sk-or-v1-...">
+          <button type="button" class="vis-btn" onclick="toggleVis('cfg-or-key')">👁</button>
+        </div>
+
+        <label class="field-label">
+          Groq Key <span id="groq-badge" class="saved-badge" style="display:none;">✓ salva</span>
+          <span style="font-weight:400;color:var(--text-muted);"> — <a href="https://console.groq.com" target="_blank">console.groq.com</a></span>
+        </label>
+        <span class="field-hint">Alternativa ao OpenRouter — muito rápido e gratuito.</span>
+        <div class="input-row">
+          <input type="password" id="cfg-groq-key" name="groq-key"
+                 autocomplete="new-password" placeholder="gsk_...">
+          <button type="button" class="vis-btn" onclick="toggleVis('cfg-groq-key')">👁</button>
+        </div>
+
+        <label class="field-label">
+          Google AI Studio Key <span id="gemini-badge" class="saved-badge" style="display:none;">✓ salva</span>
+          <span style="font-weight:400;color:var(--text-muted);"> — <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a></span>
+        </label>
+        <span class="field-hint">Acesso aos modelos Gemini (Flash, Pro). Tem camada gratuita generosa.</span>
+        <div class="input-row" style="margin-bottom:0;">
+          <input type="password" id="cfg-gemini-key" name="gemini-key"
+                 autocomplete="new-password" placeholder="AIza...">
+          <button type="button" class="vis-btn" onclick="toggleVis('cfg-gemini-key')">👁</button>
+        </div>
+
+        <label class="field-label" style="margin-top:12px;">
+          Z.AI Key (GLM-4.7-Flash) <span id="zai-badge" class="saved-badge" style="display:none;">✓ salva</span>
+          <span style="font-weight:400;color:var(--text-muted);"> — <a href="https://z.ai/manage-apikey/apikey-list" target="_blank">z.ai</a></span>
+        </label>
+        <span class="field-hint">Modelo GLM-4.7-Flash — totalmente gratuito na Z.AI.</span>
+        <div class="input-row" style="margin-bottom:0;">
+          <input type="password" id="cfg-zai-key" name="zai-key"
+                 autocomplete="new-password" placeholder="sua-api-key">
+          <button type="button" class="vis-btn" onclick="toggleVis('cfg-zai-key')">👁</button>
+        </div>
+
+        <label class="field-label" style="margin-top:12px;">
+          DeepSeek Key <span id="deepseek-badge" class="saved-badge" style="display:none;">✓ salva</span>
+          <span style="font-weight:400;color:var(--text-muted);"> — <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a></span>
+        </label>
+        <span class="field-hint">Modelo R1 (deepseek-reasoner) — 5 milhões de tokens grátis no cadastro, sem cartão.</span>
+        <div class="input-row" style="margin-bottom:0;">
+          <input type="password" id="cfg-deepseek-key" name="deepseek-key"
+                 autocomplete="new-password" placeholder="sk-...">
+          <button type="button" class="vis-btn" onclick="toggleVis('cfg-deepseek-key')">👁</button>
+        </div>
+
+        <label class="field-label" style="margin-top:12px;">
+          Cloudflare Workers AI <span id="cf-badge" class="saved-badge" style="display:none;">✓ salva</span>
+          <span style="font-weight:400;color:var(--text-muted);"> — <a href="https://dash.cloudflare.com" target="_blank">dash.cloudflare.com</a></span>
+        </label>
+        <span class="field-hint">Precisa do Account ID e de um API Token com permissão "Workers AI". Tem plano gratuito.</span>
+        <div class="input-row" style="margin-bottom:6px;">
+          <input type="text" id="cfg-cf-account" name="cf-account"
+                 autocomplete="off" placeholder="Account ID">
+        </div>
+        <div class="input-row" style="margin-bottom:0;">
+          <input type="password" id="cfg-cf-key" name="cf-key"
+                 autocomplete="new-password" placeholder="API Token">
+          <button type="button" class="vis-btn" onclick="toggleVis('cfg-cf-key')">👁</button>
+        </div>
+      </div>
+
+      <!-- Grupo 2: Modelo preferido -->
+      <div class="cfg-group models">
+        <div class="cfg-group-title">🤖 MODELO PREFERIDO</div>
+        <p>Escolha o modelo padrão. Se falhar, o sistema tenta o próximo automaticamente.</p>
+
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <label class="field-label" style="margin-bottom:0;">Modelo principal (OpenRouter)</label>
+          <button type="button" onclick="fetchModelsOR()" id="btn-reload-or"
+            style="font-size:12px;padding:2px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);cursor:pointer;color:var(--text-muted);">🔄 recarregar</button>
+          <label style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text-muted);cursor:pointer;font-weight:400;">
+            <input type="checkbox" id="cfg-or-free-only" onchange="fetchModelsOR()"> só grátis ⚡
+          </label>
+          <span id="or-models-status" style="font-size:11px;color:var(--text-muted);"></span>
+        </div>
+        <select id="cfg-model-or" class="model-select" style="margin-bottom:12px;">
+          <option value="">— salve a key OpenRouter e clique em recarregar —</option>
+        </select>
+
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <label class="field-label" style="margin-bottom:0;">Modelo Groq (reserva rápida)</label>
+          <button type="button" onclick="fetchModelsGroq()" id="btn-reload-groq"
+            style="font-size:12px;padding:2px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);cursor:pointer;color:var(--text-muted);">🔄 recarregar</button>
+          <span id="groq-models-status" style="font-size:11px;color:var(--text-muted);"></span>
+        </div>
+        <select id="cfg-model-groq" class="model-select" style="margin-bottom:12px;">
+          <option value="">— salve a key Groq e clique em recarregar —</option>
+        </select>
+
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <label class="field-label" style="margin-bottom:0;">Modelo Gemini (Google AI Studio)</label>
+          <button type="button" onclick="fetchModelsGemini()" id="btn-reload-gemini"
+            style="font-size:12px;padding:2px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);cursor:pointer;color:var(--text-muted);">🔄 recarregar</button>
+          <span id="gemini-models-status" style="font-size:11px;color:var(--text-muted);"></span>
+        </div>
+        <select id="cfg-model-gemini" class="model-select">
+          <option value="">— salve a key Gemini e clique em recarregar —</option>
+        </select>
+
+        <div style="display:flex;align-items:center;gap:8px;margin-top:12px;margin-bottom:6px;">
+          <label class="field-label" style="margin-bottom:0;">Modelo DeepSeek</label>
+          <button type="button" onclick="fetchModelsDeepseek()" id="btn-reload-deepseek"
+            style="font-size:12px;padding:2px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg-card);cursor:pointer;color:var(--text-muted);">🔄 recarregar</button>
+          <span id="deepseek-models-status" style="font-size:11px;color:var(--text-muted);"></span>
+        </div>
+        <select id="cfg-model-deepseek" class="model-select" style="margin-bottom:6px;">
+          <option value="deepseek-reasoner">deepseek-reasoner (R1 — raciocínio)</option>
+          <option value="deepseek-chat">deepseek-chat (V4 — rápido)</option>
+        </select>
+
+        <label class="field-label" style="margin-top:12px;margin-bottom:6px;">Modelo Z.AI</label>
+        <span class="field-hint">Único modelo gratuito disponível: glm-4.7-flash (fixo).</span>
+
+        <label class="field-label" style="margin-top:12px;margin-bottom:6px;">Modelo Cloudflare Workers AI</label>
+        <span class="field-hint">Cloudflare não tem endpoint de listagem — cole o ID do catálogo (developers.cloudflare.com/workers-ai/models).</span>
+        <input type="text" id="cfg-model-cf" class="model-select" style="margin-top:6px;"
+               placeholder="@cf/zai-org/glm-5.2">
+      </div>
+
+      <!-- Grupo 3: Skills -->
+      <div class="cfg-group">
+        <div class="cfg-group-title">📚 SKILLS</div>
+        <p>Selecione a pasta de skills. Antes de responder, o sistema decide se alguma skill é relevante pra pergunta.</p>
+        <input type="file" id="skills-folder-input" webkitdirectory multiple
+               style="display:none" onchange="handleSkillsFolder(this.files)">
+        <button type="button" class="btn-secondary" onclick="document.getElementById('skills-folder-input').click()">📁 Selecionar pasta de skills</button>
+        <span id="skills-status" style="font-size:12px;color:var(--text-muted);margin-left:8px;"></span>
+        <div id="skills-list" style="font-size:12px;color:var(--text-muted);margin-top:6px;"></div>
+      </div>
+
+      <!-- Grupo 4: Diretório de trabalho -->
+      <div class="cfg-group">
+        <div class="cfg-group-title">📁 DIRETÓRIO DE TRABALHO</div>
+        <p>Selecione a pasta que o assistente pode ler e modificar. Os arquivos serão incluídos como contexto.</p>
+        <input type="file" id="work-dir-input" webkitdirectory multiple
+               style="display:none" onchange="handleWorkDir(this.files)">
+        <button type="button" class="btn-secondary" onclick="document.getElementById('work-dir-input').click()">📂 Selecionar diretório</button>
+        <span id="work-dir-status" style="font-size:12px;color:var(--text-muted);margin-left:8px;"></span>
+        <div id="work-dir-list" style="font-size:12px;color:var(--text-muted);margin-top:6px;"></div>
+      </div>
+
+      <!-- Grupo: Estilo de resposta -->
+      <div class="cfg-group" style="margin-top:12px;">
+        <div class="cfg-group-title">🎛️ ESTILO DE RESPOSTA</div>
+        <p>Define o tom e a profundidade das respostas da IA.</p>
+        <label class="field-label">Modo</label>
+        <select id="cfg-style" class="model-select" style="margin-bottom:12px;">
+          <option value="conciso">Conciso — respostas curtas e diretas</option>
+          <option value="formal">Formal — linguagem profissional e estruturada</option>
+          <option value="tutor">Tutor — explicativo, passo a passo, didático</option>
+          <option value="abrangente">Abrangente — cobertura completa e detalhada</option>
+        </select>
+        <label class="field-label">Preferências pessoais</label>
+        <span class="field-hint">Descreva contexto, área de atuação, preferências de formato ou qualquer instrução extra para a IA.</span>
+        <textarea id="cfg-preferences" rows="4"
+          style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg-input, var(--bg-card));color:var(--text);font-size:14px;resize:vertical;margin-top:4px;"
+          placeholder="Ex: Sou desenvolvedor Python, prefiro exemplos de código, evite jargões de marketing…"></textarea>
+      </div>
+
+      <!-- Ações -->
+      <div class="cfg-actions">
+        <button type="submit" class="btn-primary">💾 Salvar</button>
+        <button type="button" class="btn-secondary" onclick="toggleCfg()">Fechar ▲</button>
+        <span id="cfg-msg"></span>
+      </div>
+
+    </form><!-- /cfg-body -->
+  </div><!-- /card -->
+
+  <!-- Textarea + toolbar -->
+  <div class="card" style="padding:14px;">
+    <textarea id="agent-input" rows="3"
+      placeholder="Digite aqui sua pergunta…"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviar();}"></textarea>
+
+    <div class="chat-toolbar">
+      <button class="tool-btn" title="Limpar conversa" onclick="limpar()">🗑</button>
+      <button class="tool-btn" title="Copiar conversa" onclick="copiar()">📋</button>
+      <select id="chat-model-select" class="chat-model-select" title="Modelo ativo"
+              onchange="_activeChainMode=this.value">
+        <option value="auto">— sem API —</option>
+      </select>
+      <button class="tool-btn send-btn" title="Enviar (Enter)" onclick="enviar()">➤</button>
+    </div>
+
+    <!-- Chat box -->
+    <div id="agent-chat-box">
+      <div class="chat-empty" id="chat-empty">
+        <p>Como posso ajudar?</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+'use strict';
+
+// ── Config e estado ──────────────────────────────────────────────────────────
+var _STORE   = 'chatia_cfg_v1';
+var _HIST_K  = 'chatia_hist_v1';
+var _cfg     = {};
+var _hist    = [];
+var _ttsUtt  = null;
+var _ttsBtn  = null;
+var _ttsRate = 1.0;
+var _activeChainMode = 'auto'; // 'auto' | 'or' | 'groq' | 'gemini'
+
+var OR_URL     = 'https://openrouter.ai/api/v1/chat/completions';
+var GROQ_URL   = 'https://api.groq.com/openai/v1/chat/completions';
+var GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions';
+var ZAI_URL    = 'https://api.z.ai/api/paas/v4/chat/completions';
+var DEEPSEEK_URL = 'https://api.deepseek.com/v1/chat/completions';
+// Cloudflare não tem uma URL fixa: o account_id vai no caminho, então a URL é montada em runtime (ver _buildChain).
+
+var _SKILLS_STORE   = 'chatia_skills_v1';
+var _skills = []; // [{name, desc, content}]
+
+var _WORK_DIR_STORE = 'chatia_workdir_v1';
+var _workDir = []; // [{name, path, content}]
+
+var SYSTEM_PROMPT =
+  'Você é um assistente útil e versátil. ' +
+  'Responda sempre em português do Brasil. ' +
+  'Pode usar markdown: **negrito**, *itálico*, listas com -, títulos com ##.';
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+(function init() {
+  try { _cfg = JSON.parse(localStorage.getItem(_STORE) || '{}'); } catch(e){ _cfg = {}; }
+  try {
+    var saved = JSON.parse(localStorage.getItem(_HIST_K) || '[]');
+    if (Array.isArray(saved)) _hist = saved;
+  } catch(e) {}
+  try {
+    var savedSkills = JSON.parse(localStorage.getItem(_SKILLS_STORE) || '[]');
+    if (Array.isArray(savedSkills)) { _skills = savedSkills; _renderSkillsStatus(); }
+  } catch(e) {}
+  try {
+    var savedWorkDir = JSON.parse(localStorage.getItem(_WORK_DIR_STORE) || '[]');
+    if (Array.isArray(savedWorkDir)) { _workDir = savedWorkDir; _renderWorkDirStatus(); }
+  } catch(e) {}
+
+  // Preenche campos de config com valores salvos
+  if (_cfg.or_key)        document.getElementById('cfg-or-key').value        = _cfg.or_key;
+  if (_cfg.groq_key)     document.getElementById('cfg-groq-key').value      = _cfg.groq_key;
+  if (_cfg.gemini_key)   document.getElementById('cfg-gemini-key').value    = _cfg.gemini_key;
+  if (_cfg.zai_key)      document.getElementById('cfg-zai-key').value      = _cfg.zai_key;
+  if (_cfg.deepseek_key) document.getElementById('cfg-deepseek-key').value = _cfg.deepseek_key;
+  if (_cfg.cf_account)   document.getElementById('cfg-cf-account').value    = _cfg.cf_account;
+  if (_cfg.cf_key)       document.getElementById('cfg-cf-key').value        = _cfg.cf_key;
+  if (_cfg.model_or)     document.getElementById('cfg-model-or').value      = _cfg.model_or;
+  if (_cfg.model_groq)   document.getElementById('cfg-model-groq').value    = _cfg.model_groq;
+  if (_cfg.model_gemini) document.getElementById('cfg-model-gemini').value  = _cfg.model_gemini;
+  if (_cfg.model_deepseek) document.getElementById('cfg-model-deepseek').value = _cfg.model_deepseek;
+  if (_cfg.model_cf)     document.getElementById('cfg-model-cf').value      = _cfg.model_cf;
+  if (_cfg.style)      document.getElementById('cfg-style').value        = _cfg.style;
+  if (_cfg.preferences) {
+    document.getElementById('cfg-preferences').value = _cfg.preferences;
+  } else {
+    document.getElementById('cfg-preferences').value =
+      "Pense antes de agir. Declare suposições explicitamente. Pergunte em vez de adivinhar. " +
+      "Faça o mínimo que resolve o problema — sem código especulativo, sem melhorias não pedidas. " +
+      "Toque apenas no que é necessário. Verifique se a solução já existe antes de criar. " +
+      "Quando dois padrões se contradizem, escolha um e explique. " +
+      "Nunca esconda incerteza — exponha e pergunte. Quando em dúvida: faça MENOS.\n\n" +
+      "Think in Code: prefira scripts para analisar dados grandes em vez de ler diretamente.\n" +
+      "No Data Dumping: se o retorno for longo, traga só resumo e linhas relevantes — não despeje tudo.";
+  }
+
+  // Badges "salva"
+  if (_cfg.or_key)     document.getElementById('or-badge').style.display     = 'inline';
+  if (_cfg.groq_key)   document.getElementById('groq-badge').style.display   = 'inline';
+  if (_cfg.gemini_key) document.getElementById('gemini-badge').style.display = 'inline';
+  if (_cfg.zai_key)    document.getElementById('zai-badge').style.display    = 'inline';
+  if (_cfg.deepseek_key) document.getElementById('deepseek-badge').style.display = 'inline';
+  if (_cfg.cf_key)     document.getElementById('cf-badge').style.display     = 'inline';
+
+  // Banner
+  if (!_cfg.or_key && !_cfg.groq_key && !_cfg.gemini_key && !_cfg.zai_key && !_cfg.deepseek_key && !_cfg.cf_key) {
+    document.getElementById('no-key-banner').style.display = 'flex';
+  }
+
+  // Carrega modelos disponíveis se já houver keys
+  if (_cfg.or_key || _cfg.groq_key || _cfg.gemini_key || _cfg.deepseek_key) setTimeout(loadModels, 100);
+  _initChatModelSelect();
+
+  // Restaura histórico
+  if (_hist.length) {
+    document.getElementById('chat-empty').style.display = 'none';
+    _hist.forEach(function(h) {
+      if (h.role === 'user')      _addMsg(h.content, 'user');
+      else if (h.role === 'assistant') _addMsg(h.content, 'ia', h.modelo || 'IA');
+    });
+  }
+})();
+
+// ── Config UI ────────────────────────────────────────────────────────────────
+function toggleCfg() {
+  var b = document.getElementById('cfg-body');
+  var a = document.getElementById('cfg-arrow');
+  var open = b.style.display === 'block';
+  b.style.display = open ? 'none' : 'block';
+  a.style.transform = open ? '' : 'rotate(180deg)';
+  // Foca no primeiro campo ao abrir
+  if (!open) setTimeout(function(){ var f = document.getElementById('cfg-or-key'); if(f && !f.value) f.focus(); }, 50);
+}
+
+function toggleVis(id) {
+  var el = document.getElementById(id);
+  el.type = el.type === 'password' ? 'text' : 'password';
+}
+
+// ── Fetch de modelos disponíveis ──────────────────────────────────────────────
+function _populateSelect(selId, models, savedVal) {
+  var sel = document.getElementById(selId);
+  sel.innerHTML = '';
+  models.forEach(function(m) {
+    var opt = document.createElement('option');
+    opt.value = m.id;
+    opt.textContent = m.label;
+    sel.appendChild(opt);
+  });
+  if (savedVal) sel.value = savedVal;
+  if (!sel.value && models.length) sel.value = models[0].id;
+}
+
+function fetchModelsOR() {
+  var key = document.getElementById('cfg-or-key').value.trim() || _cfg.or_key;
+  if (!key) { document.getElementById('or-models-status').textContent = '⚠️ sem key'; return; }
+  var st = document.getElementById('or-models-status');
+  st.textContent = 'carregando…';
+  fetch('https://openrouter.ai/api/v1/models', {
+    headers: { 'Authorization': 'Bearer ' + key }
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    var freeOnly = document.getElementById('cfg-or-free-only').checked;
+    var raw = data.data || [];
+    if (freeOnly) {
+      raw = raw.filter(function(m) {
+        return m.pricing && parseFloat(m.pricing.prompt) === 0 && parseFloat(m.pricing.completion) === 0;
+      });
+    }
+    var list = raw.map(function(m) {
+      var free = (m.pricing && parseFloat(m.pricing.prompt) === 0) ? ' ⚡' : '';
+      return { id: m.id, label: (m.name || m.id) + free };
+    });
+    list.sort(function(a,b){ return a.label.localeCompare(b.label); });
+    _populateSelect('cfg-model-or', list, _cfg.model_or);
+    st.textContent = '✓ ' + list.length + ' modelos' + (freeOnly ? ' (grátis)' : '');
+    st.style.color = 'green';
+  })
+  .catch(function(e) {
+    st.textContent = '✗ erro';
+    st.style.color = 'red';
+    console.warn('[Chatia] fetchModelsOR:', e);
+  });
+}
+
+function fetchModelsGroq() {
+  var key = document.getElementById('cfg-groq-key').value.trim() || _cfg.groq_key;
+  if (!key) { document.getElementById('groq-models-status').textContent = '⚠️ sem key'; return; }
+  var st = document.getElementById('groq-models-status');
+  st.textContent = 'carregando…';
+  fetch('https://api.groq.com/openai/v1/models', {
+    headers: { 'Authorization': 'Bearer ' + key }
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    var list = (data.data || []).map(function(m) {
+      return { id: m.id, label: m.id };
+    });
+    list.sort(function(a,b){ return a.label.localeCompare(b.label); });
+    _populateSelect('cfg-model-groq', list, _cfg.model_groq);
+    var st2 = document.getElementById('groq-models-status');
+    st2.textContent = '✓ ' + list.length + ' modelos';
+    st2.style.color = 'green';
+  })
+  .catch(function(e) {
+    var st2 = document.getElementById('groq-models-status');
+    st2.textContent = '✗ erro';
+    st2.style.color = 'red';
+    console.warn('[Chatia] fetchModelsGroq:', e);
+  });
+}
+
+function fetchModelsGemini() {
+  var key = document.getElementById('cfg-gemini-key').value.trim() || _cfg.gemini_key;
+  if (!key) { document.getElementById('gemini-models-status').textContent = '⚠️ sem key'; return; }
+  var st = document.getElementById('gemini-models-status');
+  st.textContent = 'carregando…';
+  fetch('https://generativelanguage.googleapis.com/v1beta/openai/models', {
+    headers: { 'Authorization': 'Bearer ' + key }
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    var list = (data.data || [])
+      .filter(function(m) { return m.id && m.id.indexOf('gemini') !== -1; })
+      .map(function(m) { return { id: m.id, label: m.id }; });
+    list.sort(function(a,b){ return a.label.localeCompare(b.label); });
+    _populateSelect('cfg-model-gemini', list, _cfg.model_gemini);
+    st.textContent = '✓ ' + list.length + ' modelos';
+    st.style.color = 'green';
+  })
+  .catch(function(e) {
+    st.textContent = '✗ erro';
+    st.style.color = 'red';
+    console.warn('[Chatia] fetchModelsGemini:', e);
+  });
+}
+
+function fetchModelsDeepseek() {
+  var key = document.getElementById('cfg-deepseek-key').value.trim() || _cfg.deepseek_key;
+  if (!key) { document.getElementById('deepseek-models-status').textContent = '⚠️ sem key'; return; }
+  var st = document.getElementById('deepseek-models-status');
+  st.textContent = 'carregando…';
+  fetch('https://api.deepseek.com/v1/models', {
+    headers: { 'Authorization': 'Bearer ' + key }
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    var list = (data.data || []).map(function(m) {
+      return { id: m.id, label: m.id };
+    });
+    list.sort(function(a,b){ return a.label.localeCompare(b.label); });
+    _populateSelect('cfg-model-deepseek', list, _cfg.model_deepseek);
+    var st2 = document.getElementById('deepseek-models-status');
+    st2.textContent = '✓ ' + list.length + ' modelos';
+    st2.style.color = 'green';
+  })
+  .catch(function(e) {
+    var st2 = document.getElementById('deepseek-models-status');
+    st2.textContent = '✗ erro';
+    st2.style.color = 'red';
+    console.warn('[Chatia] fetchModelsDeepseek:', e);
+  });
+}
+
+function loadModels() {
+  if (_cfg.or_key)     fetchModelsOR();
+  if (_cfg.groq_key)   fetchModelsGroq();
+  if (_cfg.gemini_key) fetchModelsGemini();
+  if (_cfg.deepseek_key) fetchModelsDeepseek();
+}
+
+function _initChatModelSelect() {
+  var sel = document.getElementById('chat-model-select');
+  if (!sel) return;
+  sel.innerHTML = '';
+  var hasOr     = !!_cfg.or_key;
+  var hasGroq   = !!_cfg.groq_key;
+  var hasGemini = !!_cfg.gemini_key;
+  var hasZai    = !!_cfg.zai_key;
+  var hasDeepseek = !!_cfg.deepseek_key;
+  var hasCf     = !!(_cfg.cf_key && _cfg.cf_account);
+
+  if (!hasOr && !hasGroq && !hasGemini && !hasZai && !hasDeepseek && !hasCf) {
+    sel.innerHTML = '<option value="auto">— sem API —</option>';
+    return;
+  }
+
+  var apiCount = (hasOr ? 1 : 0) + (hasGroq ? 1 : 0) + (hasGemini ? 1 : 0) + (hasZai ? 1 : 0) + (hasDeepseek ? 1 : 0) + (hasCf ? 1 : 0);
+  if (apiCount > 1) {
+    var a = document.createElement('option');
+    a.value = 'auto'; a.textContent = '⚡ Auto';
+    sel.appendChild(a);
+  }
+
+  if (hasOr) {
+    var b = document.createElement('option');
+    b.value = 'or';
+    var lbl = (_cfg.model_or || 'OpenRouter').split('/').pop().replace(/:.*$/, '');
+    if (lbl.length > 26) lbl = lbl.substring(0, 26) + '…';
+    b.textContent = '🔷 ' + lbl;
+    sel.appendChild(b);
+  }
+
+  if (hasGroq) {
+    var c = document.createElement('option');
+    c.value = 'groq';
+    var glbl = (_cfg.model_groq || 'Groq');
+    if (glbl.length > 26) glbl = glbl.substring(0, 26) + '…';
+    c.textContent = '🟢 ' + glbl;
+    sel.appendChild(c);
+  }
+
+  if (hasGemini) {
+    var d = document.createElement('option');
+    d.value = 'gemini';
+    var gemlbl = (_cfg.model_gemini || 'gemini-2.0-flash');
+    if (gemlbl.length > 26) gemlbl = gemlbl.substring(0, 26) + '…';
+    d.textContent = '✨ ' + gemlbl;
+    sel.appendChild(d);
+  }
+
+  if (hasZai) {
+    var z = document.createElement('option');
+    z.value = 'zai';
+    z.textContent = '🇿 GLM-4.7-Flash';
+    sel.appendChild(z);
+  }
+
+  if (hasDeepseek) {
+    var f = document.createElement('option');
+    f.value = 'deepseek';
+    f.textContent = '🐋 ' + (_cfg.model_deepseek || 'deepseek-reasoner');
+    sel.appendChild(f);
+  }
+
+  if (hasCf) {
+    var e = document.createElement('option');
+    e.value = 'cf';
+    var cflbl = (_cfg.model_cf || '@cf/zai-org/glm-5.2').split('/').pop();
+    if (cflbl.length > 26) cflbl = cflbl.substring(0, 26) + '…';
+    e.textContent = '🟠 ' + cflbl;
+    sel.appendChild(e);
+  }
+
+  // Se só tem uma API, força o modo dela
+  if (hasOr     && !hasGroq   && !hasGemini && !hasZai && !hasDeepseek && !hasCf) { _activeChainMode = 'or'; }
+  if (hasGroq   && !hasOr     && !hasGemini && !hasZai && !hasDeepseek && !hasCf) { _activeChainMode = 'groq'; }
+  if (hasGemini && !hasOr     && !hasGroq   && !hasZai && !hasDeepseek && !hasCf) { _activeChainMode = 'gemini'; }
+  if (hasZai    && !hasOr     && !hasGroq   && !hasGemini && !hasDeepseek && !hasCf) { _activeChainMode = 'zai'; }
+  if (hasDeepseek && !hasOr   && !hasGroq   && !hasGemini && !hasZai && !hasCf) { _activeChainMode = 'deepseek'; }
+  if (hasCf     && !hasOr     && !hasGroq   && !hasGemini && !hasZai && !hasDeepseek) { _activeChainMode = 'cf'; }
+
+  if (sel.querySelector('option[value="' + _activeChainMode + '"]')) {
+    sel.value = _activeChainMode;
+  } else {
+    sel.value = sel.options[0].value;
+    _activeChainMode = sel.value;
+  }
+}
+
+// ── Base de conhecimento (skills) ───────────────────────────────────────────
+function handleSkillsFolder(fileList) {
+  var skillFiles = [];
+  for (var i = 0; i < fileList.length; i++) {
+    var f = fileList[i];
+    if (/\/SKILL\.md$/.test(f.webkitRelativePath) || f.webkitRelativePath.split('/').pop() === 'SKILL.md') {
+      skillFiles.push(f);
+    }
+  }
+  if (!skillFiles.length) {
+    document.getElementById('skills-status').textContent = '⚠️ nenhum SKILL.md encontrado';
+    return;
+  }
+  document.getElementById('skills-status').textContent = 'carregando…';
+
+  var results = [];
+  var pending = skillFiles.length;
+  skillFiles.forEach(function(f) {
+    var reader = new FileReader();
+    reader.onload = function() {
+      var text = reader.result;
+      var parts = f.webkitRelativePath.split('/');
+      var folderName = parts[parts.length - 2] || f.name;
+      var descMatch = text.match(/^description:\s*"?([^"\n]+)"?\s*$/m);
+      results.push({
+        name: folderName,
+        desc: descMatch ? descMatch[1].trim() : (folderName),
+        content: text
+      });
+      pending--;
+      if (pending === 0) {
+        _skills = results;
+        try { localStorage.setItem(_SKILLS_STORE, JSON.stringify(_skills)); } catch(e) {}
+        _renderSkillsStatus();
+      }
+    };
+    reader.onerror = function() {
+      pending--;
+      if (pending === 0) {
+        _skills = results;
+        _renderSkillsStatus();
+      }
+    };
+    reader.readAsText(f);
+  });
+}
+
+function _renderSkillsStatus() {
+  var st = document.getElementById('skills-status');
+  var list = document.getElementById('skills-list');
+  if (!_skills.length) {
+    st.textContent = '';
+    list.innerHTML = '';
+    return;
+  }
+  st.textContent = '✓ ' + _skills.length + ' skill(s) carregada(s)';
+  st.style.color = 'green';
+  list.innerHTML = _skills.map(function(s) {
+    return '📖 ' + s.name;
+  }).join(' · ');
+}
+
+// ── Diretório de trabalho ─────────────────────────────────────────────────────
+function handleWorkDir(fileList) {
+  if (!fileList.length) return;
+  document.getElementById('work-dir-status').textContent = 'carregando…';
+
+  var files = Array.prototype.slice.call(fileList);
+  var results = [];
+  var pending = files.length;
+
+  files.forEach(function(f) {
+    var reader = new FileReader();
+    reader.onload = function() {
+      results.push({
+        name: f.name,
+        path: f.webkitRelativePath || f.name,
+        content: reader.result
+      });
+      pending--;
+      if (pending === 0) {
+        _workDir = results;
+        try { localStorage.setItem(_WORK_DIR_STORE, JSON.stringify(_workDir)); } catch(e) {}
+        _renderWorkDirStatus();
+      }
+    };
+    reader.onerror = function() {
+      pending--;
+      if (pending === 0) {
+        _workDir = results;
+        _renderWorkDirStatus();
+      }
+    };
+    // Lê como texto; arquivos binários serão ignorados pelo LLM
+    reader.readAsText(f);
+  });
+}
+
+function _renderWorkDirStatus() {
+  var st   = document.getElementById('work-dir-status');
+  var list = document.getElementById('work-dir-list');
+  if (!st || !list) return;
+  if (!_workDir.length) { st.textContent = ''; list.innerHTML = ''; return; }
+  st.textContent = '✓ ' + _workDir.length + ' arquivo(s) carregado(s)';
+  st.style.color = 'green';
+  list.innerHTML = _workDir.map(function(f) {
+    return '📄 <strong>' + f.path + '</strong>';
+  }).join('<br>');
+}
+
+function saveCfg() {
+  var orVal     = document.getElementById('cfg-or-key').value.trim();
+  var groqVal   = document.getElementById('cfg-groq-key').value.trim();
+  var geminiVal = document.getElementById('cfg-gemini-key').value.trim();
+  var zaiVal    = document.getElementById('cfg-zai-key').value.trim();
+  var deepseekVal = document.getElementById('cfg-deepseek-key').value.trim();
+  var cfKeyVal  = document.getElementById('cfg-cf-key').value.trim();
+  var cfAccVal  = document.getElementById('cfg-cf-account').value.trim();
+  if (orVal)     _cfg.or_key     = orVal;
+  if (groqVal)   _cfg.groq_key   = groqVal;
+  if (geminiVal) _cfg.gemini_key = geminiVal;
+  if (zaiVal)    _cfg.zai_key    = zaiVal;
+  if (deepseekVal) _cfg.deepseek_key = deepseekVal;
+  if (cfKeyVal)  _cfg.cf_key     = cfKeyVal;
+  if (cfAccVal)  _cfg.cf_account = cfAccVal;
+  _cfg.model_or     = document.getElementById('cfg-model-or').value;
+  _cfg.model_groq   = document.getElementById('cfg-model-groq').value;
+  _cfg.model_gemini = document.getElementById('cfg-model-gemini').value;
+  _cfg.model_deepseek = document.getElementById('cfg-model-deepseek').value;
+  _cfg.model_cf     = document.getElementById('cfg-model-cf').value.trim();
+  _cfg.style        = document.getElementById('cfg-style').value;
+  _cfg.preferences  = document.getElementById('cfg-preferences').value.trim();
+
+  // Salva no localStorage como fallback (o browser também vai oferecer salvar no gerenciador de senhas)
+  try { localStorage.setItem(_STORE, JSON.stringify(_cfg)); } catch(e) {}
+
+  document.getElementById('or-badge').style.display   = _cfg.or_key   ? 'inline' : 'none';
+  document.getElementById('groq-badge').style.display = _cfg.groq_key ? 'inline' : 'none';
+  document.getElementById('zai-badge').style.display  = _cfg.zai_key  ? 'inline' : 'none';
+  document.getElementById('deepseek-badge').style.display = _cfg.deepseek_key ? 'inline' : 'none';
+  document.getElementById('cf-badge').style.display    = (_cfg.cf_key && _cfg.cf_account) ? 'inline' : 'none';
+
+  if (_cfg.or_key || _cfg.groq_key || _cfg.zai_key || _cfg.deepseek_key || (_cfg.cf_key && _cfg.cf_account)) {
+    document.getElementById('no-key-banner').style.display = 'none';
+  }
+
+  loadModels();
+  _initChatModelSelect();
+
+  var msg = document.getElementById('cfg-msg');
+  msg.textContent = '✓ Salvo!';
+  msg.style.color = '#2e7d32';
+  // Fecha o painel após 1s
+  setTimeout(function(){
+    msg.textContent = '';
+    toggleCfg();
+  }, 900);
+}
+
+// ── Enviar mensagem ───────────────────────────────────────────────────────────
+function enviar() {
+  var inp = document.getElementById('agent-input');
+  var txt = inp.value.trim();
+  if (!txt) return;
+  inp.value = '';
+
+  // Esconde empty state
+  document.getElementById('chat-empty').style.display = 'none';
+
+  _addMsg(txt, 'user');
+  _hist.push({ role: 'user', content: txt });
+  _saveHist();
+
+  _tentarResposta(txt);
+}
+
+// ── Chama o LLM para uma mensagem já registrada no histórico (usado por enviar() e pelo retry) ──
+function _tentarResposta(txt) {
+  var tid = _typing();
+  _callLLM(txt, function(resp, modelo) {
+    _rmTyping(tid);
+    if (resp.error) {
+      _addMsg('⚠️ ' + resp.error, 'ia', '⚠️ Erro', false, function() { _tentarResposta(txt); });
+      return;
+    }
+    _addMsg(resp.text, 'ia', modelo, true);
+    _hist.push({ role: 'assistant', content: resp.text, modelo: modelo });
+    _saveHist();
+  });
+}
+
+// ── Chamada LLM com fallback OR → Groq ───────────────────────────────────────
+function _buildChain() {
+  var chain = [];
+  var mode = _activeChainMode;
+  if ((mode === 'auto' || mode === 'or') && _cfg.or_key) {
+    chain.push({
+      url:   OR_URL,
+      key:   _cfg.or_key,
+      model: _cfg.model_or || 'meta-llama/llama-3.3-70b-instruct:free',
+      name:  _cfg.model_or || 'Llama 3.3 70B'
+    });
+  }
+  if ((mode === 'auto' || mode === 'groq') && _cfg.groq_key) {
+    chain.push({
+      url:   GROQ_URL,
+      key:   _cfg.groq_key,
+      model: _cfg.model_groq || 'llama-3.3-70b-versatile',
+      name:  'Groq ' + (_cfg.model_groq || 'Llama 3.3')
+    });
+  }
+  if ((mode === 'auto' || mode === 'gemini') && _cfg.gemini_key) {
+    chain.push({
+      url:   GEMINI_URL,
+      key:   _cfg.gemini_key,
+      model: _cfg.model_gemini || 'gemini-2.0-flash',
+      name:  'Gemini ' + (_cfg.model_gemini || '2.0 Flash')
+    });
+  }
+  if ((mode === 'auto' || mode === 'zai') && _cfg.zai_key) {
+    chain.push({
+      url:   ZAI_URL,
+      key:   _cfg.zai_key,
+      model: 'glm-4.7-flash',
+      name:  'GLM-4.7-Flash'
+    });
+  }
+  if ((mode === 'auto' || mode === 'deepseek') && _cfg.deepseek_key) {
+    chain.push({
+      url:   DEEPSEEK_URL,
+      key:   _cfg.deepseek_key,
+      model: _cfg.model_deepseek || 'deepseek-reasoner',
+      name:  _cfg.model_deepseek || 'DeepSeek R1'
+    });
+  }
+  return chain;
+}
+
+function _callLLM(userMsg, cb) {
+  var chain = _buildChain();
+  if (!chain.length) {
+    cb({ error: 'Nenhuma chave de API configurada. Clique em ⚙️ Configurações para adicionar.' });
+    return;
+  }
+
+  if (_skills.length) {
+    // Etapa extra: pergunta rápida à IA pra decidir se alguma skill carregada é relevante
+    var skillList = _skills.map(function(s) { return '- ' + s.name + ': ' + s.desc; }).join('\n');
+    var classifyMsgs = [
+      { role: 'system', content:
+        'Você escolhe qual base de conhecimento é relevante para a pergunta do usuário. ' +
+        'Bases disponíveis:\n' + skillList + '\n' +
+        'Responda APENAS com o nome exato de uma das bases acima, ou a palavra "nenhuma" se não houver relação clara. Sem explicações.' },
+      { role: 'user', content: userMsg }
+    ];
+    _tryChain(chain, 0, classifyMsgs, function(resp) {
+      var skillName = null;
+      if (resp && resp.text) {
+        var t = resp.text.trim().toLowerCase();
+        _skills.forEach(function(s) {
+          if (t.indexOf(s.name.toLowerCase()) !== -1) skillName = s.name;
+        });
+      }
+      _finishCallLLM(userMsg, chain, skillName, cb);
+    });
+  } else {
+    _finishCallLLM(userMsg, chain, null, cb);
+  }
+}
+
+function _finishCallLLM(userMsg, chain, skillName, cb) {
+  var sys = SYSTEM_PROMPT;
+
+  // Injeta estilo de resposta
+  var styleMap = {
+    conciso:     'Seja conciso: respostas curtas, diretas e sem rodeios.',
+    formal:      'Use linguagem formal e profissional. Estruture bem as respostas.',
+    tutor:       'Aja como um tutor: explique passo a passo, use exemplos, verifique a compreensão.',
+    abrangente:  'Seja abrangente: cubra todos os ângulos relevantes do tema com profundidade.'
+  };
+  var styleKey = (_cfg.style || 'conciso');
+  sys += '\n\n' + (styleMap[styleKey] || styleMap['conciso']);
+
+  // Injeta preferências pessoais
+  if (_cfg.preferences) {
+    sys += '\n\nPreferências do usuário: ' + _cfg.preferences;
+  }
+  if (skillName) {
+    var skill = null;
+    for (var i = 0; i < _skills.length; i++) {
+      if (_skills[i].name === skillName) { skill = _skills[i]; break; }
+    }
+    if (skill) {
+      sys += '\n\n--- BASE DE CONHECIMENTO: ' + skill.name + ' ---\n' + skill.content +
+             '\n--- FIM DA BASE DE CONHECIMENTO ---\n' +
+             'A pergunta do usuário se relaciona com a base acima. Use os conceitos, termos e frameworks dessa base para responder — não conhecimento genérico.';
+    }
+  }
+
+  var _tools = [{
+    type: 'function',
+    function: {
+      name: 'executar_js',
+      description: 'Executa um trecho de JavaScript em um sandbox isolado (iframe sem acesso a localStorage, cookies ou ao DOM da página). Use para cálculos, testes de lógica, parsing de dados, simulações etc. Retorna os console.log() capturados e o valor da última expressão avaliada. Tempo limite de 5s. Não executa Python nem outras linguagens.',
+      parameters: {
+        type: 'object',
+        properties: {
+          codigo: { type: 'string', description: 'Código JavaScript a executar. A última expressão avaliada é retornada como valor.' }
+        },
+        required: ['codigo']
+      }
+    }
+  }];
+  sys += '\n\nVocê tem acesso à ferramenta "executar_js" para rodar JavaScript de verdade (sandbox isolado, sem acesso a dados do usuário). Use-a quando precisar calcular, testar lógica ou processar dados em vez de só simular o resultado mentalmente.';
+
+  if (_workDir.length) {
+    _tools.push({
+      type: 'function',
+      function: {
+        name: 'ler_arquivo',
+        description: 'Lê um trecho (por intervalo de linhas) de um arquivo do diretório de trabalho. Use para inspecionar o arquivo em partes, começando por um trecho pequeno para se orientar.',
+        parameters: {
+          type: 'object',
+          properties: {
+            path:   { type: 'string',  description: 'Caminho/nome do arquivo, exatamente como aparece no índice.' },
+            inicio: { type: 'integer', description: 'Linha inicial (1-based).' },
+            fim:    { type: 'integer', description: 'Linha final (inclusive). Máximo de 300 linhas por chamada.' }
+          },
+          required: ['path', 'inicio', 'fim']
+        }
+      }
+    });
+    [
+      ['contar_tokens', 'Estima tokens/palavras/linhas de um arquivo do diretório de trabalho, com % de uso de janelas de contexto comuns. Use antes de ler um arquivo grande para saber se cabe.',
+        { path: { type: 'string', description: 'Caminho do arquivo.' } }, ['path']],
+      ['dividir_arquivo', 'Divide um arquivo em blocos numerados por linhas. Sem "bloco": lista os blocos disponíveis. Com "bloco": devolve o conteúdo daquele bloco. Use para ler arquivos grandes em pedaços.',
+        { path: { type: 'string', description: 'Caminho do arquivo.' }, linhas_por_bloco: { type: 'integer', description: 'Linhas por bloco (default 150).' }, bloco: { type: 'integer', description: 'Índice do bloco a devolver (1-based). Omita para listar os blocos.' } }, ['path']],
+      ['extrair_funcoes', 'Extrai funções/classes/métodos de um arquivo (JS, PHP ou Python) com número da linha e assinatura aproximada, sem precisar ler o arquivo inteiro. Detecção por heurística de texto, não AST completa.',
+        { path: { type: 'string', description: 'Caminho do arquivo.' } }, ['path']],
+      ['diferenca_arquivos', 'Compara dois arquivos do diretório de trabalho e mostra o diff unificado (linhas adicionadas/removidas com contexto).',
+        { path_a: { type: 'string', description: 'Arquivo original (antes).' }, path_b: { type: 'string', description: 'Arquivo modificado (depois).' }, contexto: { type: 'integer', description: 'Linhas de contexto (default 3).' } }, ['path_a', 'path_b']],
+      ['buscar_todos', 'Varre todos os arquivos do diretório de trabalho em busca de marcadores TODO, FIXME, HACK, NOTE, BUG, XXX.',
+        {}, []],
+      ['listar_workspace', 'Lista todos os arquivos carregados no diretório de trabalho com tamanho e número de linhas. Não lê o conteúdo.',
+        {}, []],
+      ['buscar_texto', 'Busca um termo (texto ou regex) em todos os arquivos do diretório de trabalho e devolve só as linhas com match e contexto. Use em vez de ler arquivo por arquivo à procura de algo.',
+        { termo: { type: 'string', description: 'Texto ou regex a buscar.' }, regex: { type: 'boolean', description: 'Tratar "termo" como regex (default false).' }, contexto: { type: 'integer', description: 'Linhas de contexto ao redor do match (default 1).' } }, ['termo']],
+      ['verificar_sintaxe', 'Valida a sintaxe de um arquivo .js/.jsx/.ts sem executá-lo. Arquivos .py não podem ser validados no navegador (sem interpretador Python disponível).',
+        { path: { type: 'string', description: 'Caminho do arquivo.' } }, ['path']],
+      ['tail_arquivo', 'Devolve só as últimas N linhas de um arquivo (útil para logs grandes) sem precisar ler tudo.',
+        { path: { type: 'string', description: 'Caminho do arquivo.' }, linhas: { type: 'integer', description: 'Quantidade de linhas do fim (default 50).' } }, ['path']],
+      ['mapa_arvore', 'Mostra a estrutura dos arquivos carregados em formato de árvore visual, baseado nos caminhos (paths).',
+        {}, []]
+    ].forEach(function(t) {
+      _tools.push({ type: 'function', function: { name: t[0], description: t[1], parameters: { type: 'object', properties: t[2], required: t[3] } } });
+    });
+
+    sys += '\n\n--- DIRETÓRIO DE TRABALHO (índice) ---\n' +
+           'Você ainda NÃO recebeu o conteúdo dos arquivos abaixo. Use a ferramenta "ler_arquivo" para ler ' +
+           'os trechos que precisar, por intervalo de linhas (máx. 300 linhas por chamada). Comece lendo um ' +
+           'trecho pequeno (ex.: linhas 1-100) para se orientar antes de pedir mais. Ao sugerir edições, ' +
+           'indique claramente o nome do arquivo e o trecho alterado.\n' +
+           'Ferramentas auxiliares também disponíveis: contar_tokens, dividir_arquivo, extrair_funcoes, ' +
+           'diferenca_arquivos, buscar_todos, listar_workspace, buscar_texto, verificar_sintaxe, tail_arquivo, mapa_arvore.\n';
+    _workDir.forEach(function(f) {
+      var totalLinhas = f.content.split('\n').length;
+      sys += '- ' + f.path + ' (' + totalLinhas + ' linhas, ' + f.content.length + ' caracteres)\n';
+    });
+    sys += '--- FIM DO ÍNDICE ---';
+  }
+
+  var msgs = [{ role: 'system', content: sys }];
+  _hist.slice(-20).forEach(function(h) {
+    if (h.role === 'user' || h.role === 'assistant')
+      msgs.push({ role: h.role, content: h.content });
+  });
+
+  _tryChain(chain, 0, msgs, cb, _tools);
+}
+
+// ── Execução local das ferramentas chamadas pelo modelo (assíncrona) ─────────
+function _execTool(name, args, doneCb) {
+  if (name === 'ler_arquivo') {
+    var f = null;
+    for (var i = 0; i < _workDir.length; i++) {
+      if (_workDir[i].path === args.path || _workDir[i].name === args.path) { f = _workDir[i]; break; }
+    }
+    if (!f) { doneCb('Arquivo não encontrado: "' + args.path + '". Confira o nome exato no índice.'); return; }
+    var linhas = f.content.split('\n');
+    var total  = linhas.length;
+    var ini    = Math.max(1, parseInt(args.inicio, 10) || 1);
+    var fim    = parseInt(args.fim, 10) || (ini + 199);
+    if (fim - ini > 300) fim = ini + 300; // limite de 300 linhas por chamada
+    if (fim > total) fim = total;
+    if (ini > total) { doneCb('[Arquivo: ' + f.path + ' tem apenas ' + total + ' linhas]'); return; }
+    var trecho = linhas.slice(ini - 1, fim).join('\n');
+    doneCb('[Arquivo: ' + f.path + ' | linhas ' + ini + '-' + fim + ' de ' + total + ']\n' + trecho);
+    return;
+  }
+  if (name === 'executar_js') {
+    _runSandboxedJS(String(args.codigo || ''), doneCb);
+    return;
+  }
+  if (_TOOLKIT[name]) { doneCb(_TOOLKIT[name](args)); return; }
+  doneCb('Ferramenta desconhecida: ' + name);
+}
+
+// ── Toolkit de análise de texto/workspace (porte dos scripts .py) ────────────
+function _tkFindFile(path) {
+  for (var i = 0; i < _workDir.length; i++) {
+    if (_workDir[i].path === path || _workDir[i].name === path) return _workDir[i];
+  }
+  return null;
+}
+function _tkNaoEncontrado(path) { return 'Arquivo não encontrado: "' + path + '". Confira o nome exato no índice.'; }
+
+var _TOOLKIT = {
+
+  contar_tokens: function(args) {
+    var f = _tkFindFile(args.path);
+    if (!f) return _tkNaoEncontrado(args.path);
+    var text = f.content;
+    var words = text.split(/\s+/).filter(Boolean).length;
+    var tokens = Math.round(words / 0.65);
+    var lines = text.split('\n').length;
+    var limites = { '4k (Haiku/mini)': 4096, '32k (contexto médio)': 32768, '128k (GPT-4o)': 128000, '200k (Claude)': 200000 };
+    var out = 'Arquivo : ' + f.path + '\nLinhas  : ' + lines + '\nPalavras: ' + words + '\nTokens  : ~' + tokens + ' (estimativa)\n\nUso de janelas de contexto:\n';
+    Object.keys(limites).forEach(function(k) {
+      var pct = (tokens / limites[k] * 100);
+      var barras = Math.min(20, Math.round(pct / 5));
+      var bar = new Array(barras + 1).join('█') + new Array(20 - barras + 1).join('░');
+      out += '  ' + k + ' [' + bar + '] ' + pct.toFixed(1) + '%' + (pct > 80 ? ' ⚠ ESTOURA' : '') + '\n';
+    });
+    return out;
+  },
+
+  dividir_arquivo: function(args) {
+    var f = _tkFindFile(args.path);
+    if (!f) return _tkNaoEncontrado(args.path);
+    var linhas = f.content.split('\n');
+    var total = linhas.length;
+    var size = parseInt(args.linhas_por_bloco, 10) || 150;
+    var nBlocos = Math.ceil(total / size);
+    if (!args.bloco) {
+      var out = 'Arquivo: ' + f.path + ' (' + total + ' linhas)\nBlocos: ' + nBlocos + ' de ~' + size + ' linhas cada\n\n';
+      for (var i = 1; i <= nBlocos; i++) {
+        var ini = (i - 1) * size + 1, fim = Math.min(i * size, total);
+        out += '  Bloco ' + i + ': linhas ' + ini + '-' + fim + '\n';
+      }
+      return out + '\nUse dividir_arquivo com "bloco" para ler um bloco específico.';
+    }
+    var b = parseInt(args.bloco, 10);
+    if (b < 1 || b > nBlocos) return 'ERRO: bloco ' + b + ' inválido (1-' + nBlocos + ')';
+    var ini2 = (b - 1) * size, fim2 = Math.min(b * size, total);
+    return '── Bloco ' + b + '/' + nBlocos + ' linhas ' + (ini2 + 1) + '-' + fim2 + ' ──\n' + linhas.slice(ini2, fim2).join('\n');
+  },
+
+  extrair_funcoes: function(args) {
+    var f = _tkFindFile(args.path);
+    if (!f) return _tkNaoEncontrado(args.path);
+    var linhas = f.content.split('\n');
+    var padroes = [
+      { re: /^\s*class\s+([A-Za-z0-9_]+)/, tipo: 'class' },
+      { re: /^\s*(?:export\s+)?(?:async\s+)?function\s*\*?\s+([A-Za-z0-9_$]+)\s*\(([^)]*)\)/, tipo: 'function' },
+      { re: /^\s*(?:public|private|protected|static)?\s*function\s+([A-Za-z0-9_]+)\s*\(([^)]*)\)/, tipo: 'method (php)' },
+      { re: /^\s*(?:export\s+)?(?:const|let|var)\s+([A-Za-z0-9_$]+)\s*=\s*(?:async\s*)?\(([^)]*)\)\s*=>/, tipo: 'arrow function' },
+      { re: /^\s*(?:async\s+)?def\s+([A-Za-z0-9_]+)\s*\(([^)]*)\)/, tipo: 'def (python)' },
+      { re: /^\s*([A-Za-z0-9_$]+)\s*\(([^)]*)\)\s*\{/, tipo: 'method' }
+    ];
+    var out = [];
+    linhas.forEach(function(l, i) {
+      for (var p = 0; p < padroes.length; p++) {
+        var m = padroes[p].re.exec(l);
+        if (m) { out.push((i + 1) + '\t' + padroes[p].tipo + '\t' + m[1] + '(' + (m[2] || '') + ')'); break; }
+      }
+    });
+    if (!out.length) return 'Nenhuma função ou classe encontrada (detecção por heurística de texto).';
+    return 'LINHA\tTIPO\t\tNOME\n' + out.join('\n') + '\n\nTotal: ' + out.length + ' definições | ' + f.path;
+  },
+
+  diferenca_arquivos: function(args) {
+    var fa = _tkFindFile(args.path_a), fb = _tkFindFile(args.path_b);
+    if (!fa) return _tkNaoEncontrado(args.path_a);
+    if (!fb) return _tkNaoEncontrado(args.path_b);
+    var la = fa.content.split('\n'), lb = fb.content.split('\n');
+    var ctx = parseInt(args.contexto, 10) || 3;
+    // LCS entre as linhas
+    var n = la.length, m = lb.length;
+    var dp = new Array(n + 1);
+    for (var i = 0; i <= n; i++) dp[i] = new Array(m + 1).fill(0);
+    for (i = n - 1; i >= 0; i--) {
+      for (var j = m - 1; j >= 0; j--) {
+        dp[i][j] = (la[i] === lb[j]) ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+      }
+    }
+    var ops = [], ii = 0, jj = 0;
+    while (ii < n && jj < m) {
+      if (la[ii] === lb[jj]) { ops.push(['=', la[ii]]); ii++; jj++; }
+      else if (dp[ii + 1][jj] >= dp[ii][jj + 1]) { ops.push(['-', la[ii]]); ii++; }
+      else { ops.push(['+', lb[jj]]); jj++; }
+    }
+    while (ii < n) { ops.push(['-', la[ii]]); ii++; }
+    while (jj < m) { ops.push(['+', lb[jj]]); jj++; }
+    if (ops.every(function(o) { return o[0] === '='; })) return 'Arquivos idênticos.';
+    var added = ops.filter(function(o){return o[0]==='+';}).length;
+    var removed = ops.filter(function(o){return o[0]==='-';}).length;
+    var out = [];
+    ops.forEach(function(o) { if (o[0] !== '=') out.push(o[0] + ' ' + o[1]); else out.push('  ' + o[1]); });
+    return out.join('\n') + '\n\n── Resumo: +' + added + ' adicionadas | -' + removed + ' removidas ──';
+  },
+
+  buscar_todos: function() {
+    var TAGS = /\b(TODO|FIXME|HACK|NOTE|BUG|XXX)\b[:\s]*(.*)/i;
+    var achados = {};
+    var total = 0;
+    _workDir.forEach(function(f) {
+      f.content.split('\n').forEach(function(l, i) {
+        var m = TAGS.exec(l);
+        if (m) {
+          var tag = m[1].toUpperCase();
+          (achados[tag] = achados[tag] || []).push(f.path + ':' + (i + 1) + '  ' + m[2].trim());
+          total++;
+        }
+      });
+    });
+    if (!total) return 'Nenhum TODO/FIXME encontrado.';
+    var out = '';
+    ['BUG', 'FIXME', 'HACK', 'TODO', 'NOTE', 'XXX'].forEach(function(tag) {
+      if (achados[tag]) out += '\n── ' + tag + ' (' + achados[tag].length + ') ──\n  ' + achados[tag].join('\n  ') + '\n';
+    });
+    return out + '\nTotal: ' + total + ' item(ns)';
+  },
+
+  listar_workspace: function() {
+    if (!_workDir.length) return 'Nenhum arquivo carregado.';
+    var out = 'ARQUIVO\t\tTAMANHO\tLINHAS\n';
+    _workDir.forEach(function(f) {
+      out += f.path + '\t' + f.content.length + ' car.\t' + f.content.split('\n').length + '\n';
+    });
+    return out + '\nTotal: ' + _workDir.length + ' arquivo(s)';
+  },
+
+  buscar_texto: function(args) {
+    var termo = String(args.termo || '');
+    if (!termo) return 'ERRO: informe "termo".';
+    var pattern;
+    try { pattern = new RegExp(args.regex ? termo : termo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'); }
+    catch (e) { return 'ERRO: regex inválido — ' + e.message; }
+    var ctx = parseInt(args.contexto, 10) || 1;
+    var maxMatches = 50, matches = [];
+    for (var fi = 0; fi < _workDir.length && matches.length < maxMatches; fi++) {
+      var f = _workDir[fi], linhas = f.content.split('\n');
+      for (var i = 0; i < linhas.length && matches.length < maxMatches; i++) {
+        if (pattern.test(linhas[i])) {
+          var trecho = [];
+          for (var j = Math.max(0, i - ctx); j <= Math.min(linhas.length - 1, i + ctx); j++) {
+            trecho.push((j === i ? '>>> ' : '    ') + (j + 1) + ': ' + linhas[j]);
+          }
+          matches.push('── ' + f.path + ' (linha ' + (i + 1) + ') ──\n' + trecho.join('\n'));
+        }
+      }
+    }
+    if (!matches.length) return 'Nenhum resultado para: "' + termo + '"';
+    return matches.join('\n\n') + '\n\n' + matches.length + ' match(es)' + (matches.length >= maxMatches ? ' (limite atingido)' : '');
+  },
+
+  verificar_sintaxe: function(args) {
+    var f = _tkFindFile(args.path);
+    if (!f) return _tkNaoEncontrado(args.path);
+    var ext = (f.path.split('.').pop() || '').toLowerCase();
+    if (['js', 'jsx', 'mjs', 'ts', 'tsx'].indexOf(ext) === -1) {
+      return 'Sem verificador para ".' + ext + '" no navegador. Suportado: js, jsx, mjs (checagem real). ts/tsx: checagem só de sintaxe JS básica (tipos TS não são validados).';
+    }
+    try { new Function(f.content); return '[OK] ' + f.path + ': sintaxe válida'; }
+    catch (e) { return '[FALHA] ' + f.path + ': ' + e.message; }
+  },
+
+  tail_arquivo: function(args) {
+    var f = _tkFindFile(args.path);
+    if (!f) return _tkNaoEncontrado(args.path);
+    var n = parseInt(args.linhas, 10) || 50;
+    var linhas = f.content.split('\n');
+    var out = linhas.slice(-n);
+    if (!out.length || (out.length === 1 && out[0] === '')) return '(arquivo vazio)';
+    return '── últimas ' + out.length + ' linha(s) de ' + f.path + ' ──\n' + out.join('\n');
+  },
+
+  mapa_arvore: function() {
+    if (!_workDir.length) return 'Nenhum arquivo carregado.';
+    var raiz = {};
+    _workDir.forEach(function(f) {
+      var partes = f.path.split('/');
+      var nivel = raiz;
+      partes.forEach(function(p, i) {
+        if (i === partes.length - 1) { nivel[p] = null; }
+        else { nivel[p] = nivel[p] || {}; nivel = nivel[p]; }
+      });
+    });
+    function render(nodo, prefixo) {
+      var chaves = Object.keys(nodo);
+      var linhas = [];
+      chaves.forEach(function(k, i) {
+        var last = i === chaves.length - 1;
+        linhas.push(prefixo + (last ? '└── ' : '├── ') + k + (nodo[k] ? '/' : ''));
+        if (nodo[k]) linhas = linhas.concat(render(nodo[k], prefixo + (last ? '    ' : '│   ')));
+      });
+      return linhas;
+    }
+    return './\n' + render(raiz, '').join('\n');
+  }
+};
+
+// ── Sandbox de execução JS: iframe isolado, sem acesso a localStorage/DOM ────
+function _runSandboxedJS(codigo, doneCb) {
+  var TIMEOUT_MS = 5000;
+  var done = false;
+  var reqId = 'js_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+  var iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  iframe.setAttribute('sandbox', 'allow-scripts'); // sem allow-same-origin: origem opaca, sem acesso a localStorage/cookies/DOM do app
+
+  function cleanup() {
+    window.removeEventListener('message', onMsg);
+    clearTimeout(timer);
+    if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+  }
+  function finish(resultado) {
+    if (done) return;
+    done = true;
+    cleanup();
+    doneCb(resultado);
+  }
+  function onMsg(ev) {
+    if (!ev.data || ev.data.reqId !== reqId) return;
+    var out = '';
+    if (ev.data.logs && ev.data.logs.length) out += ev.data.logs.join('\n') + '\n';
+    out += ev.data.error ? ('Erro: ' + ev.data.error) : ('Retorno: ' + ev.data.value);
+    finish(out.trim());
+  }
+  window.addEventListener('message', onMsg);
+  var timer = setTimeout(function() { finish('Erro: execução excedeu o tempo limite de 5s.'); }, TIMEOUT_MS);
+
+  iframe.srcdoc =
+    '<script>' +
+    'window.onmessage = function(ev){' +
+    '  var logs = []; var origLog = console.log;' +
+    '  console.log = function(){ logs.push(Array.prototype.slice.call(arguments).map(String).join(" ")); };' +
+    '  var value, error;' +
+    '  try { value = eval(ev.data.codigo); } catch (e) { error = (e && e.message) ? e.message : String(e); }' +
+    '  console.log = origLog;' +
+    '  parent.postMessage({ reqId: ev.data.reqId, logs: logs, value: (value === undefined ? "undefined" : String(value)), error: error }, "*");' +
+    '};' +
+    '<' + '/script>';
+  iframe.onload = function() {
+    iframe.contentWindow.postMessage({ codigo: codigo, reqId: reqId }, '*');
+  };
+  document.body.appendChild(iframe);
+}
+
+function _tryChain(chain, idx, msgs, cb, tools, _toolDepth, _errs) {
+  var errs = _errs || [];
+  if (idx >= chain.length) {
+    if (!errs.length) {
+      cb({ error: 'Todos os modelos falharam. Verifique suas chaves de API nas configurações.' });
+      return;
+    }
+    cb({ error: 'Todos os modelos falharam:\n' + errs.map(function(e) { return '• ' + e; }).join('\n') });
+    return;
+  }
+  var m = chain[idx];
+  var _ctrl = new AbortController();
+  var _timeoutId = setTimeout(function() { _ctrl.abort(); }, 30000); // 30s: evita travar para sempre se a conexão cair
+  var _body = {
+    model: m.model,
+    messages: msgs,
+    max_tokens: 1500,
+    temperature: 0.7
+  };
+  if (tools && tools.length) _body.tools = tools;
+  fetch(m.url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + m.key,
+      'HTTP-Referer': 'https://chatia.local',
+      'X-Title': 'Chatia'
+    },
+    body: JSON.stringify(_body),
+    signal: _ctrl.signal
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    clearTimeout(_timeoutId);
+    if (data.error) {
+      console.warn('[Chatia] Modelo', m.name, 'erro:', data.error.message || data.error);
+      errs.push(m.name + ': ' + (data.error.message || 'erro desconhecido'));
+      _tryChain(chain, idx + 1, msgs, cb, tools, undefined, errs);
+      return;
+    }
+    var choice = (data.choices || [])[0];
+    var message = choice && choice.message;
+    if (!message) {
+      errs.push(m.name + ': resposta sem conteúdo utilizável');
+      _tryChain(chain, idx + 1, msgs, cb, tools, undefined, errs);
+      return;
+    }
+
+    // Modelo pediu para usar uma ferramenta (ex.: ler um trecho do arquivo)
+    if (message.tool_calls && message.tool_calls.length) {
+      var depth = (_toolDepth || 0) + 1;
+      if (depth > 8) {
+        cb({ text: message.content || '⚠️ Muitas chamadas de ferramenta seguidas — parei por segurança.' }, m.name);
+        return;
+      }
+      msgs.push({ role: 'assistant', content: message.content || null, tool_calls: message.tool_calls });
+      (function processarToolCalls(i) {
+        if (i >= message.tool_calls.length) {
+          _tryChain(chain, idx, msgs, cb, tools, depth, errs); // mesmo modelo, continua o loop com o resultado da ferramenta
+          return;
+        }
+        var tc = message.tool_calls[i];
+        var args = {};
+        try { args = JSON.parse(tc.function.arguments || '{}'); } catch (e) {}
+        _execTool(tc.function.name, args, function(resultado) {
+          msgs.push({ role: 'tool', tool_call_id: tc.id, content: resultado });
+          processarToolCalls(i + 1);
+        });
+      })(0);
+      return;
+    }
+
+    if (!message.content) {
+      errs.push(m.name + ': resposta vazia');
+      _tryChain(chain, idx + 1, msgs, cb, tools, undefined, errs);
+      return;
+    }
+    cb({ text: message.content }, m.name);
+  })
+  .catch(function(err) {
+    clearTimeout(_timeoutId);
+    if (err && err.name === 'AbortError') {
+      console.warn('[Chatia] Modelo', m.name, 'sem resposta em 30s (timeout)');
+      errs.push(m.name + ': sem resposta em 30s (timeout)');
+    } else {
+      console.warn('[Chatia] Modelo', m.name, 'falhou:', err);
+      errs.push(m.name + ': falha de rede/conexão');
+    }
+    _tryChain(chain, idx + 1, msgs, cb, tools, undefined, errs);
+  });
+}
+
+
+// ── Histórico ────────────────────────────────────────────────────────────────
+function _saveHist() {
+  try { localStorage.setItem(_HIST_K, JSON.stringify(_hist.slice(-40))); } catch(e) {}
+}
+
+// ── Adiciona mensagem ao chat ─────────────────────────────────────────────────
+function _addMsg(txt, tipo, modelo, showTts, onRetry) {
+  var box = document.getElementById('agent-chat-box');
+  var w   = document.createElement('div');
+  w.className = 'ag-msg ' + (tipo === 'user' ? 'ag-user' : 'ag-ia');
+
+  var b = document.createElement('div');
+  b.className = 'ag-bubble';
+  if (tipo === 'user') {
+    b.textContent = txt;
+  } else {
+    b.innerHTML = _mdToHtml(txt);
+  }
+
+  var meta = document.createElement('div');
+  meta.className = 'ag-meta';
+
+  if (tipo === 'user') {
+    meta.textContent = 'Você';
+  } else {
+    var lbl = document.createElement('span');
+    lbl.textContent = '🤖 ' + (modelo || 'IA');
+    meta.appendChild(lbl);
+
+    if (showTts && window.speechSynthesis) {
+      var ttsBtn = document.createElement('button');
+      ttsBtn.className = 'ag-tts-btn';
+      ttsBtn.textContent = '🔊 Ouvir';
+      ttsBtn.onclick = function() { _ttsPlay(txt, ttsBtn); };
+      meta.appendChild(ttsBtn);
+
+      var spdBtn = document.createElement('button');
+      spdBtn.className = 'ag-tts-btn';
+      spdBtn.textContent = '⏱ ' + _ttsRate + 'x';
+      spdBtn.onclick = function() {
+        _ttsRate = _ttsRate >= 2.0 ? 1.0 : _ttsRate + 0.5;
+        spdBtn.textContent = '⏱ ' + _ttsRate + 'x';
+        // Se esta mensagem já está sendo lida, reinicia a fala com a nova velocidade
+        // (o rate do SpeechSynthesisUtterance só é lido no início da fala, não muda ao vivo)
+        if (_ttsBtn === ttsBtn && window.speechSynthesis.speaking) {
+          window.speechSynthesis.cancel();
+          _ttsPlay(txt, ttsBtn);
+        }
+      };
+      meta.appendChild(spdBtn);
+    }
+
+    if (onRetry) {
+      var retryBtn = document.createElement('button');
+      retryBtn.className = 'ag-tts-btn';
+      retryBtn.textContent = '🔄 Tentar novamente';
+      retryBtn.onclick = function() { retryBtn.disabled = true; onRetry(); };
+      meta.appendChild(retryBtn);
+    }
+  }
+
+  w.appendChild(b);
+  w.appendChild(meta);
+  box.appendChild(w);
+  box.scrollTop = box.scrollHeight;
+}
+
+// ── TTS ───────────────────────────────────────────────────────────────────────
+function _ttsPlay(txt, btn) {
+  if (_ttsUtt && window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+    if (_ttsBtn) _ttsBtn.classList.remove('active');
+    if (_ttsBtn === btn) { _ttsUtt = null; _ttsBtn = null; return; }
+  }
+  var utt = new SpeechSynthesisUtterance(txt.replace(/<[^>]+>/g, ''));
+  utt.lang  = 'pt-BR';
+  utt.rate  = _ttsRate;
+  utt.onend = function() { btn.classList.remove('active'); _ttsBtn = null; };
+  _ttsUtt = utt; _ttsBtn = btn;
+  btn.classList.add('active');
+  window.speechSynthesis.speak(utt);
+}
+
+// ── Typing indicator ──────────────────────────────────────────────────────────
+function _typing() {
+  var box = document.getElementById('agent-chat-box');
+  var w   = document.createElement('div');
+  w.className = 'ag-msg ag-ia';
+  w.id = 'ag-typing-' + Date.now();
+  var b = document.createElement('div');
+  b.className = 'ag-bubble';
+  b.innerHTML = '<div class="ag-typing"><span></span><span></span><span></span></div>';
+  w.appendChild(b);
+  box.appendChild(w);
+  box.scrollTop = box.scrollHeight;
+  return w.id;
+}
+function _rmTyping(id) {
+  var el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+// ── Ações toolbar ─────────────────────────────────────────────────────────────
+function limpar() {
+  _hist = [];
+  _saveHist();
+  var box = document.getElementById('agent-chat-box');
+  box.innerHTML = '';
+  var empty = document.createElement('div');
+  empty.className = 'chat-empty';
+  empty.id = 'chat-empty';
+  empty.innerHTML = '<p>Como posso ajudar?</p>';
+  box.appendChild(empty);
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+}
+
+function copiar() {
+  var linhas = _hist.map(function(h) {
+    var who = h.role === 'user' ? 'Você' : ('IA (' + (h.modelo || 'IA') + ')');
+    return who + ':\n' + h.content;
+  });
+  var txt = linhas.join('\n\n---\n\n');
+  if (!txt) { alert('Sem conversa para copiar.'); return; }
+  navigator.clipboard.writeText(txt).then(function() {
+    var btn = document.querySelector('.tool-btn[onclick="copiar()"]');
+    if (btn) { btn.textContent = '✓'; setTimeout(function(){ btn.textContent = '📋'; }, 1200); }
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = txt;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+
+// ── Markdown básico ───────────────────────────────────────────────────────────
+function _mdToHtml(txt) {
+  txt = txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Blocos de código
+  txt = txt.replace(/```[\s\S]*?```/g, function(m) {
+    return '<pre><code>' + m.slice(3,-3).trim() + '</code></pre>';
+  });
+  // Code inline
+  txt = txt.replace(/`([^`]+)`/g,'<code>$1</code>');
+  // Bold
+  txt = txt.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  txt = txt.replace(/__(.+?)__/g,'<strong>$1</strong>');
+  // Italic
+  txt = txt.replace(/\*([^*\n]+)\*/g,'<em>$1</em>');
+  // Links
+  txt = txt.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" style="color:var(--accent);">$1</a>');
+  // Linha horizontal
+  txt = txt.replace(/^---+$/gm,'<hr>');
+  // Títulos
+  txt = txt.replace(/^####\s*(.+)$/gm,'<h4>$1</h4>');
+  txt = txt.replace(/^###\s*(.+)$/gm,'<h3>$1</h3>');
+  txt = txt.replace(/^##\s*(.+)$/gm,'<h3>$1</h3>');
+  txt = txt.replace(/^#\s*(.+)$/gm,'<h3>$1</h3>');
+  // Tabelas
+  txt = txt.replace(/((?:^\|.+\|\s*$\n?)+)/gm, function(block) {
+    var rows = block.trim().split('\n');
+    var html = '<table>';
+    for (var r = 0; r < rows.length; r++) {
+      var row = rows[r].trim();
+      if (/^\|[\s\-:|]+\|$/.test(row)) continue;
+      var cells = row.split('|').slice(1,-1);
+      var tag = r === 0 ? 'th' : 'td';
+      html += '<tr>';
+      for (var c = 0; c < cells.length; c++) html += '<' + tag + '>' + cells[c].trim() + '</' + tag + '>';
+      html += '</tr>';
+    }
+    return html + '</table>';
+  });
+  // Listas
+  var lines = txt.split('\n'), out = [], listType = null;
+  for (var i = 0; i < lines.length; i++) {
+    var l = lines[i];
+    if (/^\s*[-*]\s+/.test(l)) {
+      if (listType !== 'ul') { if (listType) out.push('</'+listType+'>'); out.push('<ul>'); listType='ul'; }
+      out.push('<li>' + l.replace(/^\s*[-*]\s+/,'') + '</li>');
+    } else if (/^\s*\d+\.\s+/.test(l)) {
+      if (listType !== 'ol') { if (listType) out.push('</'+listType+'>'); out.push('<ol>'); listType='ol'; }
+      out.push('<li>' + l.replace(/^\s*\d+\.\s+/,'') + '</li>');
+    } else {
+      if (listType) { out.push('</'+listType+'>'); listType=null; }
+      out.push(l);
+    }
+  }
+  if (listType) out.push('</'+listType+'>');
+  txt = out.join('\n');
+  // Parágrafos
+  txt = txt.replace(/\n{2,}/g,'<br><br>');
+  txt = txt.replace(/\n/g,'<br>');
+  return txt;
+}
+</script>
+</body>
+</html>

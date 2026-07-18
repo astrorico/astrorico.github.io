@@ -67,9 +67,9 @@ details>summary{cursor:pointer;color:#1d6fb8;font-size:12px;font-weight:bold;tex
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
 </head>
 <body>
-<a href="index.html" style="position:fixed;top:12px;left:12px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;font-family:Arial,sans-serif;">
+<a href="index.html" style="display:inline-flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;font-family:Arial,sans-serif;padding:12px 0 0 12px;">
   <img src="logo_astro.png" alt="Início" style="width:32px;height:32px;border-radius:50%;object-fit:cover;display:block;">
-  <span style="font-size:12px;color:#333;text-align:center;line-height:1.3;background:#fff;padding:2px 8px;border-radius:6px;">Início<br>Astrologia</span>
+  <span style="font-size:12px;color:#333;text-align:center;line-height:1.3;background:#fff;padding:2px 8px;border-radius:6px;">Home</span>
 </a>
 <div class="container">
 <div class="card">
@@ -303,16 +303,7 @@ details>summary{cursor:pointer;color:#1d6fb8;font-size:12px;font-weight:bold;tex
 </div>
 <div id="tab-antigenesis" style="display:none">
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px">
-    <!-- Coluna Esquerda: Info -->
-    <div style="flex:1;min-width:280px;padding:14px 16px;background:#f0f4f8;border-radius:8px;border:1px solid #e2e8f0">
-      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#1d6fb8;margin-bottom:8px">Antigenesis — Valens</div>
-      <ul style="font-size:12px;color:#555;padding-left:18px;line-height:1.7;margin:0">
-        <li>Cálculo da relação do Sol anual em trânsito com a posição natal da Lua.</li>
-        <li>Encontra o momento em que a Lua transita retorna ao grau natal enquanto o Sol está no signo natal.</li>
-        <li>Interaciona com cronocratas. Exige horário de nascimento confiável.</li>
-      </ul>
-    </div>
-    <!-- Coluna Direita: Parâmetros -->
+    <!-- Coluna Parâmetros -->
     <div style="flex:1;min-width:280px;padding:14px 16px;background:#fff;border-radius:8px;border:1px solid #e2e8f0;display:flex;flex-direction:column">
       <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#555;margin-bottom:8px">Tempo e Parâmetros</div>
       <div style="font-size:12px;color:#888;margin-bottom:10px">Defina a data alvo para basear o cálculo.</div>
@@ -801,7 +792,40 @@ function drawMandala(canvas, ascLon, planets, meta) {
     });
   }
 
+  // 6c. Seta fina (estilo "V" aberto) + grau, usada para ASC e MC
+  const drawAxisArrow = (lon, label, color) => {
+    const a = z2a(lon, asc);
+    const rBase = R_ZO + 2;        // cauda encosta no anel zodiacal
+    const rTip  = R_TICK_OUT + 6;  // ponta logo após os ticks externos (seta mais curta)
+    const baseX = px(rBase,a), baseY = py(rBase,a);
+    const tipX  = px(rTip,a),  tipY  = py(rTip,a);
+    ctx.beginPath();
+    ctx.moveTo(baseX, baseY);
+    ctx.lineTo(tipX, tipY);
+    ctx.strokeStyle = color; ctx.lineWidth = 1.1; ctx.stroke();
+    const backR = rTip - 6, spread = 3, perp = a + Math.PI/2;
+    const p1x = px(backR,a)+spread*Math.cos(perp), p1y = py(backR,a)+spread*Math.sin(perp);
+    const p2x = px(backR,a)-spread*Math.cos(perp), p2y = py(backR,a)-spread*Math.sin(perp);
+    ctx.beginPath();
+    ctx.moveTo(p1x,p1y); ctx.lineTo(tipX,tipY); ctx.lineTo(p2x,p2y);
+    ctx.strokeStyle = color; ctx.lineWidth = 1.1; ctx.stroke();
+    // Texto do grau: deslocado para o lado da seta (tangencial) e ancorado para
+    // dentro do canvas — assim a haste não cruza por cima dos números.
+    const rTxt = rTip + 6, tangOffset = 13;
+    const txX = px(rTxt,a) + tangOffset*Math.cos(perp);
+    const txY = py(rTxt,a) + tangOffset*Math.sin(perp);
+    ctx.font='bold 12px Arial'; ctx.fillStyle=color;
+    ctx.textAlign = Math.cos(a) < -0.15 ? 'left' : Math.cos(a) > 0.15 ? 'right' : 'center';
+    ctx.textBaseline = Math.sin(a) < -0.15 ? 'bottom' : Math.sin(a) > 0.15 ? 'top' : 'middle';
+    const deg=Math.floor(((lon%30)+30)%30), mn=Math.floor(((lon-Math.floor(lon))*60+60)%60);
+    ctx.fillText(deg+'°'+String(mn).padStart(2,'0')+"'", txX, txY);
+  };
+  drawAxisArrow(asc, 'ASC', '#000000');
+
   if (!planets) return;
+
+  // 6d. Seta + grau do Meio do Céu (MC)
+  if (typeof planets.mc === 'number') drawAxisArrow(planets.mc, 'MC', '#000000');
 
   // 7. Planetas + Lotes (Fortuna/Espírito) — anti-colisão conjunta
   const PL_U={sol:0x2609,lua:0x263D,mer:0x263F,ven:0x2640,mar:0x2642,jup:0x2643,sat:0x2644,ura:0x2645,net:0x2646,plu:0x2647,nnode:0x260A,snode:0x260B};
@@ -1016,6 +1040,7 @@ async function calcChart(year, month, day, localHour, tzOffset, dst, lat, lon) {
     const errPtr = swe._malloc(256);
     swe._swe_calc_ut(jd, id, SEFLG_SWIEPH, xxPtr, errPtr);
     result[name] = swe.HEAPF64[xxPtr >> 3];
+    result[name+'Speed'] = swe.HEAPF64[(xxPtr >> 3) + 3]; // xx[3] = velocidade em longitude (°/dia); negativo = retrógrado
     swe._free(xxPtr);
     swe._free(errPtr);
   }
@@ -1206,10 +1231,10 @@ async function calculateMapa() {
       return ((s*30 + (l-s*30)*12) % 360 + 360) % 360;
     };
     const mainList = [
-      ['Sol',planets.sol],['Lua',planets.lua],['Mer',planets.mer],
-      ['Vên',planets.ven],['Mar',planets.mar],['Júp',planets.jup],
-      ['Sat',planets.sat],['Ura',planets.ura],['Net',planets.net],
-      ['Plu',planets.plu],['ASC',planets.asc],['MC',planets.mc],
+      ['Sol',planets.sol],['Lua',planets.lua],['Mer',planets.mer,planets.merSpeed],
+      ['Vên',planets.ven,planets.venSpeed],['Mar',planets.mar,planets.marSpeed],['Júp',planets.jup,planets.jupSpeed],
+      ['Sat',planets.sat,planets.satSpeed],['Ura',planets.ura,planets.uraSpeed],['Net',planets.net,planets.netSpeed],
+      ['Plu',planets.plu,planets.pluSpeed],['→ ASC',planets.asc],['→ MC',planets.mc],
     ];
     if (planets.sol !== undefined && planets.lua !== undefined) {
       const isDay = ((planets.sol - usedAsc) % 360 + 360) % 360 >= 180;
@@ -1219,10 +1244,10 @@ async function calculateMapa() {
       const spiritLon  = ((2*usedAsc - fortunaLon) % 360 + 720) % 360;
       mainList.push(['Fortuna', fortunaLon], ['Espírito', spiritLon]);
     }
-    const rowSpan = ([n,l])=>'<span style="display:inline-block;min-width:140px;margin-right:12px"><strong>'+n+':</strong> '+fmtLon(l)+'</span>';
+    const rowSpan = ([n,l,sp])=>'<span style="display:inline-block;min-width:140px;margin-right:12px"><strong>'+n+':</strong> '+fmtLon(l)+(sp<0?' R':'')+'</span>';
     const rows = mainList.map(rowSpan).join('');
     // Dodecatemoria: mesmos itens (exceto MC, que não entra no anel dodeca)
-    const dodRows = mainList.filter(([n])=>n!=='MC').map(([n,l])=>rowSpan([n, dodLon(l)])).join('');
+    const dodRows = mainList.filter(([n])=>n!=='→ MC').map(([n,l])=>rowSpan([n, dodLon(l)])).join('');
     infoDiv.innerHTML = '<div style="display:flex;flex-wrap:wrap;gap:4px;font-size:12px">'+rows+'</div>'
       + '<div style="margin-top:10px;margin-bottom:2px;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#888">Dodecatemoria</div>'
       + '<div style="display:flex;flex-wrap:wrap;gap:4px;font-size:12px">'+dodRows+'</div>';
@@ -1925,10 +1950,6 @@ async function calculateRevolucaoSolar() {
     
     resultDiv.innerHTML = `<div class="card">
       <h2 style="text-align:center;color:#1d6fb8;margin-bottom:12px">Revolução Solar ${solarReturnYear}</h2>
-      <div style="text-align:center;font-size:13px;color:#888;margin-bottom:16px">
-        Data Exata: ${meta.dataStr} às ${meta.horaStr} (Horário Local)<br>
-        Sol Natal: ${Math.floor(natalSol%30)}°${String(Math.round((natalSol%1)*60)).padStart(2,'0')}' · Sol RS: ${Math.floor(exactPlanets.sol%30)}°${String(Math.round((exactPlanets.sol%1)*60)).padStart(2,'0')}'
-      </div>
       <div id="rs-canvas-container" style="text-align:center">
         <canvas id="rs-canvas" width="860" height="860" style="max-width:100%;box-shadow:0 4px 24px rgba(0,0,0,.15)"></canvas>
       </div>
@@ -2322,7 +2343,10 @@ async function calculateAntigenesis() {
     // Varrer ~40 dias a partir da RS, em passos de 2h, procurando
     // quando a Lua cruza o grau natal da Lua com o Sol ainda no signo natal.
     let agPlanets = null;
-    let agY = srYear, agM = srMonth, agD = srDay, agH = srHour;
+    // Começar na meia-noite do dia da RS (igual ao floor($SR_JD) do PHP),
+    // não na hora exata da RS — senão perde cruzamentos da Lua que ocorrem
+    // mais cedo no mesmo dia, antes do instante exato do retorno solar.
+    let agY = srYear, agM = srMonth, agD = srDay, agH = 0;
     let prevLuaDiff = null;
     let found = false;
     const stepHours = 2; // passo de 2 horas
@@ -2402,16 +2426,8 @@ async function calculateAntigenesis() {
       lat: lat, lon: lon, tz: tz
     };
 
-    const signNames = ['Áries','Touro','Gêmeos','Câncer','Leão','Virgem','Libra','Escorpião','Sagitário','Capricórnio','Aquário','Peixes'];
-    const fmtDeg = (lon) => { const s = Math.floor(lon/30); const d = Math.floor(lon%30); const m = Math.round((lon%1)*60); return d+"°"+String(m).padStart(2,'0')+"' "+signNames[s]; };
-
     resultDiv.innerHTML = `<div class="card">
       <h2 style="text-align:center;color:#1d6fb8;margin-bottom:12px">Antigenesis — ${solarReturnYear}</h2>
-      <div style="text-align:center;font-size:13px;color:#888;margin-bottom:16px">
-        Data Exata: ${meta.dataStr} às ${meta.horaStr} (Horário Local)<br>
-        Sol Natal: ${fmtDeg(natalSol)} · Lua Natal: ${fmtDeg(natalLua)}<br>
-        Lua AG: ${fmtDeg(agPlanets.lua)} · Sol AG: ${fmtDeg(agPlanets.sol)}
-      </div>
       <div id="ag-canvas-container" style="text-align:center">
         <canvas id="ag-canvas" width="860" height="860" style="max-width:100%;box-shadow:0 4px 24px rgba(0,0,0,.15)"></canvas>
       </div>

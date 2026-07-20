@@ -4,7 +4,7 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AstroRico V4</title>
+<title>AstroRico V3</title>
 <style>
 @font-face {
   font-family: 'HamburgSymbols';
@@ -73,7 +73,7 @@ details>summary{cursor:pointer;color:#1d6fb8;font-size:12px;font-weight:bold;tex
 </a>
 <div class="container">
 <div class="card">
-<h1>✦ AstroRico V4</h1>
+<h1>✦ AstroRico V3</h1>
 
 <!-- Carregar Mapa Salvo (banco de mapas) -->
 <details id="mapas-details" style="margin-bottom:14px">
@@ -922,7 +922,16 @@ function drawMandala(canvas, ascLon, planets, meta) {
     ctx.font=GF(16,'bold');ctx.fillStyle=c;
     ctx.fillText(String.fromCodePoint(SIGN_U[signIdx])+'\uFE0E',px(rSign,aD),py(rSign,aD));
     ctx.font='bold 14px Arial';ctx.fillStyle=c;
-    ctx.fillText(deg+'°'+String(mn).padStart(2,'0')+"'"+(sp<0?' R':''),px(rDeg,aD),py(rDeg,aD));
+    const degStr=deg+'°'+String(mn).padStart(2,'0')+"'";
+    ctx.fillText(degStr,px(rDeg,aD),py(rDeg,aD));
+  }
+  // 7b. Marcador de retrógrado (R) — passada separada, desenhada por cima de tudo,
+  // num raio próprio (abaixo do grau) para nunca ser encoberta pelo texto do vizinho.
+  for(const {lon,drawn,sp} of items){
+    if (!(sp<0)) continue;
+    const c=signElementColorDark(lon),aD=z2a(drawn,asc),rR=R_PL-62;
+    ctx.font='bold 12px Arial';ctx.fillStyle=c;
+    ctx.fillText('R',px(rR,aD),py(rR,aD));
   }
 
   // 8. Anel dodecatemoria (fora do zodíaco)

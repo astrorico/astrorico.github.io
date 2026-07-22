@@ -448,12 +448,14 @@ document.addEventListener("DOMContentLoaded",function(){
   calculateMapa();
   (function(){
     var BROKEN = ['https://astrorico.github.io/mapas.map'];
+    var DEFAULT_MAPAS_URL = 'https://raw.githubusercontent.com/astrorico/astrorico.github.io/main/mapas.map';
     var savedUrl = '';
     try { savedUrl = localStorage.getItem('mapas_db_url') || ''; } catch(e) {}
     if (BROKEN.indexOf(savedUrl) !== -1) {
       savedUrl = '';
       try { localStorage.removeItem('mapas_db_url'); } catch(e) {}
     }
+    if (!savedUrl) savedUrl = DEFAULT_MAPAS_URL;
     document.getElementById('mapas_url_input').value = savedUrl;
     if (savedUrl) loadMapasOnline();
   })();

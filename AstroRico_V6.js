@@ -430,11 +430,11 @@ function drawMandala(canvas, ascLon, planets, meta) {
   const sigColor = ['#FFF2F0','#F0FFF0','#FFFFF0','#F0F0FF','#FFF2F0','#F0FFF0','#FFFFF0','#F0F0FF','#FFF2F0','#F0FFF0','#FFFFF0','#F0F0FF'];
 
   // 1. Ticks de grau (exterior ao anel zodiacal)
-  for (let i = 0; i < 360; i++) {
-    const ang = z2a(asc + i, asc);
-    let len = 4; if (i%10===0) len=12; else if (i%5===0) len=8;
+  for (let d = 0; d < 360; d++) {
+    const ang = z2a(d, asc);
+    let len = 4; if (d%10===0) len=12; else if (d%5===0) len=8;
     ctx.beginPath(); ctx.moveTo(px(R_ZO,ang),py(R_ZO,ang)); ctx.lineTo(px(R_ZO+len,ang),py(R_ZO+len,ang));
-    ctx.strokeStyle='#333'; ctx.lineWidth=i%10===0?1.2:0.7; ctx.stroke();
+    ctx.strokeStyle='#333'; ctx.lineWidth=d%10===0?1.2:0.7; ctx.stroke();
   }
 
   // 2. Anel zodiacal
@@ -462,16 +462,16 @@ function drawMandala(canvas, ascLon, planets, meta) {
   for (let si=0;si<12;si++){let prev=0;for(const [pi,end] of EGYPT_TERMS[si]){const l1=si*30+prev,l2=si*30+end;arcSector(ctx,R_TERMS_O,R_TERMS_I,l1,l2,asc);ctx.fillStyle='rgba(0,0,0,0)';ctx.fill();ctx.strokeStyle='#999';ctx.lineWidth=1.1;ctx.stroke();const a=z2a((l1+l2)/2,asc),r=(R_TERMS_O+R_TERMS_I)/2;ctx.font=GF(15);ctx.fillStyle='#000';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String.fromCodePoint(PL_U_T[pi])+'\uFE0E',px(r,a),py(r,a));prev=end;}}
 
   // 4b. Ticks de grau internos (borda interna dos termos → centro), igual ao natal_wheel.php
-  for (let i = 0; i < 360; i++) {
-    const ang = z2a(asc + i, asc);
+  for (let d = 0; d < 360; d++) {
+    const ang = z2a(d, asc);
     let len = 4;
-    if (i % 10 === 0) len = 12;
-    else if (i % 5 === 0) len = 8;
+    if (d % 10 === 0) len = 12;
+    else if (d % 5 === 0) len = 8;
     ctx.beginPath();
     ctx.moveTo(px(R_TERMS_I, ang), py(R_TERMS_I, ang));
     ctx.lineTo(px(R_TERMS_I - len, ang), py(R_TERMS_I - len, ang));
     ctx.strokeStyle = '#333';
-    ctx.lineWidth = i % 10 === 0 ? 1.2 : 0.7;
+    ctx.lineWidth = d % 10 === 0 ? 1.2 : 0.7;
     ctx.stroke();
   }
 

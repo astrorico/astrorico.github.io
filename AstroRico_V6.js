@@ -158,6 +158,16 @@ async function loadMapasOnline() {
     url = url.replace('github.com/', 'raw.githubusercontent.com/').replace('/blob/', '/');
     document.getElementById('mapas_url_input').value = url;
   }
+  try {
+    const u = new URL(url);
+    if (u.protocol !== 'https:' || u.hostname !== 'raw.githubusercontent.com') {
+      _mapasSetStatus('⚠️ Por segurança, só é permitido carregar de https://raw.githubusercontent.com/...', true);
+      return;
+    }
+  } catch (e) {
+    _mapasSetStatus('⚠️ URL inválida.', true);
+    return;
+  }
   _mapasSetStatus('Baixando banco de mapas...');
   try {
     const resp = await fetch(url);
@@ -181,7 +191,7 @@ function mapaSearch(q) {
   let html = '';
   while (stmt.step()) {
     const row = stmt.getAsObject();
-    html += `<li style="padding:7px 12px;cursor:pointer" onmousedown="mapaSelect(${row.ID})">
+    html += `<li style="padding:7px 12px;cursor:pointer" onmousedown="mapaSelect(${escapeHtml(row.ID)})">
       ${escapeHtml(row.name)} <span style="color:var(--color-border-input)">— ${escapeHtml(String(row.day).padStart(2,'0'))}/${escapeHtml(String(row.month).padStart(2,'0'))}/${escapeHtml(row.year)}</span></li>`;
   }
   stmt.free();

@@ -125,7 +125,7 @@
 <div class="tab-bar">
   <button class="tab-btn active" onclick="showTab('mandala')">Mandala</button>
   <button class="tab-btn" onclick="showTab('lotes')">Lotes</button>
-  <button class="tab-btn" onclick="showTab('profecao')">Profeção</button>
+  <button class="tab-btn" onclick="showTab('profecao')">Profecção</button>
   <button class="tab-btn" onclick="showTab('firdaria')">Firdaria</button>
   <button class="tab-btn" onclick="showTab('liberacao')">Liberação</button>
   <button class="tab-btn" onclick="showTab('direcoes')">Direções</button>
@@ -168,7 +168,7 @@
       <label style="font-size:11px;color:#555;display:block;margin-bottom:2px">Data alvo (opcional)</label>
       <input type="text" inputmode="numeric" placeholder="DD/MM/AAAA" maxlength="10" oninput="qmFormatDate(this)" onfocus="this.value=''" style="padding:6px 10px;border:1px solid var(--color-border-input);border-radius:6px;font-size:13px;background:#fff;width:120px;text-align:center;letter-spacing:1px" id="prof-target-date">
     </div>
-    <button class="btn-calculate-profecao" onclick="calculateProfecao()" style="margin-top:16px">Calcular Profeção</button>
+    <button class="btn-calculate-profecao" onclick="calculateProfecao()" style="margin-top:16px">Calcular Profecção</button>
     <span style="font-size:12px;color:#666;margin-left:8px">Sem data alvo, será feita a tabela geral.</span>
   </div>
 </div>
@@ -298,7 +298,7 @@
 </div><!-- /card -->
 
 <!-- ⚠️ ATENÇÃO ESTRUTURAL — NÃO ANINHAR OS CONTAINERS ABAIXO DENTRO DESTE DIV
-     Este div é esvaziado via innerHTML toda vez que Firdaria ou Profeção calculam.
+     Este div é esvaziado via innerHTML toda vez que Firdaria ou Profecção calculam.
      Se mandala-container ou lotes-container ficarem dentro dele, serão DELETADOS
      ao clicar nesses botões, quebrando o botão "Calcular Mapa" permanentemente.
      A div#results DEVE permanecer vazia aqui no HTML (conteúdo só via JS). -->

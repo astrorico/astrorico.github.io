@@ -1,7 +1,7 @@
 // --- Helpers de data juliana / progressão (compartilhados por calculateDecenais, miniDecenais, computeProfectionContext) ---
 function jd(y,m,d){if(m<=2){y--;m+=12;}const A=Math.floor(y/100),B=2-A+Math.floor(A/4);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5;}
 function jdToDate(j){const z=Math.floor(j+0.5),a=Math.floor((z-1867216.25)/36524.25),b=z+1+a-Math.floor(a/4)+1524,c=Math.floor((b-122.1)/365.25),d=Math.floor(365.25*c),e=Math.floor((b-d)/30.6001),dy=b-d-Math.floor(30.6001*e),mo=e<14?e-1:e-13,yr=mo>2?c-4716:c-4715;return String(dy).padStart(2,'0')+'/'+String(mo).padStart(2,'0')+'/'+yr;}
-function progDeg(cur) {
+function progDeg(cur, targetJD) {
   if (!cur) return 0;
   const dur = cur.jd_end - cur.jd_start;
   return dur > 0 ? Math.min(29.99, (targetJD - cur.jd_start) / dur * 30) : 0;
@@ -98,7 +98,7 @@ function resolvePointLon(pointSel, planets, ascLon) {
 // ─── BANCO DE MAPAS (rico_RicoMapas.db) ────────────────────────────────────
 // Coloque aqui o link "raw" do arquivo .db hospedado no GitHub (ou outro host)
 // Ex: https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/rico_RicoMapas.db
-const MAPAS_DB_URL = 'https://raw.githubusercontent.com/astrorico/astrorico.github.io/main/mapas.map';
+const MAPAS_DB_URL = 'https://astrorico.github.io/mapas.map';
 
 let _sqlJsLib = null;
 let mapasDB = null;
@@ -430,11 +430,11 @@ function drawMandala(canvas, ascLon, planets, meta) {
   const sigColor = ['#FFF2F0','#F0FFF0','#FFFFF0','#F0F0FF','#FFF2F0','#F0FFF0','#FFFFF0','#F0F0FF','#FFF2F0','#F0FFF0','#FFFFF0','#F0F0FF'];
 
   // 1. Ticks de grau (exterior ao anel zodiacal)
-  for (let d = 0; d < 360; d++) {
-    const ang = z2a(d, asc);
-    let len = 4; if (d%10===0) len=12; else if (d%5===0) len=8;
+  for (let i = 0; i < 360; i++) {
+    const ang = z2a(asc + i, asc);
+    let len = 4; if (i%10===0) len=12; else if (i%5===0) len=8;
     ctx.beginPath(); ctx.moveTo(px(R_ZO,ang),py(R_ZO,ang)); ctx.lineTo(px(R_ZO+len,ang),py(R_ZO+len,ang));
-    ctx.strokeStyle='#333'; ctx.lineWidth=d%10===0?1.2:0.7; ctx.stroke();
+    ctx.strokeStyle='#333'; ctx.lineWidth=i%10===0?1.2:0.7; ctx.stroke();
   }
 
   // 2. Anel zodiacal
@@ -462,16 +462,16 @@ function drawMandala(canvas, ascLon, planets, meta) {
   for (let si=0;si<12;si++){let prev=0;for(const [pi,end] of EGYPT_TERMS[si]){const l1=si*30+prev,l2=si*30+end;arcSector(ctx,R_TERMS_O,R_TERMS_I,l1,l2,asc);ctx.fillStyle='rgba(0,0,0,0)';ctx.fill();ctx.strokeStyle='#999';ctx.lineWidth=1.1;ctx.stroke();const a=z2a((l1+l2)/2,asc),r=(R_TERMS_O+R_TERMS_I)/2;ctx.font=GF(15);ctx.fillStyle='#000';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String.fromCodePoint(PL_U_T[pi])+'\uFE0E',px(r,a),py(r,a));prev=end;}}
 
   // 4b. Ticks de grau internos (borda interna dos termos → centro), igual ao natal_wheel.php
-  for (let d = 0; d < 360; d++) {
-    const ang = z2a(d, asc);
+  for (let i = 0; i < 360; i++) {
+    const ang = z2a(asc + i, asc);
     let len = 4;
-    if (d % 10 === 0) len = 12;
-    else if (d % 5 === 0) len = 8;
+    if (i % 10 === 0) len = 12;
+    else if (i % 5 === 0) len = 8;
     ctx.beginPath();
     ctx.moveTo(px(R_TERMS_I, ang), py(R_TERMS_I, ang));
     ctx.lineTo(px(R_TERMS_I - len, ang), py(R_TERMS_I - len, ang));
     ctx.strokeStyle = '#333';
-    ctx.lineWidth = d % 10 === 0 ? 1.2 : 0.7;
+    ctx.lineWidth = i % 10 === 0 ? 1.2 : 0.7;
     ctx.stroke();
   }
 
@@ -1861,7 +1861,7 @@ function calculateDecenais() {
     }
   }
 
-  const l1d = progDeg(curL1), l2d = progDeg(curL2), l3d = progDeg(curL3);
+  const l1d = progDeg(curL1, targetJD), l2d = progDeg(curL2, targetJD), l3d = progDeg(curL3, targetJD);
 
   function fmtProgDeg(d, lordCode) {
     const sign = Math.floor(((pLons[lordCode] % 360 + 360) % 360) / 30);
@@ -2477,9 +2477,9 @@ function miniDecenais(targetDate, aphetaSel) {
     });
     return found;
   }
-  const aspL1 = calcDecAsps(curL1.sign, progDeg(curL1), curL1.jd_end-curL1.jd_start, curL1.jd_start, curL1.lord);
-  const aspL2 = curL2 ? calcDecAsps(curL2.sign, progDeg(curL2), curL2.jd_end-curL2.jd_start, curL2.jd_start, curL2.lord) : [];
-  const aspL3 = curL3 ? calcDecAsps(curL3.sign, progDeg(curL3), curL3.jd_end-curL3.jd_start, curL3.jd_start, curL3.lord) : [];
+  const aspL1 = calcDecAsps(curL1.sign, progDeg(curL1, targetJD), curL1.jd_end-curL1.jd_start, curL1.jd_start, curL1.lord);
+  const aspL2 = curL2 ? calcDecAsps(curL2.sign, progDeg(curL2, targetJD), curL2.jd_end-curL2.jd_start, curL2.jd_start, curL2.lord) : [];
+  const aspL3 = curL3 ? calcDecAsps(curL3.sign, progDeg(curL3, targetJD), curL3.jd_end-curL3.jd_start, curL3.jd_start, curL3.lord) : [];
 
   function aspRows(list){ return list.map(a => `<div style="font-size:12px;margin-top:1px">${a.sym} ${a.name} ${a.asp} <span style="color:#888;font-family:monospace">${a.date}</span></div>`).join(''); }
   function levelBlock(cur, deg, label){
@@ -2498,9 +2498,9 @@ function miniDecenais(targetDate, aphetaSel) {
 
   let html = selHtml;
   html += `<div style="font-size:13px;font-weight:600;margin-bottom:2px">${P_SYM[aphetaCode]} ${P_NAME[aphetaCode]}</div>`;
-  html += levelBlock(curL1, progDeg(curL1), 'L1') + aspRows(aspL1);
-  if (curL2) html += levelBlock(curL2, progDeg(curL2), 'L2') + aspRows(aspL2);
-  if (curL3) html += levelBlock(curL3, progDeg(curL3), 'L3') + aspRows(aspL3);
+  html += levelBlock(curL1, progDeg(curL1, targetJD), 'L1') + aspRows(aspL1);
+  if (curL2) html += levelBlock(curL2, progDeg(curL2, targetJD), 'L2') + aspRows(aspL2);
+  if (curL3) html += levelBlock(curL3, progDeg(curL3, targetJD), 'L3') + aspRows(aspL3);
   return html;
 }
 
@@ -2512,6 +2512,8 @@ async function calculateAnaliseGeral() {
     return;
   }
   el.innerHTML = '<div class="card"><p style="text-align:center;padding:20px;color:#888">Calculando análise geral…</p></div>';
+
+  try {
 
   // Data alvo (padrão: hoje)
   const raw = getVal('vg-target-date').trim();
@@ -2581,6 +2583,11 @@ async function calculateAnaliseGeral() {
       ${card('Decenais', decHtml, 'vg-dec-content')}
       ${card('Direções', dirSelHtml + direcoesHtml, 'vg-dir-content')}
     </div>`;
+
+  } catch (e) {
+    el.innerHTML = '<div class="card"><p style="color:var(--color-danger);text-align:center;padding:20px">Erro na Análise Geral: ' + e.message + '</p></div>';
+    console.error('calculateAnaliseGeral:', e);
+  }
 }
 
 // Constrói um <select> mini reaproveitando as options de um select já existente na página

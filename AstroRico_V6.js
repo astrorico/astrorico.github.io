@@ -431,7 +431,7 @@ function drawMandala(canvas, ascLon, planets, meta) {
 
   // 1. Ticks de grau (exterior ao anel zodiacal)
   for (let i = 0; i < 360; i++) {
-    const ang = z2a(asc + i, asc);
+    const ang = z2a(i, asc);
     let len = 4; if (i%10===0) len=12; else if (i%5===0) len=8;
     ctx.beginPath(); ctx.moveTo(px(R_ZO,ang),py(R_ZO,ang)); ctx.lineTo(px(R_ZO+len,ang),py(R_ZO+len,ang));
     ctx.strokeStyle='#333'; ctx.lineWidth=i%10===0?1.2:0.7; ctx.stroke();
@@ -463,7 +463,7 @@ function drawMandala(canvas, ascLon, planets, meta) {
 
   // 4b. Ticks de grau internos (borda interna dos termos → centro), igual ao natal_wheel.php
   for (let i = 0; i < 360; i++) {
-    const ang = z2a(asc + i, asc);
+    const ang = z2a(i, asc);
     let len = 4;
     if (i % 10 === 0) len = 12;
     else if (i % 5 === 0) len = 8;
@@ -1941,25 +1941,16 @@ function calculateDecenais() {
   // Tabela L1
   html += `<div style="background:#fff;border:1px solid var(--color-border);border-radius:10px;padding:16px 20px;overflow-x:auto;margin-bottom:16px">
     <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-primary);margin-bottom:14px">Chronocratores L1 — Sequência</div>
-    <table style="width:100%;border-collapse:collapse;font-size:15px">
-      <thead><tr>
-        <th style="background:var(--color-surface);padding:7px 12px;text-align:left;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-primary);border-bottom:1px solid var(--color-border)">#</th>
-        <th style="background:var(--color-surface);padding:7px 12px;text-align:left;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-primary);border-bottom:1px solid var(--color-border)">Planeta (L1)</th>
-        <th style="background:var(--color-surface);padding:7px 12px;text-align:left;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-primary);border-bottom:1px solid var(--color-border)">Signo Natal</th>
-        <th style="background:var(--color-surface);padding:7px 12px;text-align:left;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-primary);border-bottom:1px solid var(--color-border)">Meses</th>
-        <th style="background:var(--color-surface);padding:7px 12px;text-align:left;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-primary);border-bottom:1px solid var(--color-border)">Início</th>
-        <th style="background:var(--color-surface);padding:7px 12px;text-align:left;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-primary);border-bottom:1px solid var(--color-border)">Fim</th>
-        <th style="background:var(--color-surface);padding:7px 12px;text-align:left;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-primary);border-bottom:1px solid var(--color-border)">L2 / L3</th>
-      </tr></thead><tbody>`;
+    <div>`;
 
   for (let i = 0; i < periods.length; i++) {
     const p = periods[i];
-    const rowStyle = p.is_cur ? 'border-left:3px solid var(--color-text-primary);font-weight:700;' : '';
+    const rowStyle = p.is_cur ? 'border-left:3px solid var(--color-text-primary);' : '';
     const arrow = p.is_cur ? ' ◀' : '';
     const natCls = P_NAT[p.lord];
 
     // L2 chips
-    let l2chips = '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">';
+    let l2chips = '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:4px">Subperíodos L2</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">';
     for (const l2 of p.l2) {
       const chipStyle = l2.is_cur ? 'outline:2px solid var(--color-text-primary);outline-offset:1px;font-weight:700;' : '';
       l2chips += `<span style="display:inline-flex;align-items:center;gap:4px;font-size:13px;padding:2px 8px;border-radius:10px;border:1px solid var(--color-border);background:var(--color-surface);${chipStyle}" title="${P_NAME[l2.lord]} · ${l2.months}m · ${jdToDate(l2.jd_start)} → ${jdToDate(l2.jd_end)}">${P_SYM[l2.lord]} ${l2.months}m</span>`;
@@ -1976,18 +1967,19 @@ function calculateDecenais() {
     }
     l3chips += '</div>';
 
-    html += `<tr>
-      <td style="padding:7px 12px;border-bottom:1px solid var(--color-border);${rowStyle}font-size:14px">${i+1}${arrow}</td>
-      <td style="padding:7px 12px;border-bottom:1px solid var(--color-border);${rowStyle}"><span style="font-size:17px">${P_SYM[p.lord]}</span> <span style="font-weight:600;margin-left:4px">${P_NAME[p.lord]}</span> <span style="display:inline-block;font-size:13px;font-weight:700;padding:2px 8px;border-radius:12px;border:1px solid var(--color-text-primary);margin-left:6px">${NAT_LBL[P_NAT[p.lord]]}</span></td>
-      <td style="padding:7px 12px;border-bottom:1px solid var(--color-border);${rowStyle}font-size:14px">${SIGN_SYMS[p.sign]} ${SIGN_NAMES[p.sign]}</td>
-      <td style="padding:7px 12px;border-bottom:1px solid var(--color-border);${rowStyle}">${p.months}m</td>
-      <td style="padding:7px 12px;border-bottom:1px solid var(--color-border);${rowStyle}font-size:14px">${jdToDate(p.jd_start)}</td>
-      <td style="padding:7px 12px;border-bottom:1px solid var(--color-border);${rowStyle}font-size:14px">${jdToDate(p.jd_end)}</td>
-      <td style="padding:7px 12px;border-bottom:1px solid var(--color-border);${rowStyle}padding-bottom:12px">${l2chips}${l3chips}</td>
-    </tr>`;
+    html += `<div style="display:flex;gap:16px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px solid var(--color-border);${rowStyle}">
+      <div style="min-width:170px;max-width:210px;font-size:14px">
+        <div style="${p.is_cur?'font-weight:700;':''}"><span style="color:var(--color-text-secondary)">${i+1}${arrow}</span> <span style="font-size:17px">${P_SYM[p.lord]}</span> <span style="font-weight:600;margin-left:2px">${P_NAME[p.lord]}</span></div>
+        <div style="margin-top:3px"><span style="display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:12px;border:1px solid var(--color-text-primary)">${NAT_LBL[P_NAT[p.lord]]}</span></div>
+        <div style="font-size:13px;color:var(--color-text-secondary);margin-top:4px">${SIGN_SYMS[p.sign]} ${SIGN_NAMES[p.sign]}</div>
+        <div style="font-size:13px;margin-top:4px">Início: ${jdToDate(p.jd_start)}</div>
+        <div style="font-size:13px">Fim: ${jdToDate(p.jd_end)}</div>
+      </div>
+      <div style="flex:1;min-width:220px">${l2chips}${l3chips}</div>
+    </div>`;
   }
 
-  html += `</tbody></table>
+  html += `</div>
     <div style="font-size:11px;margin-top:8px">◀ = período L1 ativo · Passe o mouse nos chips L2/L3 para ver datas</div>
   </div>`;
 
@@ -2316,14 +2308,18 @@ async function calculateTransitos() {
       <div style="text-align:center;font-size:11px;color:#888;margin-bottom:16px">Calculado ao meio-dia local (12:00) &middot; orbe ${TR_ORB}°</div>
 
       <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#555;margin:10px 0 6px">Planetas em Trânsito × Mapa Natal</div>
+      <div style="overflow-x:auto">
       <table style="border-collapse:collapse;font-size:13px;width:100%;max-width:520px;margin:0 auto">
         ${tableHead}<tbody>${rowsHtml(planetAsps)}</tbody>
       </table>
+      </div>
 
       <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#555;margin:20px 0 6px">Dodecatemoria em Trânsito × Mapa Natal</div>
+      <div style="overflow-x:auto">
       <table style="border-collapse:collapse;font-size:13px;width:100%;max-width:520px;margin:0 auto">
         ${tableHead}<tbody>${rowsHtml(dodecaAsps)}</tbody>
       </table>
+      </div>
     </div>`;
 
   } catch (e) {
@@ -3137,7 +3133,7 @@ function escapeHtml(s) {
 
     const [d_,m_,y_] = [String(td).padStart(2,'0'), String(tm).padStart(2,'0'), ty];
     let html = `<div style="font-size:11px;color:#888;margin-bottom:8px">Data: ${d_}/${m_}/${y_} · Idade: ${ageYears.toFixed(2)}a · Lat: ${latDeg.toFixed(4)}°</div>`;
-    html += `<table style="border-collapse:collapse;font-size:12px;width:100%">
+    html += `<div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:12px;width:100%">
       <thead><tr style="border-bottom:2px solid var(--color-border)">
         <th style="text-align:left;padding:4px 8px;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:#888">Ponto</th>
         <th style="text-align:left;padding:4px 8px;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:#888">Natal</th>
@@ -3162,7 +3158,7 @@ function escapeHtml(s) {
         <td style="padding:5px 8px;white-space:nowrap">${fmtLon(dod)} <span style="color:#888;font-size:11px">${TERM_PLANETS[termDod.planet]}</span></td>
       </tr>`;
     }
-    html += '</tbody></table>';
+    html += '</tbody></table></div>';
     el.innerHTML = html;
   };
 

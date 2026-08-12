@@ -27,12 +27,13 @@ jobs:
             --lifecycle-state RUNNING
           query: "data[0].id"
 
-      - name: Gerar metadata com a chave SSH
+      - name: Gerar arquivos de configuração (metadata e shape-config)
         if: steps.check.outputs.raw_output == 'null' || steps.check.outputs.raw_output == ''
         env:
           SSH_KEY: ${{ secrets.OCI_SSH_PUBLIC_KEY }}
         run: |
           python3 -c "import json,os; json.dump({'ssh_authorized_keys': os.environ['SSH_KEY']}, open('metadata.json','w'))"
+          python3 -c "import json; json.dump({'ocpus': 2, 'memoryInGBs': 12}, open('shape-config.json','w'))"
 
       - name: Tentar criar instância
         if: steps.check.outputs.raw_output == 'null' || steps.check.outputs.raw_output == ''
@@ -44,7 +45,7 @@ jobs:
             --availability-domain "yMLU:SA-SAOPAULO-1-AD-1"
             --compartment-id ${{ secrets.OCI_TENANCY_OCID }}
             --shape "VM.Standard.A1.Flex"
-            --shape-config '{"ocpus": 2, "memoryInGBs": 12}'
+            --shape-config file://shape-config.json
             --subnet-id "ocid1.subnet.oc1.sa-saopaulo-1.aaaaaaaavysooixso3rmlymkjxen2v67f6uppf7qw2eypqne7lynuu6opanq"
             --image-id "ocid1.image.oc1.sa-saopaulo-1.aaaaaaaalxwf2qfhwn7czpwyb4cbzt6rrnwaxhslgucqlzuryulz37ljhfqa"
             --display-name "minha-vm-site"

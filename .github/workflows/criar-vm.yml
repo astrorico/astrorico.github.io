@@ -1,4 +1,4 @@
-name: Criar VM OCI A1.Flex
+.github/workflows/
 
 on:
   schedule:

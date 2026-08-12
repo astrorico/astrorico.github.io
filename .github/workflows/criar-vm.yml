@@ -1,4 +1,4 @@
-.github/workflows/
+name: Criar VM OCI A1.Flex
 
 on:
   schedule:
@@ -43,7 +43,10 @@ jobs:
 
       - name: Tentar criar instância
         if: steps.check.outputs.ja_existe == 'false'
+        env:
+          SSH_KEY: ${{ secrets.OCI_SSH_PUBLIC_KEY }}
         run: |
+          python3 -c "import json,os; json.dump({'ssh_authorized_keys': os.environ['SSH_KEY']}, open('metadata.json','w'))"
           oci compute instance launch \
             --availability-domain "yMLU:SA-SAOPAULO-1-AD-1" \
             --compartment-id "${{ secrets.OCI_TENANCY_OCID }}" \
@@ -53,7 +56,7 @@ jobs:
             --image-id "ocid1.image.oc1.sa-saopaulo-1.aaaaaaaalxwf2qfhwn7czpwyb4cbzt6rrnwaxhslgucqlzuryulz37ljhfqa" \
             --display-name "minha-vm-site" \
             --assign-public-ip true \
-            --metadata "{\"ssh_authorized_keys\": \"${{ secrets.OCI_SSH_PUBLIC_KEY }}\"}"
+            --metadata file://metadata.json
 
       - name: Já existe, nada a fazer
         if: steps.check.outputs.ja_existe == 'true'

@@ -19,6 +19,7 @@ jobs:
         id: check
         uses: oracle-actions/run-oci-cli-command@v1.3.2
         with:
+          silent: false
           command: >-
             compute instance list
             --compartment-id ${{ secrets.OCI_TENANCY_OCID }}

@@ -1728,7 +1728,7 @@ async function combCalcularAnaliseGeral() {
     lastPlanetsData: lastPlanetsData
   };
 
-  const rodarPara = async (meta, planets) => {
+  const rodarPara = async (meta, planets, suffix) => {
     document.getElementById('birthDate').value = meta.dataStr;
     document.getElementById('birthTime').value = meta.horaStr;
     const ascN = ((planets.asc % 360) + 360) % 360;
@@ -1740,13 +1740,13 @@ async function combCalcularAnaliseGeral() {
     document.getElementById('lon').value = meta.lon;
     lastPlanetsData = { planets, asc: planets.asc };
     document.getElementById('vg-target-date').value = evtDate;
-    await calculateAnaliseGeral();
+    await calculateAnaliseGeral(suffix);
     return document.getElementById('vg-result').innerHTML;
   };
 
   try {
-    elA.innerHTML = await rodarPara(_combLastMetaA, _combLastPlanetsA);
-    elB.innerHTML = await rodarPara(_combLastMetaB, _combLastPlanetsB);
+    elA.innerHTML = await rodarPara(_combLastMetaA, _combLastPlanetsA, '-a');
+    elB.innerHTML = await rodarPara(_combLastMetaB, _combLastPlanetsB, '-b');
   } catch (e) {
     erroEl.textContent = 'Erro ao calcular Análise Geral: ' + e.message;
   } finally {
@@ -1758,6 +1758,45 @@ async function combCalcularAnaliseGeral() {
     document.getElementById('lat').value = backup.lat;
     document.getElementById('lon').value = backup.lon;
     document.getElementById('vg-target-date').value = backup.vgTargetDate;
+    lastPlanetsData = backup.lastPlanetsData;
+  }
+}
+
+// Usado pelos re-renders dos mini-selects (Direções/Profecção/Liberação/Decenais) quando esses
+// cards estão embutidos na Combinação (suffix '-a' ou '-b'). Sem isso, mudar o select de um dos
+// mapas recalculava com os dados que estivessem carregados no topo da página no momento (o mapa
+// principal, não o Mapa A/B) — mesmo truque de troca de contexto usado em combCalcularAnaliseGeral,
+// mas reaproveitado aqui pro recálculo pontual de um único card.
+async function combWithMapaContext(suffix, fn) {
+  if (suffix !== '-a' && suffix !== '-b') return fn();
+  const meta = suffix === '-a' ? _combLastMetaA : _combLastMetaB;
+  const planets = suffix === '-a' ? _combLastPlanetsA : _combLastPlanetsB;
+  if (!meta || !planets) return fn();
+  const backup = {
+    birthDate: getVal('birthDate'), birthTime: getVal('birthTime'),
+    ascSign: getVal('ascSign'), ascDegMin: getVal('ascDegMin'),
+    lat: getVal('lat'), lon: getVal('lon'),
+    lastPlanetsData: lastPlanetsData
+  };
+  document.getElementById('birthDate').value = meta.dataStr;
+  document.getElementById('birthTime').value = meta.horaStr;
+  const ascN = ((planets.asc % 360) + 360) % 360;
+  const signIdx = Math.floor(ascN / 30);
+  const degInSign = ascN - signIdx * 30;
+  document.getElementById('ascSign').value = String(signIdx);
+  setAscDegMin(Math.floor(degInSign), Math.round((degInSign - Math.floor(degInSign)) * 60));
+  document.getElementById('lat').value = meta.lat;
+  document.getElementById('lon').value = meta.lon;
+  lastPlanetsData = { planets, asc: planets.asc };
+  try {
+    return await fn();
+  } finally {
+    document.getElementById('birthDate').value = backup.birthDate;
+    document.getElementById('birthTime').value = backup.birthTime;
+    document.getElementById('ascSign').value = backup.ascSign;
+    document.getElementById('ascDegMin').value = backup.ascDegMin;
+    document.getElementById('lat').value = backup.lat;
+    document.getElementById('lon').value = backup.lon;
     lastPlanetsData = backup.lastPlanetsData;
   }
 }
@@ -5102,7 +5141,8 @@ function miniFirdaria(targetDate) {
 }
 
 // Decenais (129 meses), versão resumida: L1/L2/L3 ativos na data + Aspectos (mesma técnica "grau corrido" da Liberação)
-function miniDecenais(targetDate, aphetaSel) {
+function miniDecenais(targetDate, aphetaSel, suffix) {
+  suffix = suffix || '';
   aphetaSel = aphetaSel || 'asc_ruler';
   const birthVal = parseBirthDate(getVal('birthDate')) || '';
   if (!birthVal) return '<span style="color:var(--color-danger);font-size:12px">Insira a data de nascimento.</span>';
@@ -5201,7 +5241,7 @@ function miniDecenais(targetDate, aphetaSel) {
     {v:'sun', l:'☉ Sol'}, {v:'moo', l:'☽ Lua'}, {v:'mer', l:'☿ Mercúrio'}, {v:'ven', l:'♀︎ Vênus'},
     {v:'mar', l:'♂︎ Marte'}, {v:'jup', l:'♃ Júpiter'}, {v:'sat', l:'♄ Saturno'}
   ];
-  let selHtml = '<select onchange="vgRerenderDecenais(this)" style="font-size:11px;padding:3px 6px;border:1px solid var(--color-border-input);border-radius:5px;background:#fff;cursor:pointer;margin-bottom:6px;max-width:100%">';
+  let selHtml = `<select onchange="vgRerenderDecenais(this${suffix?",'"+suffix+"'":''})" style="font-size:11px;padding:3px 6px;border:1px solid var(--color-border-input);border-radius:5px;background:#fff;cursor:pointer;margin-bottom:6px;max-width:100%">`;
   DEC_OPTS.forEach(o => { selHtml += `<option value="${o.v}" ${o.v===aphetaSel?'selected':''}>${o.l}</option>`; });
   selHtml += '</select>';
 
@@ -5214,7 +5254,8 @@ function miniDecenais(targetDate, aphetaSel) {
 }
 
 // ═══ 17. Aba ANÁLISE GERAL (dashboard) ══════════════════════════════════════
-async function calculateAnaliseGeral() {
+async function calculateAnaliseGeral(suffix) {
+  suffix = suffix || '';
   const el = document.getElementById('vg-result');
   if (!lastPlanetsData) {
     el.innerHTML = '<div class="card"><p style="color:var(--color-danger);text-align:center;padding:20px">Calcule o Mapa Natal primeiro (aba Mandala).</p></div>';
@@ -5268,7 +5309,7 @@ async function calculateAnaliseGeral() {
 
   // ── Decenais (versão resumida nova) ──
   window._vgTargetDate = targetDate; // guardado para o select de apheta poder re-renderizar só este card
-  const decHtml = miniDecenais(targetDate, 'sect');
+  const decHtml = miniDecenais(targetDate, 'sect', suffix);
 
   // ── Direções (versão resumida — reaproveita a aba já existente) ──
   const direcoesHtml = (typeof window.miniDirecoes === 'function')
@@ -5282,18 +5323,18 @@ async function calculateAnaliseGeral() {
     </div>`;
   }
 
-  const profSelHtml = vgMiniSelectFrom('prof-point-sel', profSel ? profSel.value : 'asc', 'vgRerenderProfecao');
-  const vlSelHtml = vgMiniSelectFrom('vl-sign-sel', vlSel ? vlSel.value : '0', 'vgRerenderLiberacao');
-  const dirSelHtml = vgMiniSelectFrom('dir-point-sel', 'asc', 'vgRerenderDirecoes');
+  const profSelHtml = vgMiniSelectFrom('prof-point-sel', profSel ? profSel.value : 'asc', 'vgRerenderProfecao', suffix);
+  const vlSelHtml = vgMiniSelectFrom('vl-sign-sel', vlSel ? vlSel.value : '0', 'vgRerenderLiberacao', suffix);
+  const dirSelHtml = vgMiniSelectFrom('dir-point-sel', 'asc', 'vgRerenderDirecoes', suffix);
 
   el.innerHTML = `
     <div style="text-align:center;font-size:11px;color:#000;margin-bottom:14px">Análise Geral — ${dStr}</div>
     <div role="region" aria-label="Resumo da Análise Geral" class="vg-cards-grid" style="column-width:340px;column-gap:16px">
       ${card('Firdaria Natal', firdariaHtml)}
-      ${card('Profecção', profSelHtml + profHtml, 'vg-prof-content')}
-      ${card('Direções', dirSelHtml + direcoesHtml, 'vg-dir-content')}
-      ${card('Liberação Zodiacal', vlSelHtml + libHtml, 'vg-lib-content')}
-      ${card('Decenais', decHtml, 'vg-dec-content')}
+      ${card('Profecção', profSelHtml + profHtml, 'vg-prof-content' + suffix)}
+      ${card('Direções', dirSelHtml + direcoesHtml, 'vg-dir-content' + suffix)}
+      ${card('Liberação Zodiacal', vlSelHtml + libHtml, 'vg-lib-content' + suffix)}
+      ${card('Decenais', decHtml, 'vg-dec-content' + suffix)}
     </div>`;
 
   } catch (e) {
@@ -5306,10 +5347,11 @@ async function calculateAnaliseGeral() {
 // (usado para expor os selects de Profecção/Liberação dentro dos cards da Análise Geral,
 // já que calculateProfecao()/calculateLiberacao() só copiam o resultado, não o select da aba)
 // ═══ 18. Helpers de re-render dos mini-selects do dashboard (vg*) ══════════
-function vgMiniSelectFrom(sourceId, selectedVal, handlerName) {
+function vgMiniSelectFrom(sourceId, selectedVal, handlerName, suffix) {
   const src = document.getElementById(sourceId);
   if (!src) return '';
-  let html = `<select onchange="${handlerName}(this)" style="font-size:11px;padding:3px 6px;border:1px solid var(--color-border-input);border-radius:5px;background:#fff;cursor:pointer;margin-bottom:6px;max-width:100%">`;
+  const args = suffix ? `this,'${suffix}'` : 'this';
+  let html = `<select onchange="${handlerName}(${args})" style="font-size:11px;padding:3px 6px;border:1px solid var(--color-border-input);border-radius:5px;background:#fff;cursor:pointer;margin-bottom:6px;max-width:100%">`;
   Array.from(src.options).forEach(o => {
     html += `<option value="${o.value}" ${o.value===String(selectedVal)?'selected':''}>${o.textContent}</option>`;
   });
@@ -5318,39 +5360,51 @@ function vgMiniSelectFrom(sourceId, selectedVal, handlerName) {
 }
 
 // Re-renderiza só o card de Profecção quando o select mini muda (não recalcula os outros cards)
-async function vgRerenderProfecao(selEl) {
-  const profSel = document.getElementById('prof-point-sel');
-  if (profSel) profSel.value = selEl.value;
-  const resultsDiv = document.getElementById('results');
-  const _resultsHtmlBackup = resultsDiv ? resultsDiv.innerHTML : '';
-  await calculateProfecao();
-  const cont = document.getElementById('vg-prof-content');
-  if (cont && resultsDiv) cont.innerHTML = vgMiniSelectFrom('prof-point-sel', selEl.value, 'vgRerenderProfecao') + resultsDiv.innerHTML;
-  if (resultsDiv) resultsDiv.innerHTML = _resultsHtmlBackup; // evita vazar p/ aba Firdaria (mesma div compartilhada)
+async function vgRerenderProfecao(selEl, suffix) {
+  suffix = suffix || '';
+  await combWithMapaContext(suffix, async () => {
+    const profSel = document.getElementById('prof-point-sel');
+    if (profSel) profSel.value = selEl.value;
+    const resultsDiv = document.getElementById('results');
+    const _resultsHtmlBackup = resultsDiv ? resultsDiv.innerHTML : '';
+    await calculateProfecao();
+    const cont = document.getElementById('vg-prof-content' + suffix);
+    if (cont && resultsDiv) cont.innerHTML = vgMiniSelectFrom('prof-point-sel', selEl.value, 'vgRerenderProfecao', suffix) + resultsDiv.innerHTML;
+    if (resultsDiv) resultsDiv.innerHTML = _resultsHtmlBackup; // evita vazar p/ aba Firdaria (mesma div compartilhada)
+  });
 }
 
 // Re-renderiza só o card de Liberação Zodiacal quando o select mini muda (não recalcula os outros cards)
-function vgRerenderLiberacao(selEl) {
-  const vlSel = document.getElementById('vl-sign-sel');
-  if (vlSel) vlSel.value = selEl.value;
-  calculateLiberacao();
-  const cont = document.getElementById('vg-lib-content');
-  const libResultDiv = document.getElementById('vl-result');
-  if (cont && libResultDiv) cont.innerHTML = vgMiniSelectFrom('vl-sign-sel', selEl.value, 'vgRerenderLiberacao') + libResultDiv.innerHTML;
+async function vgRerenderLiberacao(selEl, suffix) {
+  suffix = suffix || '';
+  await combWithMapaContext(suffix, () => {
+    const vlSel = document.getElementById('vl-sign-sel');
+    if (vlSel) vlSel.value = selEl.value;
+    calculateLiberacao();
+    const cont = document.getElementById('vg-lib-content' + suffix);
+    const libResultDiv = document.getElementById('vl-result');
+    if (cont && libResultDiv) cont.innerHTML = vgMiniSelectFrom('vl-sign-sel', selEl.value, 'vgRerenderLiberacao', suffix) + libResultDiv.innerHTML;
+  });
 }
 
 // Re-renderiza só o card de Decenais quando o select de Apheta muda (não recalcula os outros cards)
-function vgRerenderDecenais(selEl) {
-  const cont = document.getElementById('vg-dec-content');
+function vgRerenderDecenais(selEl, suffix) {
+  suffix = suffix || '';
+  const cont = document.getElementById('vg-dec-content' + suffix);
   if (!cont || !window._vgTargetDate) return;
-  cont.innerHTML = miniDecenais(window._vgTargetDate, selEl.value);
+  combWithMapaContext(suffix, () => {
+    cont.innerHTML = miniDecenais(window._vgTargetDate, selEl.value, suffix);
+  });
 }
 
 // Re-renderiza só o card de Direções quando o select de Ponto Direcionado muda (não recalcula os outros cards)
-function vgRerenderDirecoes(selEl) {
-  const cont = document.getElementById('vg-dir-content');
+function vgRerenderDirecoes(selEl, suffix) {
+  suffix = suffix || '';
+  const cont = document.getElementById('vg-dir-content' + suffix);
   if (!cont || !window._vgTargetDate || typeof window.miniDirecoes !== 'function') return;
-  cont.innerHTML = vgMiniSelectFrom('dir-point-sel', selEl.value, 'vgRerenderDirecoes') + window.miniDirecoes(window._vgTargetDate, selEl.value);
+  combWithMapaContext(suffix, () => {
+    cont.innerHTML = vgMiniSelectFrom('dir-point-sel', selEl.value, 'vgRerenderDirecoes', suffix) + window.miniDirecoes(window._vgTargetDate, selEl.value);
+  });
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────

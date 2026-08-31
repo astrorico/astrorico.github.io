@@ -1149,24 +1149,60 @@ function localNameMatch(name, query) {
   return tokens.every(t => nameLower.includes(t));
 }
 
-function mapaSearchLocal(q) {
-  const ul = document.getElementById('mapas_ac_list');
+// Busca genérica no banco local (JSON), reaproveitada pelas 3 telas que usam "Outro banco"
+// (Mandala, Sinastria, Retificação). O comportamento varia só em 2 pontos, controlados por opts:
+//  - opts.onEmptyQuery === 'showAll': mostra o banco inteiro quando a busca está vazia (Mandala);
+//    por padrão (Sinastria/Retificação) a lista fica escondida com busca vazia.
+//  - opts.noDbMessage: HTML do <li> mostrado quando "Outro banco" ainda não foi carregado;
+//    se omitido, a lista só é escondida (comportamento da Mandala).
+//  - opts.onSelect(id): chamado ao clicar num resultado.
+function searchLocalGeneric(ulId, q, opts) {
+  const ul = document.getElementById(ulId);
   q = (q || '').trim();
-  if (!mapasDB) { ul.style.display = 'none'; return; }
+  if (!mapasDB) {
+    if (opts.noDbMessage) {
+      ul.innerHTML = opts.noDbMessage;
+      ul.style.display = 'block';
+    } else {
+      ul.style.display = 'none';
+    }
+    return;
+  }
+  if (!q.length && opts.onEmptyQuery !== 'showAll') { ul.style.display = 'none'; return; }
   const rows = (q.length ? mapasDB.filter(r => localNameMatch(r.name, q)) : mapasDB)
     .slice().sort((a, b) => (a.name || '').localeCompare(b.name || ''))
     .slice(0, 500);
-  let html = '';
-  for (const row of rows) {
-    html += `<li style="padding:7px 12px;cursor:pointer" data-id="${escapeHtml(String(row.ID))}">
-      ${escapeHtml(row.name)} <span style="color:var(--color-border-input)">— ${escapeHtml(String(row.day).padStart(2,'0'))}/${escapeHtml(String(row.month).padStart(2,'0'))}/${escapeHtml(row.year)}</span></li>`;
-  }
-  ul.innerHTML = html || '<li style="padding:7px 12px;color:var(--color-text-secondary);font-style:italic">Nenhum resultado.</li>';
+  ul.innerHTML = rows.length ? rows.map(row =>
+    `<li style="padding:7px 12px;cursor:pointer" data-id="${escapeHtml(String(row.ID))}">
+      ${escapeHtml(row.name)} <span style="color:var(--color-border-input)">— ${escapeHtml(String(row.day).padStart(2,'0'))}/${escapeHtml(String(row.month).padStart(2,'0'))}/${escapeHtml(row.year)}</span></li>`
+  ).join('') : '<li style="padding:7px 12px;color:var(--color-text-secondary);font-style:italic">Nenhum resultado.</li>';
   ul.style.display = 'block';
   ul.onmousedown = function(e) {
     const li = e.target.closest('li[data-id]');
-    if (li) mapaSelect(Number(li.dataset.id));
+    if (li) opts.onSelect(Number(li.dataset.id));
   };
+}
+
+// Grava um registro do banco local nos campos de um formulário de pessoa. Usado por
+// Sinastria ("comb-*-{slot}") e Retificação por Família ("ret-*-{role}"), que têm
+// exatamente o mesmo conjunto de campos, só com prefixo/sufixo diferentes.
+function selectLocalIntoForm(prefix, key, r) {
+  document.getElementById(`${prefix}-date-${key}`).value =
+    String(r.day).padStart(2,'0') + '/' + String(r.month).padStart(2,'0') + '/' + r.year;
+  document.getElementById(`${prefix}-time-${key}`).value =
+    String(r.hour).padStart(2,'0') + ':' + String(r.minute).padStart(2,'0');
+  document.getElementById(`${prefix}-lat-${key}`).value = (r.lat_deg + r.lat_min/60) * r.ns;
+  document.getElementById(`${prefix}-lon-${key}`).value = (r.long_deg + r.long_min/60) * r.ew;
+  document.getElementById(`${prefix}-tz-${key}`).value = r.timezone;
+  document.getElementById(`${prefix}-nome-${key}`).value = r.name;
+  document.getElementById(`${prefix}-search-${key}`).value = r.name;
+  document.getElementById(`${prefix}-ac-${key}`).style.display = 'none';
+  document.getElementById(`${prefix}-status-${key}`).style.color = '';
+  document.getElementById(`${prefix}-status-${key}`).textContent = '';
+}
+
+function mapaSearchLocal(q) {
+  searchLocalGeneric('mapas_ac_list', q, { onEmptyQuery: 'showAll', onSelect: mapaSelect });
 }
 
 // ─── Astro-Databank (astro.com) — busca ao vivo via API pública do MediaWiki ───
@@ -1174,18 +1210,24 @@ function mapaSearchLocal(q) {
 // bloquear a requisição (proteção anti-robô) — nesse caso mostramos um aviso e o
 // usuário pode trocar para "Outro banco".
 const ASTRODATABANK_API = 'https://www.astro.com/wiki/astro-databank/api.php';
-let _adbSearchTimer = null;
-let _adbSearchSeq = 0;
 
-function mapaSearchDatabank(q) {
-  const ul = document.getElementById('mapas_ac_list');
+// Busca genérica na Astro-Databank (astro.com, via API pública do MediaWiki), reaproveitada
+// pela Mandala (mapaSearchDatabank) e pela Sinastria (combSearchDatabank), que faziam
+// exatamente a mesma busca dupla (prefixsearch + search) com debounce de 400ms.
+// `state` é um objeto mutável {timer, seq} próprio de cada tela, pra evitar que buscas
+// concorrentes de telas diferentes se atropelem.
+// opts.onSelect(title): chamado ao clicar num resultado.
+// opts.onStatus(msg): opcional — só a Mandala usa (_mapasSetStatus) pra mostrar contagem.
+// opts.offlineHint: texto extra na mensagem de erro de conexão (opcional).
+function searchDatabankGeneric(ulId, q, state, opts) {
+  const ul = document.getElementById(ulId);
   q = (q || '').trim();
-  clearTimeout(_adbSearchTimer);
+  clearTimeout(state.timer);
   if (!q.length) { ul.style.display = 'none'; return; }
-  const mySeq = ++_adbSearchSeq;
+  const mySeq = ++state.seq;
   ul.innerHTML = '<li style="padding:7px 12px;color:var(--color-text-secondary);font-style:italic">Buscando na Astro-Databank...</li>';
   ul.style.display = 'block';
-  _adbSearchTimer = setTimeout(async () => {
+  state.timer = setTimeout(async () => {
     try {
       // Duas buscas em paralelo:
       // - prefixsearch: casa o INÍCIO do título. Como os títulos ficam "Sobrenome, Nome"
@@ -1206,7 +1248,7 @@ function mapaSearchDatabank(q) {
         prefixResp.ok ? prefixResp.json() : Promise.resolve({}),
         searchResp.ok ? searchResp.json() : Promise.resolve({})
       ]);
-      if (mySeq !== _adbSearchSeq) return; // resposta antiga, ignora
+      if (mySeq !== state.seq) return; // resposta antiga, ignora
 
       const prefixTitles = (prefixData?.query?.prefixsearch || []).map(r => r.title);
       const searchTitles = (searchData?.query?.search || []).map(r => r.title);
@@ -1219,7 +1261,7 @@ function mapaSearchDatabank(q) {
 
       if (!results.length) {
         ul.innerHTML = '<li style="padding:7px 12px;color:var(--color-text-secondary);font-style:italic">Nenhum resultado.</li>';
-        _mapasSetStatus('✅ 0 mapas carregados.');
+        if (opts.onStatus) opts.onStatus('✅ 0 mapas carregados.');
         return;
       }
       ul.innerHTML = results.slice(0, 20).map(t =>
@@ -1227,16 +1269,27 @@ function mapaSearchDatabank(q) {
       ).join('');
       ul.onmousedown = function(e) {
         const li = e.target.closest('li[data-title]');
-        if (li) mapaSelectDatabank(li.dataset.title);
+        if (li) opts.onSelect(li.dataset.title);
       };
-      // totalhits vem de graça no retorno de list=search (query.searchinfo.totalhits)
-      const totalHits = searchData?.query?.searchinfo?.totalhits ?? results.length;
-      _mapasSetStatus(`✅ ${totalHits} mapas carregados.`);
+      if (opts.onStatus) {
+        // totalhits vem de graça no retorno de list=search (query.searchinfo.totalhits)
+        const totalHits = searchData?.query?.searchinfo?.totalhits ?? results.length;
+        opts.onStatus(`✅ ${totalHits} mapas carregados.`);
+      }
     } catch (e) {
-      if (mySeq !== _adbSearchSeq) return;
-      ul.innerHTML = '<li style="padding:7px 12px;color:var(--color-danger)">Não foi possível acessar a Astro-Databank agora (bloqueio do site ou sem conexão). Tente de novo ou use "Outro banco".</li>';
+      if (mySeq !== state.seq) return;
+      ul.innerHTML = '<li style="padding:7px 12px;color:var(--color-danger)">Não foi possível acessar a Astro-Databank agora' + (opts.offlineHint || '.') + '</li>';
     }
   }, 400);
+}
+
+let _mapaDbState = { timer: null, seq: 0 };
+function mapaSearchDatabank(q) {
+  searchDatabankGeneric('mapas_ac_list', q, _mapaDbState, {
+    onSelect: mapaSelectDatabank,
+    onStatus: _mapasSetStatus,
+    offlineHint: ' (bloqueio do site ou sem conexão). Tente de novo ou use "Outro banco".'
+  });
 }
 
 // Extrai os campos do bloco {{ASTRODATABANK_dma ... }} do wikitext da página
@@ -1674,8 +1727,6 @@ function mapaSelect(id) {
 // reaproveitando os helpers já usados pela busca principal (_adb*/mapasDB), mas
 // grava os dados nos campos comb-*-a/comb-*-b em vez dos campos do topo, para não
 // interferir no mapa principal.
-let _combSearchTimer = null;
-let _combSearchSeq = 0;
 
 function combSearch(slot, q) {
   if (getMapasFonte() === 'outro') {
@@ -1687,44 +1738,17 @@ function combSearch(slot, q) {
 
 // Busca no banco local (JSON), mesma fonte "Outro banco" já carregada em mapasDB pela tela principal
 function combSearchLocal(slot, q) {
-  const ul = document.getElementById('comb-ac-' + slot);
-  q = (q || '').trim();
-  if (!mapasDB) {
-    ul.innerHTML = '<li style="padding:7px 12px;color:var(--color-danger)">Nenhum banco carregado. Selecione "Outro banco" e carregue um arquivo/baixe o banco na tela principal primeiro.</li>';
-    ul.style.display = 'block';
-    return;
-  }
-  if (!q.length) { ul.style.display = 'none'; return; }
-  const rows = mapasDB.filter(r => localNameMatch(r.name, q))
-    .slice().sort((a, b) => (a.name || '').localeCompare(b.name || ''))
-    .slice(0, 500);
-  ul.innerHTML = rows.length ? rows.map(row =>
-    `<li style="padding:7px 12px;cursor:pointer" data-id="${escapeHtml(String(row.ID))}">
-      ${escapeHtml(row.name)} <span style="color:var(--color-border-input)">— ${escapeHtml(String(row.day).padStart(2,'0'))}/${escapeHtml(String(row.month).padStart(2,'0'))}/${escapeHtml(row.year)}</span></li>`
-  ).join('') : '<li style="padding:7px 12px;color:var(--color-text-secondary);font-style:italic">Nenhum resultado.</li>';
-  ul.style.display = 'block';
-  ul.onmousedown = function(e) {
-    const li = e.target.closest('li[data-id]');
-    if (li) combSelectLocal(slot, Number(li.dataset.id));
-  };
+  searchLocalGeneric('comb-ac-' + slot, q, {
+    noDbMessage: '<li style="padding:7px 12px;color:var(--color-danger)">Nenhum banco carregado. Selecione "Outro banco" e carregue um arquivo/baixe o banco na tela principal primeiro.</li>',
+    onSelect: (id) => combSelectLocal(slot, id)
+  });
 }
 
 // Grava um registro do banco local (mesmo shape usado em mapaSelect) nos campos comb-*-a/b
 function combSelectLocal(slot, id) {
   const r = (mapasDB || []).find(x => x.ID === id);
   if (!r) return;
-  document.getElementById('comb-date-' + slot).value =
-    String(r.day).padStart(2,'0') + '/' + String(r.month).padStart(2,'0') + '/' + r.year;
-  document.getElementById('comb-time-' + slot).value =
-    String(r.hour).padStart(2,'0') + ':' + String(r.minute).padStart(2,'0');
-  document.getElementById('comb-lat-' + slot).value = (r.lat_deg + r.lat_min/60) * r.ns;
-  document.getElementById('comb-lon-' + slot).value = (r.long_deg + r.long_min/60) * r.ew;
-  document.getElementById('comb-tz-' + slot).value = r.timezone;
-  document.getElementById('comb-nome-' + slot).value = r.name;
-  document.getElementById('comb-search-' + slot).value = r.name;
-  document.getElementById('comb-ac-' + slot).style.display = 'none';
-  document.getElementById('comb-status-' + slot).style.color = '';
-  document.getElementById('comb-status-' + slot).textContent = '';
+  selectLocalIntoForm('comb', slot, r);
 }
 
 // ═══ Retificação por Família — 6 slots de parentes (pai/mãe/filho/filha/irmão/irmã) ═══
@@ -1792,44 +1816,17 @@ function retSearch(role, q) {
 
 // Busca no banco local (JSON), mesma fonte "Outro banco" já carregada em mapasDB pela tela principal
 function retSearchLocal(role, q) {
-  const ul = document.getElementById('ret-ac-' + role);
-  q = (q || '').trim();
-  if (!mapasDB) {
-    ul.innerHTML = '<li style="padding:7px 12px;color:var(--color-danger)">Nenhum banco carregado. Selecione "Outro banco" e carregue um arquivo/baixe o banco na tela principal primeiro.</li>';
-    ul.style.display = 'block';
-    return;
-  }
-  if (!q.length) { ul.style.display = 'none'; return; }
-  const rows = mapasDB.filter(r => localNameMatch(r.name, q))
-    .slice().sort((a, b) => (a.name || '').localeCompare(b.name || ''))
-    .slice(0, 500);
-  ul.innerHTML = rows.length ? rows.map(row =>
-    `<li style="padding:7px 12px;cursor:pointer" data-id="${escapeHtml(String(row.ID))}">
-      ${escapeHtml(row.name)} <span style="color:var(--color-border-input)">— ${escapeHtml(String(row.day).padStart(2,'0'))}/${escapeHtml(String(row.month).padStart(2,'0'))}/${escapeHtml(row.year)}</span></li>`
-  ).join('') : '<li style="padding:7px 12px;color:var(--color-text-secondary);font-style:italic">Nenhum resultado.</li>';
-  ul.style.display = 'block';
-  ul.onmousedown = function(e) {
-    const li = e.target.closest('li[data-id]');
-    if (li) retSelectLocal(role, Number(li.dataset.id));
-  };
+  searchLocalGeneric('ret-ac-' + role, q, {
+    noDbMessage: '<li style="padding:7px 12px;color:var(--color-danger)">Nenhum banco carregado. Selecione "Outro banco" e carregue um arquivo/baixe o banco na tela principal primeiro.</li>',
+    onSelect: (id) => retSelectLocal(role, id)
+  });
 }
 
 // Grava um registro do banco local nos campos ret-*-{role}
 function retSelectLocal(role, id) {
   const r = (mapasDB || []).find(x => x.ID === id);
   if (!r) return;
-  document.getElementById('ret-date-' + role).value =
-    String(r.day).padStart(2,'0') + '/' + String(r.month).padStart(2,'0') + '/' + r.year;
-  document.getElementById('ret-time-' + role).value =
-    String(r.hour).padStart(2,'0') + ':' + String(r.minute).padStart(2,'0');
-  document.getElementById('ret-lat-' + role).value = (r.lat_deg + r.lat_min/60) * r.ns;
-  document.getElementById('ret-lon-' + role).value = (r.long_deg + r.long_min/60) * r.ew;
-  document.getElementById('ret-tz-' + role).value = r.timezone;
-  document.getElementById('ret-nome-' + role).value = r.name;
-  document.getElementById('ret-search-' + role).value = r.name;
-  document.getElementById('ret-ac-' + role).style.display = 'none';
-  document.getElementById('ret-status-' + role).style.color = '';
-  document.getElementById('ret-status-' + role).textContent = '';
+  selectLocalIntoForm('ret', role, r);
 }
 
 function retSearchDatabank(role, q) {
@@ -1858,10 +1855,15 @@ function retSearchDatabank(role, q) {
   }, 300);
 }
 
-async function retSelectDatabank(role, title) {
-  document.getElementById('ret-ac-' + role).style.display = 'none';
-  document.getElementById('ret-search-' + role).value = title;
-  const statusEl = document.getElementById('ret-status-' + role);
+// Busca genérica de dados na Astro-Databank a partir do título selecionado, reaproveitada pela
+// Retificação por Família (retSelectDatabank) e pela Sinastria (combSelectDatabank), que faziam
+// o mesmo fetch+parse do wikitext e o mesmo preenchimento de data/hora/lat/lon/tz/nome.
+// opts.setAccuracy(temHora): opcional — só a Retificação marca um rádio de precisão.
+// opts.successMsg: mensagem mostrada quando tudo é reconhecido sem avisos (default: vazia).
+async function selectDatabankGeneric(prefix, key, title, opts) {
+  document.getElementById(`${prefix}-ac-${key}`).style.display = 'none';
+  document.getElementById(`${prefix}-search-${key}`).value = title;
+  const statusEl = document.getElementById(`${prefix}-status-${key}`);
   statusEl.style.color = '';
   statusEl.textContent = 'Carregando dados de "' + title + '"...';
   try {
@@ -1884,27 +1886,36 @@ async function retSelectDatabank(role, title) {
     const temHora = f.sbtime && !f.t_unknown;
 
     if (f.iyear && f.imonth && f.iday) {
-      document.getElementById('ret-date-' + role).value =
+      document.getElementById(`${prefix}-date-${key}`).value =
         String(f.iday).padStart(2, '0') + '/' + String(f.imonth).padStart(2, '0') + '/' + f.iyear;
     }
-    if (temHora) document.getElementById('ret-time-' + role).value = f.sbtime;
-    if (lat !== null) document.getElementById('ret-lat-' + role).value = lat;
-    if (lon !== null) document.getElementById('ret-lon-' + role).value = lon;
-    if (tz !== null) document.getElementById('ret-tz-' + role).value = tz;
-    document.getElementById('ret-nome-' + role).value = nome;
-    // Databank não informa precisão certidão/memória — se hora vier, marca certidão; senão, desconhecida.
-    const accRadio = document.querySelector('input[name="ret-acc-' + role + '"][value="' + (temHora ? 'certidao' : 'desconhecida') + '"]');
-    if (accRadio) accRadio.checked = true;
+    if (temHora) document.getElementById(`${prefix}-time-${key}`).value = f.sbtime;
+    if (lat !== null) document.getElementById(`${prefix}-lat-${key}`).value = lat;
+    if (lon !== null) document.getElementById(`${prefix}-lon-${key}`).value = lon;
+    if (tz !== null) document.getElementById(`${prefix}-tz-${key}`).value = tz;
+    document.getElementById(`${prefix}-nome-${key}`).value = nome;
+    if (opts.setAccuracy) opts.setAccuracy(temHora);
 
     let msg = '';
     if (!temHora) msg += '⚠️ Hora desconhecida — ajuste manualmente. ';
     if (lat === null || lon === null) msg += '⚠️ Coordenadas não reconhecidas. ';
     if (tz === null) msg += '⚠️ Fuso não reconhecido.';
-    statusEl.textContent = msg.trim() || '✅ Carregado.';
+    statusEl.textContent = msg.trim() || (opts.successMsg || '');
   } catch (e) {
     statusEl.style.color = 'var(--color-danger)';
     statusEl.textContent = 'Erro ao carregar da Astro-Databank: ' + e.message;
   }
+}
+
+async function retSelectDatabank(role, title) {
+  return selectDatabankGeneric('ret', role, title, {
+    successMsg: '✅ Carregado.',
+    // Databank não informa precisão certidão/memória — se hora vier, marca certidão; senão, desconhecida.
+    setAccuracy: (temHora) => {
+      const accRadio = document.querySelector('input[name="ret-acc-' + role + '"][value="' + (temHora ? 'certidao' : 'desconhecida') + '"]');
+      if (accRadio) accRadio.checked = true;
+    }
+  });
 }
 
 // Coleta os dados preenchidos de um parente. Retorna null se não houver data preenchida (slot vazio/opcional).
@@ -4311,100 +4322,15 @@ async function calculateRetificacao() {
   }
 }
 
+let _combDbState = { timer: null, seq: 0 };
 function combSearchDatabank(slot, q) {
-  const ul = document.getElementById('comb-ac-' + slot);
-  q = (q || '').trim();
-  clearTimeout(_combSearchTimer);
-  if (!q.length) { ul.style.display = 'none'; return; }
-  const mySeq = ++_combSearchSeq;
-  ul.innerHTML = '<li style="padding:7px 12px;color:var(--color-text-secondary);font-style:italic">Buscando na Astro-Databank...</li>';
-  ul.style.display = 'block';
-  _combSearchTimer = setTimeout(async () => {
-    try {
-      const prefixUrl = ASTRODATABANK_API + '?' + new URLSearchParams({
-        action: 'query', list: 'prefixsearch', pssearch: q, psnamespace: '0',
-        pslimit: '15', format: 'json', formatversion: '2', origin: '*'
-      });
-      const searchUrl = ASTRODATABANK_API + '?' + new URLSearchParams({
-        action: 'query', list: 'search', srsearch: q, srnamespace: '0',
-        srlimit: '15', format: 'json', formatversion: '2', origin: '*'
-      });
-      const [prefixResp, searchResp] = await Promise.all([fetch(prefixUrl), fetch(searchUrl)]);
-      if (!prefixResp.ok && !searchResp.ok) throw new Error('HTTP ' + (prefixResp.status || searchResp.status));
-      const [prefixData, searchData] = await Promise.all([
-        prefixResp.ok ? prefixResp.json() : Promise.resolve({}),
-        searchResp.ok ? searchResp.json() : Promise.resolve({})
-      ]);
-      if (mySeq !== _combSearchSeq) return;
-      const prefixTitles = (prefixData?.query?.prefixsearch || []).map(r => r.title);
-      const searchTitles = (searchData?.query?.search || []).map(r => r.title);
-      const seen = new Set();
-      const results = [];
-      for (const t of [...prefixTitles, ...searchTitles]) {
-        if (!seen.has(t)) { seen.add(t); results.push(t); }
-      }
-      if (!results.length) {
-        ul.innerHTML = '<li style="padding:7px 12px;color:var(--color-text-secondary);font-style:italic">Nenhum resultado.</li>';
-        return;
-      }
-      ul.innerHTML = results.slice(0, 20).map(t =>
-        `<li style="padding:7px 12px;cursor:pointer" data-title="${escapeHtml(t)}">${escapeHtml(t)}</li>`
-      ).join('');
-      ul.onmousedown = function(e) {
-        const li = e.target.closest('li[data-title]');
-        if (li) combSelectDatabank(slot, li.dataset.title);
-      };
-    } catch (e) {
-      if (mySeq !== _combSearchSeq) return;
-      ul.innerHTML = '<li style="padding:7px 12px;color:var(--color-danger)">Não foi possível acessar a Astro-Databank agora.</li>';
-    }
-  }, 400);
+  searchDatabankGeneric('comb-ac-' + slot, q, _combDbState, {
+    onSelect: (title) => combSelectDatabank(slot, title)
+  });
 }
 
 async function combSelectDatabank(slot, title) {
-  document.getElementById('comb-ac-' + slot).style.display = 'none';
-  document.getElementById('comb-search-' + slot).value = title;
-  const statusEl = document.getElementById('comb-status-' + slot);
-  statusEl.style.color = '';
-  statusEl.textContent = 'Carregando dados de "' + title + '"...';
-  try {
-    const url = ASTRODATABANK_API + '?' + new URLSearchParams({
-      action: 'query', prop: 'revisions', rvprop: 'content', rvslots: 'main',
-      titles: title, format: 'json', formatversion: '2', origin: '*'
-    });
-    const resp = await fetch(url);
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    const data = await resp.json();
-    const page = data?.query?.pages?.[0];
-    const wikitext = page?.revisions?.[0]?.slots?.main?.content;
-    const f = _adbParseWikitext(wikitext);
-    if (!f) throw new Error('Não foi possível encontrar os dados de nascimento nesta página.');
-
-    const nome = f.sflname || f.Name || title;
-    const lat = _adbParseCoord(f.slati, 'n', 's');
-    const lon = _adbParseCoord(f.slong, 'e', 'w');
-    const tz = _adbParseMeridian(f.stmerid);
-    const temHora = f.sbtime && !f.t_unknown;
-
-    if (f.iyear && f.imonth && f.iday) {
-      document.getElementById('comb-date-' + slot).value =
-        String(f.iday).padStart(2, '0') + '/' + String(f.imonth).padStart(2, '0') + '/' + f.iyear;
-    }
-    if (temHora) document.getElementById('comb-time-' + slot).value = f.sbtime;
-    if (lat !== null) document.getElementById('comb-lat-' + slot).value = lat;
-    if (lon !== null) document.getElementById('comb-lon-' + slot).value = lon;
-    if (tz !== null) document.getElementById('comb-tz-' + slot).value = tz;
-    document.getElementById('comb-nome-' + slot).value = nome;
-
-    let msg = '';
-    if (!temHora) msg += '⚠️ Hora desconhecida — ajuste manualmente. ';
-    if (lat === null || lon === null) msg += '⚠️ Coordenadas não reconhecidas. ';
-    if (tz === null) msg += '⚠️ Fuso não reconhecido.';
-    statusEl.textContent = msg.trim();
-  } catch (e) {
-    statusEl.style.color = 'var(--color-danger)';
-    statusEl.textContent = 'Erro ao carregar da Astro-Databank: ' + e.message;
-  }
+  return selectDatabankGeneric('comb', slot, title, {});
 }
 
 document.addEventListener('mousedown', function(e){
@@ -5225,8 +5151,28 @@ function drawMandala(canvas, ascLon, planets, meta) {
   // 6b. Dados usados no mapa, escritos no centro
   if (meta) {
     const fmtCoord = (v,posLbl,negLbl) => (typeof v==='number' && !isNaN(v)) ? (Math.abs(v).toFixed(4)+'°'+(v>=0?posLbl:negLbl)) : '';
+    const CENTER_TEXT_MARGIN = 10; // folga da borda do círculo central (R_IN)
+    // Nome do mapa: quebra em até 2 linhas por palavra (em vez de só encolher a fonte),
+    // usando a largura da linha central do círculo (a mais generosa) como referência.
+    ctx.font = 'bold 15px Arial';
+    const wrapMaxWidth = 2*(R_IN - CENTER_TEXT_MARGIN);
+    function wrapNome(text){
+      if (!text) return [];
+      const words = text.split(' ');
+      const out = [];
+      let cur = '';
+      for (const w of words) {
+        const test = cur ? cur+' '+w : w;
+        if (cur && ctx.measureText(test).width > wrapMaxWidth) { out.push(cur); cur = w; }
+        else cur = test;
+      }
+      if (cur) out.push(cur);
+      if (out.length > 2) return [out[0], out.slice(1).join(' ')]; // limite de 2 linhas
+      return out;
+    }
+    const nomeLines = wrapNome(meta.nome);
     const linhas = [
-      meta.nome,
+      ...nomeLines,
       meta.metodo,
       meta.dataStr,
       meta.horaStr,
@@ -5234,10 +5180,20 @@ function drawMandala(canvas, ascLon, planets, meta) {
       (typeof meta.tz==='number' && !isNaN(meta.tz)) ? ('UTC'+(meta.tz>=0?'+':'')+(Math.round(meta.tz*100)/100)) : ''
     ].filter(Boolean);
     ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillStyle='#333';
-    ctx.font='bold 15px Arial';
     const lh=18, startY=CY-((linhas.length-1)*lh)/2;
     linhas.forEach((txt,i)=>{
-      if(i>0) ctx.font='13px Arial';
+      const isNomeLine = i < nomeLines.length;
+      const weight = isNomeLine ? 'bold ' : '';
+      let size = isNomeLine ? 15 : 13;
+      // Rede de segurança: se mesmo quebrada a linha não couber (ex. uma palavra só,
+      // muito longa), encolhe a fonte até caber na corda do círculo naquela altura.
+      const dy = (startY+i*lh) - CY;
+      const maxWidth = 2*Math.sqrt(Math.max(0, (R_IN-CENTER_TEXT_MARGIN)**2 - dy*dy));
+      ctx.font = weight+size+'px Arial';
+      while (size > 8 && ctx.measureText(txt).width > maxWidth) {
+        size -= 1;
+        ctx.font = weight+size+'px Arial';
+      }
       ctx.fillText(txt, CX, startY+i*lh);
     });
   }
@@ -5295,8 +5251,8 @@ function drawMandala(canvas, ascLon, planets, meta) {
       ? ((asc + planets.lua - planets.sol) % 360 + 360) % 360
       : ((asc + planets.sol - planets.lua) % 360 + 360) % 360;
     const spiritLon  = ((2 * asc - fortunaLon) % 360 + 720) % 360;
-    items.push({n:'_fortuna', lon:fortunaLon, drawn:fortunaLon, type:'fortuna', halfGap:9});
-    items.push({n:'_spirit',  lon:spiritLon,  drawn:spiritLon,  type:'spirit',  halfGap:9});
+    items.push({n:'_fortuna', lon:fortunaLon, drawn:fortunaLon, type:'fortuna'});
+    items.push({n:'_spirit',  lon:spiritLon,  drawn:spiritLon,  type:'spirit'});
   }
   resolveCollisions(items, 'drawn', ITEMS_MIN_DIST, 8);
   // Ajuste anti-cúspide (casas 1/4/7/10 — linha grossa de 1.8px, seção "5. Linhas de casas"):
@@ -5447,6 +5403,27 @@ function drawMandala(canvas, ascLon, planets, meta) {
     const dodecMinDeg = (DODEC_MIN_PX / rDegDod) * 180 / Math.PI;
     // Clamp de deslocamento máximo: reduzido de 40° para ~2x o mínimo necessário — evita que
     // um item seja empurrado bem mais longe do grau real do que o preciso pra abrir espaço.
+    resolveCollisions(dodItems, 'drawnLon', dodecMinDeg, dodecMinDeg * 2);
+    // Ajuste anti-eixo (ASC/MC reais) — mesmo padrão já usado no anel de planetas (seção 7,
+    // "Ajuste anti-cúspide"): o resolveCollisions sozinho é limitado pelo maxDisp acima e pode
+    // não abrir espaço suficiente em clusters densos perto do ASC/MC, deixando um glifo dodeca
+    // sobreposto à seta. Aqui cada item é checado e movido SOZINHO (sem afetar vizinhos),
+    // corrigindo só quem de fato ficou perto demais do eixo real.
+    // ASC fica deitado no anel (ocupa pouco espaço angular); MC fica mais "de pé"
+    // e precisa de mais folga — mesma lógica já usada nos halfGap (linha ~5339).
+    const DOD_AXIS_CLEAR_ASC = 6;
+    const DOD_AXIS_CLEAR_MC  = 8;
+    [[asc, DOD_AXIS_CLEAR_ASC], [planets.mc, DOD_AXIS_CLEAR_MC]].forEach(([axisLon, clear]) => {
+      if (typeof axisLon !== 'number') return;
+      for (const di of dodItems) {
+        if (di.virtual) continue;
+        const diff = ((di.drawnLon - axisLon + 540) % 360) - 180;
+        if (Math.abs(diff) < clear) {
+          di.drawnLon = norm360(axisLon + (diff >= 0 ? clear : -clear));
+        }
+      }
+    });
+    // Reseparação leve: o snap acima pode colar 2+ itens na mesma longitude (axisLon±4°)
     resolveCollisions(dodItems, 'drawnLon', dodecMinDeg, dodecMinDeg * 2);
 
 

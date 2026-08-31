@@ -9,7 +9,7 @@
     "year": 1974,
     "hour": 3,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -18,7 +18,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 2,
@@ -30,7 +30,7 @@
     "year": 1948,
     "hour": 23,
     "minute": 50,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -39,7 +39,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 3,
@@ -51,7 +51,7 @@
     "year": 1975,
     "hour": 15,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -60,7 +60,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 4,
@@ -72,7 +72,7 @@
     "year": 1932,
     "hour": 10,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -81,7 +81,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 5,
@@ -93,7 +93,7 @@
     "year": 1977,
     "hour": 6,
     "minute": 40,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -102,7 +102,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 6,
@@ -114,7 +114,7 @@
     "year": 1948,
     "hour": 2,
     "minute": 40,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -123,7 +123,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 7,
@@ -135,7 +135,7 @@
     "year": 1954,
     "hour": 23,
     "minute": 26,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 40,
     "long_min": 56,
     "ew": -1,
@@ -144,7 +144,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 8,
@@ -156,7 +156,7 @@
     "year": 1988,
     "hour": 18,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 51,
     "long_min": 11,
     "ew": -1,
@@ -165,7 +165,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 9,
@@ -177,7 +177,7 @@
     "year": 1978,
     "hour": 15,
     "minute": 40,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -186,7 +186,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 10,
@@ -198,7 +198,7 @@
     "year": 1959,
     "hour": 0,
     "minute": 1,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -207,7 +207,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 11,
@@ -228,7 +228,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 12,
@@ -249,7 +249,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 13,
@@ -261,7 +261,7 @@
     "year": 1959,
     "hour": 12,
     "minute": 50,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 51,
     "long_min": 11,
     "ew": -1,
@@ -270,7 +270,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 14,
@@ -282,7 +282,7 @@
     "year": 1890,
     "hour": 4,
     "minute": 0,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 3,
     "long_min": 30,
     "ew": -1,
@@ -291,7 +291,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 15,
@@ -303,7 +303,7 @@
     "year": 1946,
     "hour": 8,
     "minute": 51,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 93,
     "long_min": 35,
     "ew": -1,
@@ -312,7 +312,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 16,
@@ -324,7 +324,7 @@
     "year": 1956,
     "hour": 7,
     "minute": 5,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 74,
     "long_min": 16,
     "ew": -1,
@@ -333,7 +333,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 17,
@@ -345,7 +345,7 @@
     "year": 1967,
     "hour": 18,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -354,7 +354,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 18,
@@ -366,7 +366,7 @@
     "year": 1934,
     "hour": 12,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -375,7 +375,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 19,
@@ -387,7 +387,7 @@
     "year": 1961,
     "hour": 19,
     "minute": 45,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 0,
     "long_min": 30,
     "ew": 1,
@@ -396,7 +396,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 20,
@@ -408,7 +408,7 @@
     "year": 1982,
     "hour": 8,
     "minute": 15,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -417,7 +417,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 21,
@@ -438,7 +438,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 22,
@@ -450,7 +450,7 @@
     "year": 1937,
     "hour": 13,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 51,
     "long_min": 11,
     "ew": -1,
@@ -459,7 +459,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 23,
@@ -471,7 +471,7 @@
     "year": 1960,
     "hour": 0,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 42,
     "long_min": 2,
     "ew": -1,
@@ -480,7 +480,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 24,
@@ -492,7 +492,7 @@
     "year": 1943,
     "hour": 8,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -501,7 +501,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 25,
@@ -513,7 +513,7 @@
     "year": 1976,
     "hour": 17,
     "minute": 4,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 51,
     "long_min": 11,
     "ew": -1,
@@ -522,7 +522,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 26,
@@ -534,7 +534,7 @@
     "year": 1974,
     "hour": 22,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -543,7 +543,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 27,
@@ -555,7 +555,7 @@
     "year": 1955,
     "hour": 21,
     "minute": 15,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 20,
     "ew": -1,
@@ -564,7 +564,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 28,
@@ -576,7 +576,7 @@
     "year": 1928,
     "hour": 22,
     "minute": 15,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 2,
     "long_min": 20,
     "ew": 1,
@@ -585,7 +585,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 29,
@@ -597,7 +597,7 @@
     "year": 1976,
     "hour": 0,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -606,7 +606,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 30,
@@ -618,7 +618,7 @@
     "year": 2004,
     "hour": 13,
     "minute": 8,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -627,7 +627,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 31,
@@ -639,7 +639,7 @@
     "year": 1899,
     "hour": 8,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 87,
     "long_min": 47,
     "ew": -1,
@@ -648,7 +648,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 32,
@@ -660,7 +660,7 @@
     "year": 1942,
     "hour": 10,
     "minute": 15,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 122,
     "long_min": 20,
     "ew": -1,
@@ -669,7 +669,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 33,
@@ -690,7 +690,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 34,
@@ -702,7 +702,7 @@
     "year": 1945,
     "hour": 12,
     "minute": 0,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 86,
     "long_min": 44,
     "ew": -1,
@@ -711,7 +711,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 35,
@@ -723,7 +723,7 @@
     "year": 1925,
     "hour": 2,
     "minute": 15,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 87,
     "long_min": 44,
     "ew": -1,
@@ -732,7 +732,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 36,
@@ -744,7 +744,7 @@
     "year": 1938,
     "hour": 22,
     "minute": 40,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -753,7 +753,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 37,
@@ -765,7 +765,7 @@
     "year": 1991,
     "hour": 10,
     "minute": 10,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -774,7 +774,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 38,
@@ -786,7 +786,7 @@
     "year": 1945,
     "hour": 4,
     "minute": 15,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 27,
     "long_min": 14,
     "ew": -1,
@@ -795,7 +795,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 39,
@@ -807,7 +807,7 @@
     "year": 1943,
     "hour": 9,
     "minute": 45,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 93,
     "long_min": 56,
     "ew": -1,
@@ -816,7 +816,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 40,
@@ -828,7 +828,7 @@
     "year": 1963,
     "hour": 6,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 51,
     "long_min": 30,
     "ew": -1,
@@ -837,7 +837,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 41,
@@ -849,7 +849,7 @@
     "year": 1963,
     "hour": 23,
     "minute": 45,
-    "timezone": 4.0,
+    "timezone": 4,
     "long_deg": 49,
     "long_min": 51,
     "ew": 1,
@@ -858,7 +858,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 42,
@@ -870,7 +870,7 @@
     "year": 1945,
     "hour": 4,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -879,7 +879,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 43,
@@ -891,7 +891,7 @@
     "year": 1947,
     "hour": 1,
     "minute": 30,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 70,
     "long_min": 15,
     "ew": -1,
@@ -900,7 +900,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 44,
@@ -912,7 +912,7 @@
     "year": 1900,
     "hour": 12,
     "minute": 45,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 6,
     "long_min": 30,
     "ew": 1,
@@ -921,7 +921,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 45,
@@ -933,7 +933,7 @@
     "year": 1994,
     "hour": 18,
     "minute": 10,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -942,7 +942,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 46,
@@ -954,7 +954,7 @@
     "year": 1940,
     "hour": 7,
     "minute": 12,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 25,
     "ew": -1,
@@ -963,7 +963,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 47,
@@ -975,7 +975,7 @@
     "year": 1999,
     "hour": 12,
     "minute": 10,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -984,7 +984,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 48,
@@ -996,7 +996,7 @@
     "year": 1999,
     "hour": 12,
     "minute": 12,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1005,7 +1005,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 49,
@@ -1017,7 +1017,7 @@
     "year": 1955,
     "hour": 3,
     "minute": 20,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1026,7 +1026,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 50,
@@ -1038,7 +1038,7 @@
     "year": 1974,
     "hour": 18,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1047,7 +1047,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 51,
@@ -1059,7 +1059,7 @@
     "year": 1934,
     "hour": 15,
     "minute": 57,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 77,
     "long_min": 28,
     "ew": -1,
@@ -1068,7 +1068,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 52,
@@ -1080,7 +1080,7 @@
     "year": 1972,
     "hour": 3,
     "minute": 25,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1089,7 +1089,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 53,
@@ -1101,7 +1101,7 @@
     "year": 1959,
     "hour": 11,
     "minute": 56,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1110,7 +1110,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 54,
@@ -1122,7 +1122,7 @@
     "year": 1951,
     "hour": 11,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1131,7 +1131,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 55,
@@ -1143,7 +1143,7 @@
     "year": 1990,
     "hour": 9,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 51,
     "long_min": 11,
     "ew": -1,
@@ -1152,7 +1152,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 56,
@@ -1164,7 +1164,7 @@
     "year": 1942,
     "hour": 13,
     "minute": 40,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1173,7 +1173,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 57,
@@ -1185,7 +1185,7 @@
     "year": 1942,
     "hour": 14,
     "minute": 0,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 2,
     "long_min": 55,
     "ew": -1,
@@ -1194,7 +1194,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 58,
@@ -1206,7 +1206,7 @@
     "year": 1475,
     "hour": 1,
     "minute": 0,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 11,
     "long_min": 59,
     "ew": 1,
@@ -1215,7 +1215,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 59,
@@ -1227,7 +1227,7 @@
     "year": 1943,
     "hour": 11,
     "minute": 55,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 80,
     "long_min": 36,
     "ew": -1,
@@ -1236,7 +1236,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 60,
@@ -1248,7 +1248,7 @@
     "year": 1985,
     "hour": 14,
     "minute": 27,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1257,7 +1257,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 61,
@@ -1269,7 +1269,7 @@
     "year": 1950,
     "hour": 23,
     "minute": 57,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1278,7 +1278,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 62,
@@ -1290,7 +1290,7 @@
     "year": 1941,
     "hour": 3,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1299,7 +1299,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 63,
@@ -1311,7 +1311,7 @@
     "year": 1960,
     "hour": 7,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 34,
     "long_min": 53,
     "ew": -1,
@@ -1320,7 +1320,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 64,
@@ -1332,7 +1332,7 @@
     "year": 1881,
     "hour": 23,
     "minute": 32,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 4,
     "long_min": 26,
     "ew": -1,
@@ -1341,7 +1341,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 65,
@@ -1353,7 +1353,7 @@
     "year": 2004,
     "hour": 16,
     "minute": 43,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1362,7 +1362,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 66,
@@ -1374,7 +1374,7 @@
     "year": 1954,
     "hour": 16,
     "minute": 9,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 73,
     "long_min": 59,
     "ew": -1,
@@ -1383,7 +1383,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 67,
@@ -1395,7 +1395,7 @@
     "year": 1927,
     "hour": 10,
     "minute": 4,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1404,7 +1404,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 68,
@@ -1416,7 +1416,7 @@
     "year": 1974,
     "hour": 1,
     "minute": 40,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1425,7 +1425,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 69,
@@ -1437,7 +1437,7 @@
     "year": 1961,
     "hour": 4,
     "minute": 10,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1446,7 +1446,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 70,
@@ -1458,7 +1458,7 @@
     "year": 1964,
     "hour": 9,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1467,7 +1467,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 71,
@@ -1479,7 +1479,7 @@
     "year": 1987,
     "hour": 7,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 51,
     "long_min": 11,
     "ew": -1,
@@ -1488,7 +1488,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 72,
@@ -1500,7 +1500,7 @@
     "year": 1977,
     "hour": 11,
     "minute": 55,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1509,7 +1509,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 73,
@@ -1521,7 +1521,7 @@
     "year": 1985,
     "hour": 19,
     "minute": 35,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1530,7 +1530,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 74,
@@ -1542,7 +1542,7 @@
     "year": 1960,
     "hour": 13,
     "minute": 15,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 51,
     "long_min": 11,
     "ew": -1,
@@ -1551,7 +1551,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 75,
@@ -1563,7 +1563,7 @@
     "year": 1964,
     "hour": 9,
     "minute": 50,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 51,
     "long_min": 30,
     "ew": -1,
@@ -1572,7 +1572,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 76,
@@ -1584,7 +1584,7 @@
     "year": 1977,
     "hour": 22,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1593,7 +1593,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 77,
@@ -1605,7 +1605,7 @@
     "year": 1909,
     "hour": 19,
     "minute": 20,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1614,7 +1614,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 78,
@@ -1626,7 +1626,7 @@
     "year": 1982,
     "hour": 10,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 42,
     "long_min": 49,
     "ew": -1,
@@ -1635,7 +1635,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 79,
@@ -1647,7 +1647,7 @@
     "year": 1978,
     "hour": 0,
     "minute": 4,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1656,7 +1656,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 80,
@@ -1668,7 +1668,7 @@
     "year": 1984,
     "hour": 21,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1677,7 +1677,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 81,
@@ -1689,7 +1689,7 @@
     "year": 1983,
     "hour": 0,
     "minute": 5,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1698,7 +1698,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 82,
@@ -1710,7 +1710,7 @@
     "year": 1726,
     "hour": 0,
     "minute": 17,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1719,7 +1719,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 83,
@@ -1731,7 +1731,7 @@
     "year": 1979,
     "hour": 13,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1740,7 +1740,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 84,
@@ -1752,7 +1752,7 @@
     "year": 1983,
     "hour": 6,
     "minute": 50,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1761,7 +1761,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 85,
@@ -1773,7 +1773,7 @@
     "year": 1967,
     "hour": 12,
     "minute": 30,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 96,
     "long_min": 29,
     "ew": -1,
@@ -1782,7 +1782,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 86,
@@ -1794,7 +1794,7 @@
     "year": 1946,
     "hour": 7,
     "minute": 26,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 72,
     "long_min": 56,
     "ew": -1,
@@ -1803,7 +1803,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 87,
@@ -1815,7 +1815,7 @@
     "year": 1937,
     "hour": 15,
     "minute": 50,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1824,7 +1824,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 88,
@@ -1836,7 +1836,7 @@
     "year": 1945,
     "hour": 8,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 38,
     "long_min": 31,
     "ew": -1,
@@ -1845,7 +1845,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 89,
@@ -1857,7 +1857,7 @@
     "year": 1963,
     "hour": 11,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 40,
     "long_min": 30,
     "ew": -1,
@@ -1866,7 +1866,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 90,
@@ -1878,7 +1878,7 @@
     "year": 1968,
     "hour": 11,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -1887,7 +1887,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 91,
@@ -1899,7 +1899,7 @@
     "year": 1991,
     "hour": 16,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1908,7 +1908,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 92,
@@ -1920,7 +1920,7 @@
     "year": 1982,
     "hour": 7,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1929,7 +1929,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 93,
@@ -1941,7 +1941,7 @@
     "year": 1989,
     "hour": 14,
     "minute": 21,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 73,
     "long_min": 56,
     "ew": -1,
@@ -1950,7 +1950,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 94,
@@ -1962,7 +1962,7 @@
     "year": 1948,
     "hour": 23,
     "minute": 4,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 19,
     "ew": -1,
@@ -1971,7 +1971,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "*Clarnell Kemper 17 de março de 1921\r\n*Falecido(a) em 21 de abril de 1973\r\nPai Ed          27 de abril de 1919\r\nAvôs:\r\nEdmund Emil Kemper Sr.: Born June 26, 1892, in Indiana.Maude Matilda Kemper: Born November 19, \r\n1897, in Kansas.\r\nMurdersDate: August 27, 1964.\r\n\r\nEdmund Kemper matou seus avós paternos em 27 de agosto de 1964, quando ele tinha apenas 15 anos de idade.",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 95,
@@ -1983,7 +1983,7 @@
     "year": 1973,
     "hour": 22,
     "minute": 23,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -1992,7 +1992,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 96,
@@ -2004,7 +2004,7 @@
     "year": 1955,
     "hour": 19,
     "minute": 15,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 25,
     "ew": -1,
@@ -2013,7 +2013,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "transplante de figado 20 de junho de 2009",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 97,
@@ -2025,7 +2025,7 @@
     "year": 1946,
     "hour": 19,
     "minute": 32,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 46,
     "long_min": 37,
     "ew": -1,
@@ -2034,7 +2034,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 98,
@@ -2046,7 +2046,7 @@
     "year": 1491,
     "hour": 8,
     "minute": 45,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 0,
     "long_min": 0,
     "ew": 1,
@@ -2055,7 +2055,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 99,
@@ -2076,7 +2076,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 100,
@@ -2088,7 +2088,7 @@
     "year": 1968,
     "hour": 5,
     "minute": 20,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -2097,7 +2097,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 101,
@@ -2109,7 +2109,7 @@
     "year": 1960,
     "hour": 6,
     "minute": 15,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -2118,7 +2118,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 102,
@@ -2130,7 +2130,7 @@
     "year": 1947,
     "hour": 8,
     "minute": 59,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 73,
     "long_min": 50,
     "ew": -1,
@@ -2139,7 +2139,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 103,
@@ -2151,7 +2151,7 @@
     "year": 1963,
     "hour": 15,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 54,
     "long_min": 29,
     "ew": -1,
@@ -2160,7 +2160,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 104,
@@ -2172,7 +2172,7 @@
     "year": 1940,
     "hour": 3,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 45,
     "long_min": 16,
     "ew": -1,
@@ -2181,7 +2181,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 105,
@@ -2193,7 +2193,7 @@
     "year": 1933,
     "hour": 16,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 2,
     "ew": -1,
@@ -2202,7 +2202,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 106,
@@ -2214,7 +2214,7 @@
     "year": 1941,
     "hour": 10,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 41,
     "long_min": 6,
     "ew": -1,
@@ -2223,7 +2223,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 107,
@@ -2235,7 +2235,7 @@
     "year": 1949,
     "hour": 6,
     "minute": 55,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 46,
     "long_min": 37,
     "ew": -1,
@@ -2244,7 +2244,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 108,
@@ -2256,7 +2256,7 @@
     "year": 1964,
     "hour": 6,
     "minute": 40,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -2265,7 +2265,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 109,
@@ -2277,7 +2277,7 @@
     "year": 1926,
     "hour": 23,
     "minute": 50,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 47,
     "long_min": 5,
     "ew": -1,
@@ -2286,7 +2286,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 110,
@@ -2298,7 +2298,7 @@
     "year": 2011,
     "hour": 8,
     "minute": 34,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -2307,7 +2307,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 111,
@@ -2319,7 +2319,7 @@
     "year": 2006,
     "hour": 7,
     "minute": 56,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -2328,7 +2328,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 112,
@@ -2340,7 +2340,7 @@
     "year": 1928,
     "hour": 7,
     "minute": 0,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 81,
     "long_min": 13,
     "ew": -1,
@@ -2349,7 +2349,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 113,
@@ -2361,7 +2361,7 @@
     "year": 1940,
     "hour": 6,
     "minute": 50,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 58,
     "long_min": 27,
     "ew": -1,
@@ -2370,7 +2370,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 114,
@@ -2382,7 +2382,7 @@
     "year": 1918,
     "hour": 15,
     "minute": 45,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 87,
     "long_min": 39,
     "ew": -1,
@@ -2391,7 +2391,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 115,
@@ -2403,7 +2403,7 @@
     "year": 1931,
     "hour": 22,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 84,
     "long_min": 56,
     "ew": -1,
@@ -2412,7 +2412,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 116,
@@ -2424,7 +2424,7 @@
     "year": 1964,
     "hour": 14,
     "minute": 8,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 122,
     "long_min": 25,
     "ew": -1,
@@ -2433,7 +2433,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 117,
@@ -2445,7 +2445,7 @@
     "year": 1992,
     "hour": 7,
     "minute": 48,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -2454,7 +2454,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 118,
@@ -2466,7 +2466,7 @@
     "year": 1953,
     "hour": 2,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2475,7 +2475,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 119,
@@ -2496,7 +2496,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 120,
@@ -2508,7 +2508,7 @@
     "year": 1959,
     "hour": 12,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -2517,7 +2517,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 121,
@@ -2538,7 +2538,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 122,
@@ -2550,7 +2550,7 @@
     "year": 1950,
     "hour": 15,
     "minute": 0,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 74,
     "long_min": 0,
     "ew": -1,
@@ -2559,7 +2559,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 123,
@@ -2571,7 +2571,7 @@
     "year": 1949,
     "hour": 10,
     "minute": 43,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 95,
     "long_min": 22,
     "ew": -1,
@@ -2580,7 +2580,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 124,
@@ -2592,7 +2592,7 @@
     "year": 1972,
     "hour": 2,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 38,
     "long_min": 30,
     "ew": -1,
@@ -2601,7 +2601,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 125,
@@ -2613,7 +2613,7 @@
     "year": 1942,
     "hour": 1,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 4,
     "long_min": 37,
     "ew": 1,
@@ -2622,7 +2622,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "French homicide victm, a psychiatrist who shot to death his wife and two teenage daughters on 13 May 1992, 3:50 PM, and then shot and killed himself.",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 126,
@@ -2634,7 +2634,7 @@
     "year": 1977,
     "hour": 13,
     "minute": 0,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 4,
     "long_min": 37,
     "ew": 1,
@@ -2643,7 +2643,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "French homicide victim who was shot to death at the age of 14 on 13 May 1992, 3:50 PM, Toulouse along with her sister and mother by her psychiatrist father, Lysian, who then shot and killed himself.",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 127,
@@ -2655,7 +2655,7 @@
     "year": 1978,
     "hour": 10,
     "minute": 45,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 4,
     "long_min": 37,
     "ew": 1,
@@ -2664,7 +2664,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "French homicide victim who was shot to death at the age of 13 on 13 May 1992, 3:50 PM, Toulouse along with her sister and mother by her psychiatrist father, Lysian, who then shot and killed himself.",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 128,
@@ -2676,7 +2676,7 @@
     "year": 1977,
     "hour": 22,
     "minute": 15,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2685,7 +2685,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 129,
@@ -2697,7 +2697,7 @@
     "year": 1972,
     "hour": 13,
     "minute": 35,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2706,7 +2706,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 130,
@@ -2718,7 +2718,7 @@
     "year": 1954,
     "hour": 20,
     "minute": 18,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2727,7 +2727,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 131,
@@ -2739,7 +2739,7 @@
     "year": 1967,
     "hour": 12,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2748,7 +2748,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 132,
@@ -2760,7 +2760,7 @@
     "year": 1989,
     "hour": 15,
     "minute": 40,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2769,7 +2769,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 133,
@@ -2781,7 +2781,7 @@
     "year": 1989,
     "hour": 15,
     "minute": 40,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2790,7 +2790,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 134,
@@ -2802,7 +2802,7 @@
     "year": 1979,
     "hour": 10,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2811,7 +2811,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 135,
@@ -2823,7 +2823,7 @@
     "year": 1980,
     "hour": 13,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2832,7 +2832,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 136,
@@ -2844,7 +2844,7 @@
     "year": 1989,
     "hour": 15,
     "minute": 40,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -2853,7 +2853,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 137,
@@ -2865,7 +2865,7 @@
     "year": 1974,
     "hour": 6,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2874,7 +2874,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 138,
@@ -2886,7 +2886,7 @@
     "year": 1987,
     "hour": 3,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -2895,7 +2895,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 139,
@@ -2907,7 +2907,7 @@
     "year": 1964,
     "hour": 11,
     "minute": 30,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 14,
     "long_min": 24,
     "ew": 1,
@@ -2916,7 +2916,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 140,
@@ -2928,7 +2928,7 @@
     "year": 1944,
     "hour": 22,
     "minute": 0,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 82,
     "long_min": 60,
     "ew": -1,
@@ -2937,7 +2937,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 141,
@@ -2949,7 +2949,7 @@
     "year": 1990,
     "hour": 0,
     "minute": 10,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -2958,7 +2958,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 142,
@@ -2970,7 +2970,7 @@
     "year": 1974,
     "hour": 9,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 47,
     "long_min": 29,
     "ew": -1,
@@ -2979,7 +2979,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 143,
@@ -2991,7 +2991,7 @@
     "year": 1911,
     "hour": 11,
     "minute": 45,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 10,
     "long_min": 16,
     "ew": 1,
@@ -3000,7 +3000,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 144,
@@ -3012,7 +3012,7 @@
     "year": 1955,
     "hour": 5,
     "minute": 55,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3021,7 +3021,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 145,
@@ -3033,7 +3033,7 @@
     "year": 1987,
     "hour": 4,
     "minute": 45,
-    "timezone": -2.0,
+    "timezone": -2,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3042,7 +3042,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 146,
@@ -3054,7 +3054,7 @@
     "year": 1984,
     "hour": 18,
     "minute": 26,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3063,7 +3063,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 147,
@@ -3084,7 +3084,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 148,
@@ -3096,7 +3096,7 @@
     "year": 1955,
     "hour": 19,
     "minute": 30,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 97,
     "long_min": 19,
     "ew": -1,
@@ -3105,7 +3105,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 149,
@@ -3126,7 +3126,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 150,
@@ -3138,7 +3138,7 @@
     "year": 1974,
     "hour": 8,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3147,7 +3147,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 151,
@@ -3159,7 +3159,7 @@
     "year": 1943,
     "hour": 14,
     "minute": 39,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 87,
     "long_min": 39,
     "ew": -1,
@@ -3168,7 +3168,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 152,
@@ -3180,7 +3180,7 @@
     "year": 2008,
     "hour": 13,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3189,7 +3189,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 153,
@@ -3201,7 +3201,7 @@
     "year": 2008,
     "hour": 13,
     "minute": 56,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -3210,7 +3210,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 154,
@@ -3222,7 +3222,7 @@
     "year": 1938,
     "hour": 14,
     "minute": 40,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 112,
     "long_min": 32,
     "ew": -1,
@@ -3231,7 +3231,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Transplante figado 27/01/1999",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 155,
@@ -3243,7 +3243,7 @@
     "year": 1977,
     "hour": 12,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -3252,7 +3252,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 156,
@@ -3264,7 +3264,7 @@
     "year": 1952,
     "hour": 3,
     "minute": 12,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 74,
     "long_min": 0,
     "ew": -1,
@@ -3273,7 +3273,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Acidente 27/05/1995.\r\nMorte 10/10/2004.\r\n17 de agosto de 2000\r\nFratura foi no fêmur esquerdo que quebrou ao meio.",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 157,
@@ -3285,7 +3285,7 @@
     "year": 1957,
     "hour": 11,
     "minute": 55,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 40,
     "long_min": 30,
     "ew": -1,
@@ -3294,7 +3294,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 158,
@@ -3306,7 +3306,7 @@
     "year": 1984,
     "hour": 0,
     "minute": 10,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3315,7 +3315,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 159,
@@ -3327,7 +3327,7 @@
     "year": 1976,
     "hour": 9,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -3336,7 +3336,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 160,
@@ -3348,7 +3348,7 @@
     "year": 1989,
     "hour": 4,
     "minute": 25,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3357,7 +3357,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 161,
@@ -3369,7 +3369,7 @@
     "year": 1973,
     "hour": 22,
     "minute": 23,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -3378,7 +3378,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 162,
@@ -3390,7 +3390,7 @@
     "year": 1942,
     "hour": 19,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 4,
     "ew": -1,
@@ -3399,7 +3399,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 163,
@@ -3411,7 +3411,7 @@
     "year": 1982,
     "hour": 6,
     "minute": 57,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -3420,7 +3420,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 164,
@@ -3432,7 +3432,7 @@
     "year": 1974,
     "hour": 2,
     "minute": 47,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -3441,7 +3441,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 165,
@@ -3453,7 +3453,7 @@
     "year": 1958,
     "hour": 6,
     "minute": 30,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 2,
     "long_min": 15,
     "ew": -1,
@@ -3462,7 +3462,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 166,
@@ -3474,7 +3474,7 @@
     "year": 1958,
     "hour": 8,
     "minute": 11,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 117,
     "long_min": 52,
     "ew": -1,
@@ -3483,7 +3483,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 167,
@@ -3495,7 +3495,7 @@
     "year": 1958,
     "hour": 18,
     "minute": 17,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 93,
     "long_min": 16,
     "ew": -1,
@@ -3504,7 +3504,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 168,
@@ -3516,7 +3516,7 @@
     "year": 1964,
     "hour": 11,
     "minute": 20,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -3525,7 +3525,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 169,
@@ -3537,7 +3537,7 @@
     "year": 1991,
     "hour": 13,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3546,7 +3546,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 170,
@@ -3558,7 +3558,7 @@
     "year": 1912,
     "hour": 17,
     "minute": 48,
-    "timezone": -1.0,
+    "timezone": -1,
     "long_deg": 16,
     "long_min": 54,
     "ew": -1,
@@ -3567,7 +3567,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 171,
@@ -3579,7 +3579,7 @@
     "year": 1912,
     "hour": 17,
     "minute": 48,
-    "timezone": -1.0,
+    "timezone": -1,
     "long_deg": 16,
     "long_min": 54,
     "ew": -1,
@@ -3588,7 +3588,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 172,
@@ -3600,7 +3600,7 @@
     "year": 1946,
     "hour": 17,
     "minute": 53,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3609,7 +3609,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 173,
@@ -3621,7 +3621,7 @@
     "year": 1949,
     "hour": 17,
     "minute": 53,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3630,7 +3630,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 174,
@@ -3642,7 +3642,7 @@
     "year": 1966,
     "hour": 19,
     "minute": 48,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3651,7 +3651,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 175,
@@ -3663,7 +3663,7 @@
     "year": 1950,
     "hour": 17,
     "minute": 30,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 116,
     "long_min": 13,
     "ew": -1,
@@ -3672,7 +3672,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 176,
@@ -3684,7 +3684,7 @@
     "year": 1942,
     "hour": 0,
     "minute": 1,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3693,7 +3693,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 177,
@@ -3705,7 +3705,7 @@
     "year": 1984,
     "hour": 18,
     "minute": 55,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3714,7 +3714,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 178,
@@ -3726,7 +3726,7 @@
     "year": 1945,
     "hour": 14,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3735,7 +3735,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 179,
@@ -3747,7 +3747,7 @@
     "year": 1943,
     "hour": 18,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3756,7 +3756,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 180,
@@ -3777,7 +3777,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 181,
@@ -3789,7 +3789,7 @@
     "year": 1936,
     "hour": 11,
     "minute": 35,
-    "timezone": 8.0,
+    "timezone": 8,
     "long_deg": 121,
     "long_min": 28,
     "ew": 1,
@@ -3798,7 +3798,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 182,
@@ -3810,7 +3810,7 @@
     "year": 1967,
     "hour": 12,
     "minute": 35,
-    "timezone": 10.0,
+    "timezone": 10,
     "long_deg": 147,
     "long_min": 22,
     "ew": 1,
@@ -3819,7 +3819,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 183,
@@ -3831,7 +3831,7 @@
     "year": 1986,
     "hour": 12,
     "minute": 10,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 6,
     "long_min": 10,
     "ew": 1,
@@ -3840,7 +3840,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 184,
@@ -3852,7 +3852,7 @@
     "year": 1944,
     "hour": 2,
     "minute": 0,
-    "timezone": 10.0,
+    "timezone": 10,
     "long_deg": 151,
     "long_min": 13,
     "ew": 1,
@@ -3861,7 +3861,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 185,
@@ -3873,7 +3873,7 @@
     "year": 1931,
     "hour": 3,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 4,
     "long_min": 15,
     "ew": -1,
@@ -3882,7 +3882,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 186,
@@ -3894,7 +3894,7 @@
     "year": 1946,
     "hour": 19,
     "minute": 32,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 46,
     "long_min": 37,
     "ew": -1,
@@ -3903,7 +3903,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 187,
@@ -3915,7 +3915,7 @@
     "year": 1958,
     "hour": 17,
     "minute": 15,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -3924,7 +3924,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 188,
@@ -3936,7 +3936,7 @@
     "year": 1915,
     "hour": 7,
     "minute": 5,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 4,
     "long_min": 15,
     "ew": -1,
@@ -3945,7 +3945,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 189,
@@ -3957,7 +3957,7 @@
     "year": 1984,
     "hour": 6,
     "minute": 55,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 117,
     "long_min": 1,
     "ew": -1,
@@ -3966,7 +3966,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 190,
@@ -3978,7 +3978,7 @@
     "year": 1972,
     "hour": 3,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 38,
     "long_min": 30,
     "ew": -1,
@@ -3987,7 +3987,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 191,
@@ -3999,7 +3999,7 @@
     "year": 1959,
     "hour": 5,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 98,
     "long_min": 28,
     "ew": -1,
@@ -4008,7 +4008,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 192,
@@ -4020,7 +4020,7 @@
     "year": 1946,
     "hour": 8,
     "minute": 13,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 7,
     "ew": -1,
@@ -4029,7 +4029,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 193,
@@ -4041,7 +4041,7 @@
     "year": 1929,
     "hour": 4,
     "minute": 0,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 25,
     "ew": -1,
@@ -4050,7 +4050,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 194,
@@ -4062,7 +4062,7 @@
     "year": 1947,
     "hour": 8,
     "minute": 59,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 73,
     "long_min": 50,
     "ew": -1,
@@ -4071,7 +4071,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 195,
@@ -4083,7 +4083,7 @@
     "year": 1994,
     "hour": 8,
     "minute": 10,
-    "timezone": -2.0,
+    "timezone": -2,
     "long_deg": 46,
     "long_min": 37,
     "ew": -1,
@@ -4092,7 +4092,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 196,
@@ -4104,7 +4104,7 @@
     "year": 1948,
     "hour": 4,
     "minute": 0,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 66,
     "long_min": 24,
     "ew": -1,
@@ -4113,7 +4113,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 197,
@@ -4125,7 +4125,7 @@
     "year": 1967,
     "hour": 18,
     "minute": 0,
-    "timezone": -2.0,
+    "timezone": -2,
     "long_deg": 49,
     "long_min": 23,
     "ew": -1,
@@ -4134,7 +4134,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 198,
@@ -4146,7 +4146,7 @@
     "year": 1977,
     "hour": 18,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -4155,7 +4155,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 199,
@@ -4176,7 +4176,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 200,
@@ -4188,7 +4188,7 @@
     "year": 1960,
     "hour": 20,
     "minute": 43,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 84,
     "long_min": 31,
     "ew": -1,
@@ -4197,7 +4197,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 201,
@@ -4209,7 +4209,7 @@
     "year": 1945,
     "hour": 10,
     "minute": 16,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 104,
     "long_min": 59,
     "ew": -1,
@@ -4218,7 +4218,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 202,
@@ -4230,7 +4230,7 @@
     "year": 1946,
     "hour": 20,
     "minute": 30,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 1,
     "long_min": 50,
     "ew": -1,
@@ -4239,7 +4239,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 203,
@@ -4251,7 +4251,7 @@
     "year": 1945,
     "hour": 10,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 66,
     "long_min": 53,
     "ew": -1,
@@ -4260,7 +4260,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 204,
@@ -4272,7 +4272,7 @@
     "year": 1930,
     "hour": 12,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 84,
     "long_min": 9,
     "ew": -1,
@@ -4281,7 +4281,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 205,
@@ -4293,7 +4293,7 @@
     "year": 1958,
     "hour": 5,
     "minute": 15,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 10,
     "long_min": 23,
     "ew": 1,
@@ -4302,7 +4302,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 206,
@@ -4314,7 +4314,7 @@
     "year": 2002,
     "hour": 21,
     "minute": 31,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 83,
     "long_min": 31,
     "ew": -1,
@@ -4323,7 +4323,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 207,
@@ -4335,7 +4335,7 @@
     "year": 1967,
     "hour": 9,
     "minute": 45,
-    "timezone": 10.0,
+    "timezone": 10,
     "long_deg": 146,
     "long_min": 32,
     "ew": 1,
@@ -4344,7 +4344,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 208,
@@ -4356,7 +4356,7 @@
     "year": 1949,
     "hour": 19,
     "minute": 0,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 73,
     "long_min": 55,
     "ew": -1,
@@ -4365,7 +4365,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 209,
@@ -4377,7 +4377,7 @@
     "year": 1949,
     "hour": 6,
     "minute": 23,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 73,
     "long_min": 54,
     "ew": -1,
@@ -4386,7 +4386,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 210,
@@ -4398,7 +4398,7 @@
     "year": 1912,
     "hour": 23,
     "minute": 30,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 9,
     "ew": -1,
@@ -4407,7 +4407,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 211,
@@ -4419,7 +4419,7 @@
     "year": 1976,
     "hour": 21,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -4428,7 +4428,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 212,
@@ -4440,7 +4440,7 @@
     "year": 1973,
     "hour": 4,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -4449,7 +4449,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 213,
@@ -4461,7 +4461,7 @@
     "year": 1915,
     "hour": 5,
     "minute": 0,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 2,
     "long_min": 20,
     "ew": 1,
@@ -4470,7 +4470,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 214,
@@ -4482,7 +4482,7 @@
     "year": 1947,
     "hour": 13,
     "minute": 10,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 4,
     "long_min": 54,
     "ew": 1,
@@ -4491,7 +4491,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 215,
@@ -4503,7 +4503,7 @@
     "year": 1985,
     "hour": 1,
     "minute": 30,
-    "timezone": -2.0,
+    "timezone": -2,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -4512,7 +4512,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 216,
@@ -4524,7 +4524,7 @@
     "year": 1942,
     "hour": 5,
     "minute": 15,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 90,
     "long_min": 53,
     "ew": -1,
@@ -4533,7 +4533,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 217,
@@ -4545,7 +4545,7 @@
     "year": 1910,
     "hour": 22,
     "minute": 0,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 4,
     "long_min": 29,
     "ew": 1,
@@ -4554,7 +4554,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 218,
@@ -4566,7 +4566,7 @@
     "year": 1924,
     "hour": 14,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 5,
     "long_min": 43,
     "ew": 1,
@@ -4575,7 +4575,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 219,
@@ -4587,7 +4587,7 @@
     "year": 1940,
     "hour": 13,
     "minute": 2,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 89,
     "long_min": 35,
     "ew": -1,
@@ -4596,7 +4596,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 220,
@@ -4608,7 +4608,7 @@
     "year": 1927,
     "hour": 9,
     "minute": 0,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 117,
     "long_min": 26,
     "ew": -1,
@@ -4617,7 +4617,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 221,
@@ -4629,7 +4629,7 @@
     "year": 1945,
     "hour": 14,
     "minute": 18,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 11,
     "ew": -1,
@@ -4638,7 +4638,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 222,
@@ -4650,7 +4650,7 @@
     "year": 1960,
     "hour": 8,
     "minute": 30,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 12,
     "long_min": 22,
     "ew": 1,
@@ -4659,7 +4659,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 223,
@@ -4671,7 +4671,7 @@
     "year": 1938,
     "hour": 20,
     "minute": 23,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 89,
     "long_min": 18,
     "ew": -1,
@@ -4680,7 +4680,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 224,
@@ -4692,7 +4692,7 @@
     "year": 1961,
     "hour": 20,
     "minute": 37,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 120,
     "long_min": 29,
     "ew": -1,
@@ -4701,7 +4701,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 225,
@@ -4713,7 +4713,7 @@
     "year": 1933,
     "hour": 18,
     "minute": 0,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 72,
     "long_min": 15,
     "ew": -1,
@@ -4722,7 +4722,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 226,
@@ -4734,7 +4734,7 @@
     "year": 1939,
     "hour": 6,
     "minute": 40,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 81,
     "long_min": 31,
     "ew": -1,
@@ -4743,7 +4743,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 227,
@@ -4755,7 +4755,7 @@
     "year": 1925,
     "hour": 12,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 20,
     "ew": 1,
@@ -4764,7 +4764,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 228,
@@ -4785,7 +4785,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 229,
@@ -4797,7 +4797,7 @@
     "year": 1903,
     "hour": 8,
     "minute": 0,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 74,
     "long_min": 0,
     "ew": -1,
@@ -4806,7 +4806,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 230,
@@ -4818,7 +4818,7 @@
     "year": 1949,
     "hour": 19,
     "minute": 0,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 73,
     "long_min": 55,
     "ew": -1,
@@ -4827,7 +4827,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 231,
@@ -4839,7 +4839,7 @@
     "year": 1940,
     "hour": 2,
     "minute": 20,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 93,
     "long_min": 16,
     "ew": -1,
@@ -4848,7 +4848,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 232,
@@ -4860,7 +4860,7 @@
     "year": 1966,
     "hour": 17,
     "minute": 8,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 71,
     "long_min": 4,
     "ew": -1,
@@ -4869,7 +4869,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Broke neck, paralyzed 26 October 1985",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 233,
@@ -4881,7 +4881,7 @@
     "year": 1951,
     "hour": 2,
     "minute": 45,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 71,
     "long_min": 4,
     "ew": -1,
@@ -4890,7 +4890,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "1972 (aos 21 anos)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 234,
@@ -4902,7 +4902,7 @@
     "year": 1948,
     "hour": 19,
     "minute": 0,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 81,
     "long_min": 23,
     "ew": -1,
@@ -4911,7 +4911,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 235,
@@ -4923,7 +4923,7 @@
     "year": 1943,
     "hour": 1,
     "minute": 40,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 79,
     "long_min": 60,
     "ew": -1,
@@ -4932,7 +4932,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 236,
@@ -4944,7 +4944,7 @@
     "year": 1932,
     "hour": 6,
     "minute": 21,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 74,
     "long_min": 14,
     "ew": -1,
@@ -4953,7 +4953,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 237,
@@ -4965,7 +4965,7 @@
     "year": 1947,
     "hour": 15,
     "minute": 39,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 86,
     "long_min": 47,
     "ew": -1,
@@ -4974,7 +4974,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 238,
@@ -4986,7 +4986,7 @@
     "year": 1915,
     "hour": 22,
     "minute": 0,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 119,
     "long_min": 46,
     "ew": -1,
@@ -4995,7 +4995,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 239,
@@ -5007,7 +5007,7 @@
     "year": 1930,
     "hour": 12,
     "minute": 55,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 8,
     "long_min": 32,
     "ew": 1,
@@ -5016,7 +5016,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 240,
@@ -5028,7 +5028,7 @@
     "year": 1970,
     "hour": 11,
     "minute": 18,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 21,
     "ew": -1,
@@ -5037,7 +5037,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 241,
@@ -5049,7 +5049,7 @@
     "year": 1961,
     "hour": 3,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 8,
     "long_min": 57,
     "ew": 1,
@@ -5058,7 +5058,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 242,
@@ -5070,7 +5070,7 @@
     "year": 1928,
     "hour": 15,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 90,
     "long_min": 11,
     "ew": -1,
@@ -5079,7 +5079,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 243,
@@ -5091,7 +5091,7 @@
     "year": 1944,
     "hour": 4,
     "minute": 25,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 29,
     "ew": -1,
@@ -5100,7 +5100,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 244,
@@ -5112,7 +5112,7 @@
     "year": 1909,
     "hour": 9,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 83,
     "long_min": 33,
     "ew": -1,
@@ -5121,7 +5121,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 245,
@@ -5133,7 +5133,7 @@
     "year": 1933,
     "hour": 21,
     "minute": 27,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 74,
     "long_min": 5,
     "ew": -1,
@@ -5142,7 +5142,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 246,
@@ -5154,7 +5154,7 @@
     "year": 2010,
     "hour": 3,
     "minute": 29,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -5163,7 +5163,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 247,
@@ -5175,7 +5175,7 @@
     "year": 1931,
     "hour": 7,
     "minute": 45,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 87,
     "long_min": 39,
     "ew": -1,
@@ -5184,7 +5184,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 248,
@@ -5196,7 +5196,7 @@
     "year": 1946,
     "hour": 8,
     "minute": 0,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 76,
     "long_min": 28,
     "ew": -1,
@@ -5205,7 +5205,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 249,
@@ -5217,7 +5217,7 @@
     "year": 1937,
     "hour": 10,
     "minute": 30,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 102,
     "long_min": 19,
     "ew": -1,
@@ -5226,7 +5226,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 250,
@@ -5238,7 +5238,7 @@
     "year": 1958,
     "hour": 7,
     "minute": 30,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 122,
     "long_min": 47,
     "ew": -1,
@@ -5247,7 +5247,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 251,
@@ -5259,7 +5259,7 @@
     "year": 1948,
     "hour": 1,
     "minute": 3,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 6,
     "ew": -1,
@@ -5268,7 +5268,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 252,
@@ -5280,7 +5280,7 @@
     "year": 1931,
     "hour": 16,
     "minute": 20,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 97,
     "long_min": 19,
     "ew": -1,
@@ -5289,7 +5289,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 253,
@@ -5301,7 +5301,7 @@
     "year": 1925,
     "hour": 21,
     "minute": 55,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 112,
     "long_min": 11,
     "ew": -1,
@@ -5310,7 +5310,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 254,
@@ -5331,7 +5331,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 255,
@@ -5352,7 +5352,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 256,
@@ -5364,7 +5364,7 @@
     "year": 1925,
     "hour": 7,
     "minute": 15,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 2,
     "long_min": 26,
     "ew": 1,
@@ -5373,7 +5373,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 257,
@@ -5385,7 +5385,7 @@
     "year": 1971,
     "hour": 11,
     "minute": 35,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 20,
     "ew": 1,
@@ -5394,7 +5394,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 258,
@@ -5406,7 +5406,7 @@
     "year": 1979,
     "hour": 19,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -5415,7 +5415,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 259,
@@ -5427,7 +5427,7 @@
     "year": 1933,
     "hour": 6,
     "minute": 0,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 25,
     "ew": -1,
@@ -5436,7 +5436,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 260,
@@ -5448,7 +5448,7 @@
     "year": 1995,
     "hour": 0,
     "minute": 55,
-    "timezone": -2.0,
+    "timezone": -2,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -5457,7 +5457,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 261,
@@ -5469,7 +5469,7 @@
     "year": 1975,
     "hour": 3,
     "minute": 15,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -5478,7 +5478,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 262,
@@ -5490,7 +5490,7 @@
     "year": 1982,
     "hour": 8,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -5499,7 +5499,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 263,
@@ -5511,7 +5511,7 @@
     "year": 2018,
     "hour": 5,
     "minute": 30,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 0,
     "long_min": 8,
     "ew": -1,
@@ -5520,7 +5520,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 264,
@@ -5532,7 +5532,7 @@
     "year": 1930,
     "hour": 15,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 95,
     "long_min": 56,
     "ew": -1,
@@ -5541,7 +5541,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 265,
@@ -5553,7 +5553,7 @@
     "year": 1955,
     "hour": 14,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 47,
     "long_min": 5,
     "ew": -1,
@@ -5562,7 +5562,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 266,
@@ -5574,7 +5574,7 @@
     "year": 1984,
     "hour": 12,
     "minute": 25,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 40,
     "ew": -1,
@@ -5583,7 +5583,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 267,
@@ -5595,7 +5595,7 @@
     "year": 1949,
     "hour": 22,
     "minute": 53,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 4,
     "long_min": 38,
     "ew": 1,
@@ -5604,7 +5604,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "French homicide victim who was shot to death along with her two daughters on 13 May 1992, 3:50 PM, Toulouse, by her psychiatrist husband, Lysian, who then shot and killed himself",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 268,
@@ -5616,7 +5616,7 @@
     "year": 1943,
     "hour": 17,
     "minute": 47,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 96,
     "long_min": 48,
     "ew": -1,
@@ -5625,7 +5625,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 269,
@@ -5637,7 +5637,7 @@
     "year": 2019,
     "hour": 20,
     "minute": 1,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -5646,7 +5646,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 270,
@@ -5658,7 +5658,7 @@
     "year": 1967,
     "hour": 19,
     "minute": 38,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 123,
     "long_min": 49,
     "ew": -1,
@@ -5667,7 +5667,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Falece 05/04/1994",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 272,
@@ -5679,7 +5679,7 @@
     "year": 1959,
     "hour": 17,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -5688,7 +5688,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 273,
@@ -5700,7 +5700,7 @@
     "year": 1990,
     "hour": 19,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -5709,7 +5709,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 274,
@@ -5721,7 +5721,7 @@
     "year": 1984,
     "hour": 6,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -5730,7 +5730,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 275,
@@ -5742,7 +5742,7 @@
     "year": 1982,
     "hour": 11,
     "minute": 20,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 122,
     "long_min": 17,
     "ew": -1,
@@ -5751,7 +5751,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 276,
@@ -5763,7 +5763,7 @@
     "year": 1971,
     "hour": 7,
     "minute": 30,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 28,
     "long_min": 10,
     "ew": 1,
@@ -5772,7 +5772,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 277,
@@ -5784,7 +5784,7 @@
     "year": 1917,
     "hour": 15,
     "minute": 0,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 71,
     "long_min": 7,
     "ew": -1,
@@ -5793,7 +5793,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "morte 22 de novembro de 1963",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 278,
@@ -5805,7 +5805,7 @@
     "year": 1915,
     "hour": 0,
     "minute": 20,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -5814,7 +5814,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 279,
@@ -5826,7 +5826,7 @@
     "year": 1963,
     "hour": 9,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -5835,7 +5835,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 280,
@@ -5847,7 +5847,7 @@
     "year": 1966,
     "hour": 12,
     "minute": 10,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 11,
     "long_min": 20,
     "ew": 1,
@@ -5856,7 +5856,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "27 de agosto de 1993 os exames apontaram um nariz quebrado, um dente quebrado (pelo impacto contra o volante) e dores nas vértebras cervicais.\r\n15 de setembro de 2001 amputação das parnas.\r\n19 de junho de 2020  traumtismo craniano.\r\nMorte no dia 1 de maio de 2026, aos 59 anos",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 281,
@@ -5868,7 +5868,7 @@
     "year": 1981,
     "hour": 10,
     "minute": 32,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 1,
     "long_min": 9,
     "ew": 1,
@@ -5877,7 +5877,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 282,
@@ -5889,7 +5889,7 @@
     "year": 1952,
     "hour": 9,
     "minute": 5,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 41,
     "ew": -1,
@@ -5898,7 +5898,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 283,
@@ -5910,7 +5910,7 @@
     "year": 1976,
     "hour": 22,
     "minute": 5,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 1,
     "long_min": 42,
     "ew": 1,
@@ -5919,7 +5919,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 284,
@@ -5940,7 +5940,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 285,
@@ -5952,7 +5952,7 @@
     "year": 1951,
     "hour": 14,
     "minute": 45,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 10,
     "long_min": 11,
     "ew": 1,
@@ -5961,7 +5961,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 286,
@@ -5973,7 +5973,7 @@
     "year": 1923,
     "hour": 14,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 8,
     "long_min": 10,
     "ew": 1,
@@ -5982,7 +5982,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 287,
@@ -5994,7 +5994,7 @@
     "year": 1941,
     "hour": 15,
     "minute": 2,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 85,
     "long_min": 46,
     "ew": -1,
@@ -6003,7 +6003,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 288,
@@ -6024,7 +6024,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 289,
@@ -6036,7 +6036,7 @@
     "year": 1930,
     "hour": 0,
     "minute": 15,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -6045,7 +6045,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 291,
@@ -6066,7 +6066,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 292,
@@ -6078,7 +6078,7 @@
     "year": 1940,
     "hour": 18,
     "minute": 30,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 55,
     "ew": -1,
@@ -6087,7 +6087,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 293,
@@ -6099,7 +6099,7 @@
     "year": 1933,
     "hour": 20,
     "minute": 30,
-    "timezone": 9.0,
+    "timezone": 9,
     "long_deg": 139,
     "long_min": 46,
     "ew": 1,
@@ -6108,7 +6108,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 294,
@@ -6120,7 +6120,7 @@
     "year": 1960,
     "hour": 15,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 5,
     "long_min": 8,
     "ew": 1,
@@ -6129,7 +6129,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 295,
@@ -6141,7 +6141,7 @@
     "year": 1965,
     "hour": 17,
     "minute": 15,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 5,
     "long_min": 51,
     "ew": 1,
@@ -6150,7 +6150,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 296,
@@ -6162,7 +6162,7 @@
     "year": 1942,
     "hour": 13,
     "minute": 24,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 71,
     "long_min": 48,
     "ew": -1,
@@ -6171,7 +6171,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 297,
@@ -6183,7 +6183,7 @@
     "year": 1935,
     "hour": 4,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 88,
     "long_min": 42,
     "ew": -1,
@@ -6192,7 +6192,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 298,
@@ -6204,7 +6204,7 @@
     "year": 1935,
     "hour": 4,
     "minute": 35,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 88,
     "long_min": 42,
     "ew": -1,
@@ -6213,7 +6213,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Data: 16 de agosto de 1977 a morte parada cardiaca.\r\nMorte com Idade: 42 anos\r\nTeve queda grave em Data: 10 de março de 1967 (no meio da madrugada).\r\nContusao leve, desmaiou, mas a partir dai terve uma serie de problemas.\r\nDoença pulmonar obstrutiva crônica (DPOC / enfisema)\r\nDeficiência de alfa-1 antitripsina (condição genética que danifica pulmões e fígado)\r\nDificuldade respiratória grave em internações, com distress respiratório\r\nMegacólon (cólon dilatado e paralisado) → causava constipação grave crônica.\r\nTendência a hipertensão\r\nDor crônica nas costas\r\nAcidente leve 11 de março de 1960\r\nAs dores nas costas eram reais e degenerativas (artrite, hérnia de disco, possível EDS – síndrome de Ehlers-Danlos segundo algumas teorias modernas)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 299,
@@ -6225,7 +6225,7 @@
     "year": 1969,
     "hour": 19,
     "minute": 35,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -6234,7 +6234,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 300,
@@ -6246,7 +6246,7 @@
     "year": 1989,
     "hour": 12,
     "minute": 50,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 7,
     "long_min": 15,
     "ew": 1,
@@ -6255,7 +6255,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 301,
@@ -6267,7 +6267,7 @@
     "year": 1991,
     "hour": 10,
     "minute": 57,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 7,
     "long_min": 15,
     "ew": 1,
@@ -6276,7 +6276,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 302,
@@ -6288,7 +6288,7 @@
     "year": 1941,
     "hour": 8,
     "minute": 30,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 43,
     "ew": -1,
@@ -6297,7 +6297,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 303,
@@ -6309,7 +6309,7 @@
     "year": 1990,
     "hour": 1,
     "minute": 36,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 84,
     "long_min": 23,
     "ew": -1,
@@ -6318,7 +6318,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Morte 26/12/1996",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 304,
@@ -6330,7 +6330,7 @@
     "year": 1874,
     "hour": 2,
     "minute": 45,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 0,
     "long_min": 10,
     "ew": -1,
@@ -6339,7 +6339,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 305,
@@ -6351,7 +6351,7 @@
     "year": 1969,
     "hour": 21,
     "minute": 41,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 117,
     "long_min": 6,
     "ew": -1,
@@ -6360,7 +6360,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 306,
@@ -6381,7 +6381,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 307,
@@ -6393,7 +6393,7 @@
     "year": 1946,
     "hour": 6,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 15,
     "long_min": 39,
     "ew": 1,
@@ -6402,7 +6402,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 308,
@@ -6414,7 +6414,7 @@
     "year": 1963,
     "hour": 20,
     "minute": 55,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 74,
     "long_min": 10,
     "ew": -1,
@@ -6423,7 +6423,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 309,
@@ -6435,7 +6435,7 @@
     "year": 1970,
     "hour": 15,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -6444,7 +6444,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 310,
@@ -6456,7 +6456,7 @@
     "year": 1966,
     "hour": 19,
     "minute": 23,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -6465,7 +6465,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 311,
@@ -6477,7 +6477,7 @@
     "year": 1969,
     "hour": 7,
     "minute": 12,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -6486,7 +6486,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 312,
@@ -6498,7 +6498,7 @@
     "year": 1965,
     "hour": 5,
     "minute": 48,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 16,
     "ew": -1,
@@ -6507,7 +6507,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Massee, Michael acidentalmente o matou.\r\nMorte 31/03/1993\r\nData do acidente: 31 de março de 1993 (madrugada).Horário da morte: 13h03 (após cerca de 6 horas de cirurgia).\r\nUm projétil real calibre .44, que atravessou seu abdômen e alojou-se na coluna, resultando em intensa hemorragia",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 313,
@@ -6519,7 +6519,7 @@
     "year": 1952,
     "hour": 7,
     "minute": 12,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 94,
     "long_min": 35,
     "ew": -1,
@@ -6528,7 +6528,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Morte 20 de outubro de 2016 (idade 64 anos)\r\n31/03/1993  Acidente, matou Brandon Lee",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 314,
@@ -6549,7 +6549,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 315,
@@ -6561,7 +6561,7 @@
     "year": 1981,
     "hour": 22,
     "minute": 35,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -6570,7 +6570,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 316,
@@ -6582,7 +6582,7 @@
     "year": 1920,
     "hour": 0,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 19,
     "long_min": 30,
     "ew": 1,
@@ -6591,7 +6591,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 317,
@@ -6603,7 +6603,7 @@
     "year": 1939,
     "hour": 21,
     "minute": 55,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 90,
     "long_min": 4,
     "ew": -1,
@@ -6612,7 +6612,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 318,
@@ -6624,7 +6624,7 @@
     "year": 1961,
     "hour": 9,
     "minute": 3,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 8,
     "ew": -1,
@@ -6633,7 +6633,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 319,
@@ -6645,7 +6645,7 @@
     "year": 1977,
     "hour": 21,
     "minute": 35,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 70,
     "long_min": 56,
     "ew": -1,
@@ -6654,7 +6654,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 320,
@@ -6666,7 +6666,7 @@
     "year": 1983,
     "hour": 0,
     "minute": 37,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 46,
     "long_min": 37,
     "ew": -1,
@@ -6675,7 +6675,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 321,
@@ -6687,7 +6687,7 @@
     "year": 1966,
     "hour": 21,
     "minute": 59,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -6696,7 +6696,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 322,
@@ -6708,7 +6708,7 @@
     "year": 1978,
     "hour": 11,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 47,
     "long_min": 8,
     "ew": -1,
@@ -6717,7 +6717,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 323,
@@ -6729,7 +6729,7 @@
     "year": 1949,
     "hour": 20,
     "minute": 21,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 47,
     "long_min": 8,
     "ew": -1,
@@ -6738,7 +6738,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 324,
@@ -6759,7 +6759,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 325,
@@ -6771,7 +6771,7 @@
     "year": 1947,
     "hour": 4,
     "minute": 10,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 15,
     "long_min": 27,
     "ew": 1,
@@ -6780,7 +6780,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 326,
@@ -6792,7 +6792,7 @@
     "year": 1926,
     "hour": 12,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 20,
     "ew": 1,
@@ -6801,7 +6801,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 327,
@@ -6813,7 +6813,7 @@
     "year": 1977,
     "hour": 14,
     "minute": 23,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -6822,7 +6822,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 328,
@@ -6834,7 +6834,7 @@
     "year": 1986,
     "hour": 12,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -6843,7 +6843,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 329,
@@ -6855,7 +6855,7 @@
     "year": 1983,
     "hour": 22,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 38,
     "long_min": 57,
     "ew": -1,
@@ -6864,7 +6864,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 330,
@@ -6876,7 +6876,7 @@
     "year": 1983,
     "hour": 22,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 38,
     "long_min": 57,
     "ew": -1,
@@ -6885,7 +6885,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 331,
@@ -6897,7 +6897,7 @@
     "year": 1962,
     "hour": 16,
     "minute": 10,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 4,
     "long_min": 35,
     "ew": 1,
@@ -6906,7 +6906,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 332,
@@ -6918,7 +6918,7 @@
     "year": 1925,
     "hour": 12,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 20,
     "ew": 1,
@@ -6927,7 +6927,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 334,
@@ -6948,7 +6948,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 335,
@@ -6960,7 +6960,7 @@
     "year": 1986,
     "hour": 7,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -6969,7 +6969,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 336,
@@ -6981,7 +6981,7 @@
     "year": 1981,
     "hour": 7,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -6990,7 +6990,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 337,
@@ -7002,7 +7002,7 @@
     "year": 2014,
     "hour": 7,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -7011,7 +7011,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 338,
@@ -7023,7 +7023,7 @@
     "year": 1983,
     "hour": 7,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -7032,7 +7032,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 339,
@@ -7044,7 +7044,7 @@
     "year": 1902,
     "hour": 3,
     "minute": 0,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 25,
     "ew": -1,
@@ -7053,7 +7053,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 340,
@@ -7065,7 +7065,7 @@
     "year": 1922,
     "hour": 8,
     "minute": 0,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 6,
     "long_min": 15,
     "ew": -1,
@@ -7074,7 +7074,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 341,
@@ -7086,7 +7086,7 @@
     "year": 1993,
     "hour": 3,
     "minute": 0,
-    "timezone": -2.0,
+    "timezone": -2,
     "long_deg": 43,
     "long_min": 20,
     "ew": -1,
@@ -7095,7 +7095,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 342,
@@ -7107,7 +7107,7 @@
     "year": 1933,
     "hour": 5,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 4,
     "long_min": 23,
     "ew": 1,
@@ -7116,7 +7116,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 343,
@@ -7128,7 +7128,7 @@
     "year": 1945,
     "hour": 9,
     "minute": 55,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 4,
     "long_min": 15,
     "ew": -1,
@@ -7137,7 +7137,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 344,
@@ -7149,7 +7149,7 @@
     "year": 1982,
     "hour": 6,
     "minute": 15,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 3,
     "long_min": 5,
     "ew": 1,
@@ -7158,7 +7158,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 345,
@@ -7170,7 +7170,7 @@
     "year": 1969,
     "hour": 5,
     "minute": 21,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 71,
     "long_min": 4,
     "ew": -1,
@@ -7179,7 +7179,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 346,
@@ -7191,7 +7191,7 @@
     "year": 1965,
     "hour": 13,
     "minute": 10,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 74,
     "long_min": 0,
     "ew": -1,
@@ -7200,7 +7200,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 347,
@@ -7221,7 +7221,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 348,
@@ -7233,7 +7233,7 @@
     "year": 1934,
     "hour": 16,
     "minute": 40,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 84,
     "long_min": 27,
     "ew": -1,
@@ -7242,7 +7242,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 351,
@@ -7254,7 +7254,7 @@
     "year": 1954,
     "hour": 23,
     "minute": 45,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 17,
     "ew": -1,
@@ -7263,7 +7263,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 352,
@@ -7275,7 +7275,7 @@
     "year": 1984,
     "hour": 9,
     "minute": 45,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 117,
     "long_min": 45,
     "ew": -1,
@@ -7284,7 +7284,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Morto pela mãe com 3 anos\r\nDeath by Homicide 25 July 1987 at 03:00 AM\r\nparent-[child relationship with Sees, Cassandra (born 5 June 1981)\r\nparent-[child relationship with Sees, Jeffrey (born 5 February 1984)\r\nparent-[child relationship with Sees, Jonathan (born 5 February 1984)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 353,
@@ -7296,7 +7296,7 @@
     "year": 1939,
     "hour": 6,
     "minute": 40,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 81,
     "long_min": 31,
     "ew": -1,
@@ -7305,7 +7305,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 354,
@@ -7317,7 +7317,7 @@
     "year": 1956,
     "hour": 1,
     "minute": 43,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 81,
     "long_min": 31,
     "ew": -1,
@@ -7326,7 +7326,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 355,
@@ -7338,7 +7338,7 @@
     "year": 1939,
     "hour": 5,
     "minute": 3,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 25,
     "ew": -1,
@@ -7347,7 +7347,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 356,
@@ -7368,7 +7368,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 357,
@@ -7380,7 +7380,7 @@
     "year": 1997,
     "hour": 12,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 34,
     "long_min": 54,
     "ew": -1,
@@ -7389,7 +7389,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 358,
@@ -7410,7 +7410,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 359,
@@ -7431,7 +7431,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 360,
@@ -7452,7 +7452,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 362,
@@ -7464,7 +7464,7 @@
     "year": 1965,
     "hour": 21,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 13,
     "ew": -1,
@@ -7473,7 +7473,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 363,
@@ -7485,7 +7485,7 @@
     "year": 1965,
     "hour": 22,
     "minute": 30,
-    "timezone": -2.0,
+    "timezone": -2,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -7494,7 +7494,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 364,
@@ -7515,7 +7515,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 365,
@@ -7527,7 +7527,7 @@
     "year": 1980,
     "hour": 10,
     "minute": 46,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -7536,7 +7536,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 366,
@@ -7548,7 +7548,7 @@
     "year": 1958,
     "hour": 8,
     "minute": 5,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 4,
     "long_min": 54,
     "ew": 1,
@@ -7557,7 +7557,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 367,
@@ -7569,7 +7569,7 @@
     "year": 1967,
     "hour": 10,
     "minute": 0,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 78,
     "long_min": 53,
     "ew": -1,
@@ -7578,7 +7578,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "ex-esposa 31 de outubro de 1969\r\nJohn's penis on June 23, 1993",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 368,
@@ -7599,7 +7599,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 369,
@@ -7611,7 +7611,7 @@
     "year": 1943,
     "hour": 4,
     "minute": 21,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 87,
     "long_min": 39,
     "ew": -1,
@@ -7620,7 +7620,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 370,
@@ -7632,7 +7632,7 @@
     "year": 1982,
     "hour": 18,
     "minute": 25,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -7641,7 +7641,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 371,
@@ -7653,7 +7653,7 @@
     "year": 1983,
     "hour": 11,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 49,
     "long_min": 15,
     "ew": -1,
@@ -7662,7 +7662,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 372,
@@ -7683,7 +7683,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 373,
@@ -7695,7 +7695,7 @@
     "year": 1988,
     "hour": 23,
     "minute": 45,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -7704,7 +7704,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 374,
@@ -7716,7 +7716,7 @@
     "year": 1932,
     "hour": 16,
     "minute": 5,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 106,
     "long_min": 19,
     "ew": -1,
@@ -7725,7 +7725,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 375,
@@ -7737,7 +7737,7 @@
     "year": 1968,
     "hour": 1,
     "minute": 20,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 0,
     "long_min": 33,
     "ew": 1,
@@ -7746,7 +7746,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "5 March 1994  acidente",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 376,
@@ -7758,7 +7758,7 @@
     "year": 2000,
     "hour": 3,
     "minute": 10,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 6,
     "long_min": 30,
     "ew": 1,
@@ -7767,7 +7767,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Théo contraiu uma infecção bacteriana grave.\r\nA doença começou a se manifestar no dia 18 de maio de 2006, quando Théo (então com 6 anos)durou cerca de cinco meses, começando logo no fim de maio de 2006. O próprio Théo conta que os médicos amputaram primeiro um braço, depois o outro e, na sequência, as perna",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 377,
@@ -7779,7 +7779,7 @@
     "year": 1943,
     "hour": 17,
     "minute": 47,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 96,
     "long_min": 48,
     "ew": -1,
@@ -7788,7 +7788,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 378,
@@ -7800,7 +7800,7 @@
     "year": 1963,
     "hour": 8,
     "minute": 10,
-    "timezone": 3.0,
+    "timezone": 3,
     "long_deg": 45,
     "long_min": 12,
     "ew": 1,
@@ -7809,7 +7809,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 379,
@@ -7821,7 +7821,7 @@
     "year": 1963,
     "hour": 8,
     "minute": 20,
-    "timezone": 3.0,
+    "timezone": 3,
     "long_deg": 45,
     "long_min": 12,
     "ew": 1,
@@ -7830,7 +7830,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 380,
@@ -7851,7 +7851,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 381,
@@ -7863,7 +7863,7 @@
     "year": 1972,
     "hour": 11,
     "minute": 31,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -7872,7 +7872,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 382,
@@ -7884,7 +7884,7 @@
     "year": 2009,
     "hour": 2,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 36,
     "long_min": 14,
     "ew": -1,
@@ -7893,7 +7893,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 383,
@@ -7914,7 +7914,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 384,
@@ -7926,7 +7926,7 @@
     "year": 1947,
     "hour": 0,
     "minute": 15,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 72,
     "long_min": 13,
     "ew": -1,
@@ -7935,7 +7935,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 385,
@@ -7947,7 +7947,7 @@
     "year": 1933,
     "hour": 14,
     "minute": 30,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 77,
     "long_min": 2,
     "ew": -1,
@@ -7956,7 +7956,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 386,
@@ -7968,7 +7968,7 @@
     "year": 1947,
     "hour": 6,
     "minute": 50,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 87,
     "long_min": 39,
     "ew": -1,
@@ -7977,7 +7977,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 387,
@@ -7989,7 +7989,7 @@
     "year": 1956,
     "hour": 7,
     "minute": 35,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 4,
     "long_min": 22,
     "ew": 1,
@@ -7998,7 +7998,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 388,
@@ -8010,7 +8010,7 @@
     "year": 1946,
     "hour": 10,
     "minute": 54,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 73,
     "long_min": 52,
     "ew": -1,
@@ -8019,7 +8019,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 389,
@@ -8031,7 +8031,7 @@
     "year": 1960,
     "hour": 11,
     "minute": 23,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -8040,7 +8040,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 390,
@@ -8052,7 +8052,7 @@
     "year": 1993,
     "hour": 11,
     "minute": 30,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -8061,7 +8061,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 391,
@@ -8073,7 +8073,7 @@
     "year": 1969,
     "hour": 18,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -8082,7 +8082,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 392,
@@ -8094,7 +8094,7 @@
     "year": 1988,
     "hour": 19,
     "minute": 50,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 5,
     "long_min": 35,
     "ew": 1,
@@ -8103,7 +8103,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 393,
@@ -8115,7 +8115,7 @@
     "year": 1984,
     "hour": 4,
     "minute": 15,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 5,
     "long_min": 35,
     "ew": 1,
@@ -8124,7 +8124,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 394,
@@ -8136,7 +8136,7 @@
     "year": 2003,
     "hour": 19,
     "minute": 46,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -8145,7 +8145,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 395,
@@ -8157,7 +8157,7 @@
     "year": 1988,
     "hour": 10,
     "minute": 32,
-    "timezone": -2.0,
+    "timezone": -2,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -8166,7 +8166,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 396,
@@ -8178,7 +8178,7 @@
     "year": 1977,
     "hour": 17,
     "minute": 19,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -8187,7 +8187,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 397,
@@ -8199,7 +8199,7 @@
     "year": 1982,
     "hour": 11,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -8208,7 +8208,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 398,
@@ -8220,7 +8220,7 @@
     "year": 1975,
     "hour": 16,
     "minute": 15,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -8229,7 +8229,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 399,
@@ -8241,7 +8241,7 @@
     "year": 1988,
     "hour": 3,
     "minute": 25,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 14,
     "ew": -1,
@@ -8250,7 +8250,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 400,
@@ -8262,7 +8262,7 @@
     "year": 1926,
     "hour": 2,
     "minute": 40,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 0,
     "long_min": 10,
     "ew": -1,
@@ -8271,7 +8271,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "falece 08/09/2022\r\nMountbatten, Philip Marido",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 401,
@@ -8283,7 +8283,7 @@
     "year": 1968,
     "hour": 13,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 46,
     "long_min": 37,
     "ew": -1,
@@ -8292,7 +8292,7 @@
     "ns": -1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 402,
@@ -8304,7 +8304,7 @@
     "year": 1946,
     "hour": 22,
     "minute": 35,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 73,
     "long_min": 13,
     "ew": -1,
@@ -8313,7 +8313,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Falece 24/01/1989\r\nveja Cottingham, Ricardo",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 403,
@@ -8325,7 +8325,7 @@
     "year": 1947,
     "hour": 6,
     "minute": 6,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 121,
     "long_min": 39,
     "ew": -1,
@@ -8334,7 +8334,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 404,
@@ -8346,7 +8346,7 @@
     "year": 1953,
     "hour": 6,
     "minute": 15,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 73,
     "long_min": 60,
     "ew": -1,
@@ -8355,7 +8355,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 405,
@@ -8367,7 +8367,7 @@
     "year": 1950,
     "hour": 18,
     "minute": 7,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -8376,7 +8376,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "19 March 2009 (Kidney transplant)\r\nDeath of Father 15 February 1965 (Nat \"King\" Cole)\r\nRelationship : Marriage 30 July 1976 (First marriage)\r\nDeath by Disease 31 December 2015",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 406,
@@ -8388,7 +8388,7 @@
     "year": 1960,
     "hour": 16,
     "minute": 31,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 87,
     "long_min": 54,
     "ew": -1,
@@ -8397,7 +8397,7 @@
     "ns": 1,
     "entry_date": "2026-03-09",
     "bio": "Falece 28/11/1994",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 407,
@@ -8409,7 +8409,7 @@
     "year": 1968,
     "hour": 21,
     "minute": 30,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 8,
     "long_min": 0,
     "ew": -1,
@@ -8418,7 +8418,7 @@
     "ns": 1,
     "entry_date": "2026-04-23",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 408,
@@ -8430,7 +8430,7 @@
     "year": 1968,
     "hour": 21,
     "minute": 30,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 8,
     "long_min": 0,
     "ew": -1,
@@ -8439,7 +8439,7 @@
     "ns": 1,
     "entry_date": "2026-04-23",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 410,
@@ -8451,7 +8451,7 @@
     "year": 1951,
     "hour": 9,
     "minute": 15,
-    "timezone": 5.0,
+    "timezone": 5,
     "long_deg": 59,
     "long_min": 39,
     "ew": 1,
@@ -8460,7 +8460,7 @@
     "ns": 1,
     "entry_date": "2026-05-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 411,
@@ -8472,7 +8472,7 @@
     "year": 1926,
     "hour": 9,
     "minute": 30,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -8481,7 +8481,7 @@
     "ns": 1,
     "entry_date": "2026-05-02",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 412,
@@ -8493,7 +8493,7 @@
     "year": 1965,
     "hour": 22,
     "minute": 30,
-    "timezone": -2.0,
+    "timezone": -2,
     "long_deg": 43,
     "long_min": 27,
     "ew": -1,
@@ -8502,7 +8502,7 @@
     "ns": -1,
     "entry_date": "2026-05-12",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 413,
@@ -8514,7 +8514,7 @@
     "year": 1990,
     "hour": 3,
     "minute": 4,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 10,
     "long_min": 24,
     "ew": 1,
@@ -8523,7 +8523,7 @@
     "ns": 1,
     "entry_date": "2026-05-19",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 414,
@@ -8535,7 +8535,7 @@
     "year": 1982,
     "hour": 21,
     "minute": 3,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 0,
     "long_min": 11,
     "ew": -1,
@@ -8544,7 +8544,7 @@
     "ns": 1,
     "entry_date": "2026-05-23",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 415,
@@ -8556,7 +8556,7 @@
     "year": 1971,
     "hour": 2,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 48,
     "ew": -1,
@@ -8565,7 +8565,7 @@
     "ns": 1,
     "entry_date": "2026-05-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 416,
@@ -8577,7 +8577,7 @@
     "year": 1967,
     "hour": 9,
     "minute": 45,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 76,
     "long_min": 55,
     "ew": -1,
@@ -8586,7 +8586,7 @@
     "ns": 1,
     "entry_date": "2026-05-24",
     "bio": "Vitimização Sexual/Estupro Janeiro de 1989 \r\nsuicídio em 12 de dezembro de 1989 (tiro na cabeça, 22 anos)\r\nDoenças Graves: DST/Transmitidas Sexualmente (Do estupro)\r\ndivórcio difícil e emocional em 1978",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 417,
@@ -8598,7 +8598,7 @@
     "year": 1927,
     "hour": 17,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 43,
     "long_min": 11,
     "ew": -1,
@@ -8607,7 +8607,7 @@
     "ns": -1,
     "entry_date": "2026-05-30",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 418,
@@ -8619,7 +8619,7 @@
     "year": 1918,
     "hour": 14,
     "minute": 45,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 10,
     "long_min": 45,
     "ew": 1,
@@ -8628,7 +8628,7 @@
     "ns": 1,
     "entry_date": "2026-05-30",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 419,
@@ -8640,7 +8640,7 @@
     "year": 1939,
     "hour": 19,
     "minute": 30,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 87,
     "long_min": 39,
     "ew": -1,
@@ -8649,7 +8649,7 @@
     "ns": 1,
     "entry_date": "2026-05-30",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 420,
@@ -8670,7 +8670,7 @@
     "ns": 1,
     "entry_date": "2026-05-30",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 421,
@@ -8682,7 +8682,7 @@
     "year": 1938,
     "hour": 20,
     "minute": 10,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 96,
     "long_min": 40,
     "ew": -1,
@@ -8691,7 +8691,7 @@
     "ns": 1,
     "entry_date": "2026-06-02",
     "bio": "Death by Execution 25 June 1959 at 12:04 AM in Lincoln, NE (Electrocuted, age 20)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 422,
@@ -8703,7 +8703,7 @@
     "year": 1954,
     "hour": 20,
     "minute": 0,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 77,
     "long_min": 2,
     "ew": -1,
@@ -8712,7 +8712,7 @@
     "ns": 1,
     "entry_date": "2026-06-02",
     "bio": "Death by Execution 5 April 1984 (Electric chair, age 30)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 424,
@@ -8724,7 +8724,7 @@
     "year": 1892,
     "hour": 0,
     "minute": 30,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 74,
     "long_min": 0,
     "ew": -1,
@@ -8733,7 +8733,7 @@
     "ns": 1,
     "entry_date": "2026-06-02",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 425,
@@ -8745,7 +8745,7 @@
     "year": 1921,
     "hour": 12,
     "minute": 10,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 85,
     "long_min": 40,
     "ew": -1,
@@ -8754,7 +8754,7 @@
     "ns": 1,
     "entry_date": "2026-06-02",
     "bio": "Death by Execution 2 May 1960 at 10:12 AM in San Quentin, CA (Electric chair, age 38)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 426,
@@ -8766,7 +8766,7 @@
     "year": 1899,
     "hour": 13,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 14,
     "long_min": 6,
     "ew": 1,
@@ -8775,7 +8775,7 @@
     "ns": 1,
     "entry_date": "2026-06-02",
     "bio": "Death by Execution 3 April 1936 (Electric Chair, age 36)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 427,
@@ -8787,7 +8787,7 @@
     "year": 1936,
     "hour": 18,
     "minute": 10,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 87,
     "long_min": 21,
     "ew": -1,
@@ -8796,7 +8796,7 @@
     "ns": 1,
     "entry_date": "2026-06-02",
     "bio": "Morte por execução em 2 de dezembro de 1997 às 10h16 em Lincoln (cadeira elétrica, 61 anos)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 428,
@@ -8808,7 +8808,7 @@
     "year": 1943,
     "hour": 19,
     "minute": 10,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 99,
     "long_min": 44,
     "ew": -1,
@@ -8817,7 +8817,7 @@
     "ns": 1,
     "entry_date": "2026-06-02",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 429,
@@ -8829,7 +8829,7 @@
     "year": 1924,
     "hour": 0,
     "minute": 18,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 75,
     "long_min": 9,
     "ew": -1,
@@ -8838,7 +8838,7 @@
     "ns": 1,
     "entry_date": "2026-06-02",
     "bio": "Biografia April 23, 1951.  executado cadeira eletrica\r\nMarian a Vitima nasceu 10 Abr 1928 falece em January 10, 1950",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 430,
@@ -8859,7 +8859,7 @@
     "ns": 1,
     "entry_date": "2026-06-03",
     "bio": "Death by Execution 8 March 1951 at 11:16 PM in Ossining (Electric chair, age 36)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 431,
@@ -8871,7 +8871,7 @@
     "year": 1946,
     "hour": 16,
     "minute": 50,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 73,
     "long_min": 52,
     "ew": -1,
@@ -8880,7 +8880,7 @@
     "ns": 1,
     "entry_date": "2026-06-04",
     "bio": "23/05/1980 preso\r\nVeja Bundy, Ted\r\n14 de agosto de 1980, ele foi acusado de três homicídios.\r\nEle foi considerado culpado em 9 de julho de 1984 de três assassinatos",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 433,
@@ -8892,7 +8892,7 @@
     "year": 1960,
     "hour": 2,
     "minute": 7,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 106,
     "long_min": 29,
     "ew": -1,
@@ -8901,7 +8901,7 @@
     "ns": 1,
     "entry_date": "2026-06-06",
     "bio": "7 de junho de 2013 (idade 53 anos)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 434,
@@ -8913,7 +8913,7 @@
     "year": 1975,
     "hour": 7,
     "minute": 0,
-    "timezone": 10.0,
+    "timezone": 10,
     "long_deg": 152,
     "long_min": 27,
     "ew": 1,
@@ -8922,7 +8922,7 @@
     "ns": -1,
     "entry_date": "2026-06-08",
     "bio": "17 de abril de 1994 C2 quadriplegic",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 435,
@@ -8934,7 +8934,7 @@
     "year": 1966,
     "hour": 17,
     "minute": 8,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 71,
     "long_min": 4,
     "ew": -1,
@@ -8943,7 +8943,7 @@
     "ns": 1,
     "entry_date": "2026-06-08",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 436,
@@ -8955,7 +8955,7 @@
     "year": 1951,
     "hour": 2,
     "minute": 45,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 41,
     "ew": -1,
@@ -8964,7 +8964,7 @@
     "ns": 1,
     "entry_date": "2026-06-08",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 437,
@@ -8976,7 +8976,7 @@
     "year": 1957,
     "hour": 12,
     "minute": 25,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 21,
     "ew": 1,
@@ -8985,7 +8985,7 @@
     "ns": 1,
     "entry_date": "2026-06-08",
     "bio": "Health : Accident (Non-fatal) 16 July 1995 (survived airplan crash, remained tetraplegic)\r\nDeath by Accident 18 May 2001 (malfunction of respiration apparatus)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 438,
@@ -8997,7 +8997,7 @@
     "year": 1943,
     "hour": 0,
     "minute": 35,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 112,
     "long_min": 4,
     "ew": -1,
@@ -9006,7 +9006,7 @@
     "ns": 1,
     "entry_date": "2026-06-13",
     "bio": "transplanete de figado 18 de outubro de 2002\r\nDeath by Disease 17 May 2023 (Age 79)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 439,
@@ -9018,7 +9018,7 @@
     "year": 1949,
     "hour": 6,
     "minute": 23,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 73,
     "long_min": 52,
     "ew": -1,
@@ -9027,7 +9027,7 @@
     "ns": 1,
     "entry_date": "2026-06-13",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 440,
@@ -9039,7 +9039,7 @@
     "year": 1958,
     "hour": 0,
     "minute": 52,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 87,
     "long_min": 54,
     "ew": -1,
@@ -9048,7 +9048,7 @@
     "ns": 1,
     "entry_date": "2026-06-14",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 441,
@@ -9060,7 +9060,7 @@
     "year": 1943,
     "hour": 1,
     "minute": 40,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 84,
     "long_min": 58,
     "ew": -1,
@@ -9069,7 +9069,7 @@
     "ns": 1,
     "entry_date": "2026-06-14",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 442,
@@ -9081,7 +9081,7 @@
     "year": 1918,
     "hour": 9,
     "minute": 0,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -9090,7 +9090,7 @@
     "ns": 1,
     "entry_date": "2026-06-14",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 443,
@@ -9102,7 +9102,7 @@
     "year": 1961,
     "hour": 3,
     "minute": 44,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -9111,7 +9111,7 @@
     "ns": 1,
     "entry_date": "2026-06-14",
     "bio": "25/04/2005 transplante de rins",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 445,
@@ -9123,7 +9123,7 @@
     "year": 1939,
     "hour": 22,
     "minute": 10,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 89,
     "long_min": 16,
     "ew": -1,
@@ -9132,7 +9132,7 @@
     "ns": 1,
     "entry_date": "2026-06-15",
     "bio": "7 April 2017 (Kidney transplant)\r\nDeath, Cause unspecified 24 May 2023 (Age 83)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 446,
@@ -9144,7 +9144,7 @@
     "year": 1943,
     "hour": 13,
     "minute": 30,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 12,
     "long_min": 53,
     "ew": 1,
@@ -9153,7 +9153,7 @@
     "ns": 1,
     "entry_date": "2026-06-15",
     "bio": "Health : Medical procedure 1997 (Received kidney transplant, unsuccessful/rejected)\r\nDeath by Disease 9 September 1998 (Cancer, age 55)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 447,
@@ -9165,7 +9165,7 @@
     "year": 1957,
     "hour": 3,
     "minute": 5,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 75,
     "long_min": 47,
     "ew": -1,
@@ -9174,7 +9174,7 @@
     "ns": 1,
     "entry_date": "2026-06-19",
     "bio": "Death by Suicide 2 June 2010\r\nMatou 12 o primeiro foi o irmão gêmeo.",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 448,
@@ -9186,7 +9186,7 @@
     "year": 1926,
     "hour": 18,
     "minute": 0,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 43,
     "ew": -1,
@@ -9195,7 +9195,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 449,
@@ -9207,7 +9207,7 @@
     "year": 2000,
     "hour": 17,
     "minute": 12,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 73,
     "long_min": 13,
     "ew": -1,
@@ -9216,7 +9216,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "Death, Cause unspecified 14 April 2025 (Age 24)\r\nGravida dizem ser automedicaçao a causa",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 450,
@@ -9228,7 +9228,7 @@
     "year": 1988,
     "hour": 3,
     "minute": 13,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -9237,7 +9237,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 451,
@@ -9249,7 +9249,7 @@
     "year": 1956,
     "hour": 8,
     "minute": 30,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 81,
     "long_min": 42,
     "ew": -1,
@@ -9258,7 +9258,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 452,
@@ -9270,7 +9270,7 @@
     "year": 1948,
     "hour": 4,
     "minute": 30,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 9,
     "long_min": 11,
     "ew": 1,
@@ -9279,7 +9279,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 453,
@@ -9291,7 +9291,7 @@
     "year": 1968,
     "hour": 6,
     "minute": 25,
-    "timezone": 12.0,
+    "timezone": 12,
     "long_deg": 174,
     "long_min": 46,
     "ew": 1,
@@ -9300,7 +9300,7 @@
     "ns": -1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 454,
@@ -9312,7 +9312,7 @@
     "year": 1969,
     "hour": 17,
     "minute": 17,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 71,
     "long_min": 9,
     "ew": -1,
@@ -9321,7 +9321,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 455,
@@ -9333,7 +9333,7 @@
     "year": 1975,
     "hour": 22,
     "minute": 55,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 46,
     "long_min": 38,
     "ew": -1,
@@ -9342,7 +9342,7 @@
     "ns": -1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 456,
@@ -9354,7 +9354,7 @@
     "year": 1922,
     "hour": 8,
     "minute": 0,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 2,
     "long_min": 21,
     "ew": 1,
@@ -9363,7 +9363,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 457,
@@ -9375,7 +9375,7 @@
     "year": 1921,
     "hour": 8,
     "minute": 15,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 11,
     "long_min": 22,
     "ew": 1,
@@ -9384,7 +9384,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 458,
@@ -9396,7 +9396,7 @@
     "year": 1941,
     "hour": 10,
     "minute": 45,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 74,
     "long_min": 8,
     "ew": -1,
@@ -9405,7 +9405,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 459,
@@ -9417,7 +9417,7 @@
     "year": 1930,
     "hour": 21,
     "minute": 22,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 3,
     "long_min": 0,
     "ew": -1,
@@ -9426,7 +9426,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 460,
@@ -9438,7 +9438,7 @@
     "year": 1983,
     "hour": 17,
     "minute": 30,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 75,
     "long_min": 10,
     "ew": -1,
@@ -9447,7 +9447,7 @@
     "ns": 1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 461,
@@ -9459,7 +9459,7 @@
     "year": 1978,
     "hour": 12,
     "minute": 30,
-    "timezone": -2.0,
+    "timezone": -2,
     "long_deg": 56,
     "long_min": 11,
     "ew": -1,
@@ -9468,7 +9468,7 @@
     "ns": -1,
     "entry_date": "2026-06-24",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 462,
@@ -9480,7 +9480,7 @@
     "year": 1953,
     "hour": 12,
     "minute": 15,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 57,
     "long_min": 33,
     "ew": -1,
@@ -9489,7 +9489,7 @@
     "ns": -1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 463,
@@ -9501,7 +9501,7 @@
     "year": 1968,
     "hour": 11,
     "minute": 20,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 16,
     "ew": 1,
@@ -9510,7 +9510,7 @@
     "ns": 1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 464,
@@ -9522,7 +9522,7 @@
     "year": 1969,
     "hour": 5,
     "minute": 21,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 4,
     "long_min": 15,
     "ew": -1,
@@ -9531,7 +9531,7 @@
     "ns": 1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 465,
@@ -9543,7 +9543,7 @@
     "year": 1961,
     "hour": 2,
     "minute": 58,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 84,
     "long_min": 29,
     "ew": -1,
@@ -9552,7 +9552,7 @@
     "ns": 1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 466,
@@ -9564,7 +9564,7 @@
     "year": 1983,
     "hour": 20,
     "minute": 40,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -9573,7 +9573,7 @@
     "ns": 1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 467,
@@ -9585,7 +9585,7 @@
     "year": 1961,
     "hour": 2,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 87,
     "long_min": 21,
     "ew": -1,
@@ -9594,7 +9594,7 @@
     "ns": 1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 468,
@@ -9606,7 +9606,7 @@
     "year": 1974,
     "hour": 7,
     "minute": 0,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 3,
     "long_min": 39,
     "ew": -1,
@@ -9615,7 +9615,7 @@
     "ns": 1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 469,
@@ -9627,7 +9627,7 @@
     "year": 1951,
     "hour": 21,
     "minute": 30,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -9636,7 +9636,7 @@
     "ns": 1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 470,
@@ -9648,7 +9648,7 @@
     "year": 1951,
     "hour": 14,
     "minute": 35,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 46,
     "long_min": 38,
     "ew": -1,
@@ -9657,7 +9657,7 @@
     "ns": -1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 471,
@@ -9669,7 +9669,7 @@
     "year": 1891,
     "hour": 12,
     "minute": 30,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 73,
     "long_min": 58,
     "ew": -1,
@@ -9678,7 +9678,7 @@
     "ns": 1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 472,
@@ -9690,7 +9690,7 @@
     "year": 1977,
     "hour": 13,
     "minute": 6,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 13,
     "long_min": 47,
     "ew": 1,
@@ -9699,7 +9699,7 @@
     "ns": 1,
     "entry_date": "2026-06-25",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 473,
@@ -9711,7 +9711,7 @@
     "year": 1995,
     "hour": 6,
     "minute": 26,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -9720,7 +9720,7 @@
     "ns": 1,
     "entry_date": "2026-06-26",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 474,
@@ -9732,7 +9732,7 @@
     "year": 1948,
     "hour": 3,
     "minute": 42,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 112,
     "long_min": 4,
     "ew": -1,
@@ -9741,7 +9741,7 @@
     "ns": 1,
     "entry_date": "2026-06-26",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 475,
@@ -9753,7 +9753,7 @@
     "year": 1972,
     "hour": 3,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 5,
     "long_min": 23,
     "ew": 1,
@@ -9762,7 +9762,7 @@
     "ns": 1,
     "entry_date": "2026-06-26",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 476,
@@ -9774,7 +9774,7 @@
     "year": 1992,
     "hour": 16,
     "minute": 19,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 86,
     "long_min": 47,
     "ew": -1,
@@ -9783,7 +9783,7 @@
     "ns": 1,
     "entry_date": "2026-06-26",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 477,
@@ -9795,7 +9795,7 @@
     "year": 1928,
     "hour": 11,
     "minute": 15,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 2,
     "long_min": 21,
     "ew": 1,
@@ -9804,7 +9804,7 @@
     "ns": 1,
     "entry_date": "2026-06-26",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 478,
@@ -9816,7 +9816,7 @@
     "year": 1947,
     "hour": 18,
     "minute": 45,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 87,
     "long_min": 39,
     "ew": -1,
@@ -9825,7 +9825,7 @@
     "ns": 1,
     "entry_date": "2026-06-26",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 479,
@@ -9837,7 +9837,7 @@
     "year": 1983,
     "hour": 22,
     "minute": 25,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 0,
     "long_min": 5,
     "ew": -1,
@@ -9846,7 +9846,7 @@
     "ns": 1,
     "entry_date": "2026-06-26",
     "bio": "23/07/2011  morte\r\n16/041982 marido",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 480,
@@ -9858,7 +9858,7 @@
     "year": 1977,
     "hour": 10,
     "minute": 40,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 18,
     "ew": 1,
@@ -9867,7 +9867,7 @@
     "ns": 1,
     "entry_date": "2026-06-27",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 481,
@@ -9879,7 +9879,7 @@
     "year": 1972,
     "hour": 12,
     "minute": 55,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 2,
     "long_min": 14,
     "ew": 1,
@@ -9888,7 +9888,7 @@
     "ns": 1,
     "entry_date": "2026-06-27",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 482,
@@ -9900,7 +9900,7 @@
     "year": 1958,
     "hour": 7,
     "minute": 5,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 83,
     "long_min": 53,
     "ew": -1,
@@ -9909,7 +9909,7 @@
     "ns": 1,
     "entry_date": "2026-06-27",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 483,
@@ -9921,7 +9921,7 @@
     "year": 1990,
     "hour": 18,
     "minute": 0,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 2,
     "long_min": 20,
     "ew": 1,
@@ -9930,7 +9930,7 @@
     "ns": 1,
     "entry_date": "2026-06-28",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 484,
@@ -9942,7 +9942,7 @@
     "year": 1998,
     "hour": 6,
     "minute": 26,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -9951,7 +9951,7 @@
     "ns": 1,
     "entry_date": "2026-06-28",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 485,
@@ -9972,7 +9972,7 @@
     "ns": 1,
     "entry_date": "2026-06-28",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 486,
@@ -9984,7 +9984,7 @@
     "year": 1916,
     "hour": 19,
     "minute": 30,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 9,
     "long_min": 11,
     "ew": 1,
@@ -9993,7 +9993,7 @@
     "ns": 1,
     "entry_date": "2026-06-28",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 487,
@@ -10014,7 +10014,7 @@
     "ns": 1,
     "entry_date": "2026-06-28",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 488,
@@ -10026,7 +10026,7 @@
     "year": 1937,
     "hour": 8,
     "minute": 15,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 81,
     "long_min": 42,
     "ew": -1,
@@ -10035,7 +10035,7 @@
     "ns": 1,
     "entry_date": "2026-06-28",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 489,
@@ -10047,7 +10047,7 @@
     "year": 1954,
     "hour": 23,
     "minute": 45,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 18,
     "ew": -1,
@@ -10056,7 +10056,7 @@
     "ns": 1,
     "entry_date": "2026-06-28",
     "bio": "Death by Suicide 25 July 1987 at 03:00 AM in Montclair (Shot herself)\r\nparent-[child relationship with Sees, Cassandra (born 5 June 1981)\r\nparent-[child relationship with Sees, Jeffrey (born 5 February 1984)\r\nparent-[child relationship with Sees, Jonathan (born 5 February 1984)",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 490,
@@ -10068,7 +10068,7 @@
     "year": 1897,
     "hour": 8,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 87,
     "long_min": 47,
     "ew": -1,
@@ -10077,7 +10077,7 @@
     "ns": 1,
     "entry_date": "2026-06-28",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 491,
@@ -10089,7 +10089,7 @@
     "year": 1967,
     "hour": 0,
     "minute": 16,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 84,
     "long_min": 23,
     "ew": -1,
@@ -10098,7 +10098,7 @@
     "ns": 1,
     "entry_date": "2026-06-29",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 492,
@@ -10110,7 +10110,7 @@
     "year": 1972,
     "hour": 2,
     "minute": 53,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 122,
     "long_min": 16,
     "ew": -1,
@@ -10119,7 +10119,7 @@
     "ns": 1,
     "entry_date": "2026-06-29",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 493,
@@ -10131,7 +10131,7 @@
     "year": 1980,
     "hour": 17,
     "minute": 0,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 54,
     "long_min": 14,
     "ew": -1,
@@ -10140,7 +10140,7 @@
     "ns": -1,
     "entry_date": "2026-06-29",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 494,
@@ -10152,7 +10152,7 @@
     "year": 1975,
     "hour": 23,
     "minute": 0,
-    "timezone": -10.0,
+    "timezone": -10,
     "long_deg": 157,
     "long_min": 51,
     "ew": -1,
@@ -10161,7 +10161,7 @@
     "ns": 1,
     "entry_date": "2026-06-29",
     "bio": "Sem Horario de nascimento\r\n22 de julho de 2000 casou\r\n3 filhos \r\n17 anos em 12/1992 acidente pontos na cabeça\r\nfilho por volta de 2002 e 2008",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 495,
@@ -10173,7 +10173,7 @@
     "year": 1930,
     "hour": 17,
     "minute": 35,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 122,
     "long_min": 25,
     "ew": -1,
@@ -10182,7 +10182,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 496,
@@ -10194,7 +10194,7 @@
     "year": 1944,
     "hour": 10,
     "minute": 30,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 74,
     "long_min": 27,
     "ew": -1,
@@ -10203,7 +10203,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 497,
@@ -10215,7 +10215,7 @@
     "year": 1969,
     "hour": 14,
     "minute": 0,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 71,
     "long_min": 4,
     "ew": -1,
@@ -10224,7 +10224,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 498,
@@ -10236,7 +10236,7 @@
     "year": 1968,
     "hour": 11,
     "minute": 14,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 122,
     "long_min": 20,
     "ew": -1,
@@ -10245,7 +10245,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 499,
@@ -10257,7 +10257,7 @@
     "year": 1979,
     "hour": 16,
     "minute": 31,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 92,
     "long_min": 32,
     "ew": -1,
@@ -10266,7 +10266,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 500,
@@ -10278,7 +10278,7 @@
     "year": 1955,
     "hour": 12,
     "minute": 48,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 74,
     "long_min": 0,
     "ew": -1,
@@ -10287,7 +10287,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 501,
@@ -10299,7 +10299,7 @@
     "year": 1976,
     "hour": 15,
     "minute": 44,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 122,
     "long_min": 25,
     "ew": -1,
@@ -10308,7 +10308,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 502,
@@ -10320,7 +10320,7 @@
     "year": 1938,
     "hour": 9,
     "minute": 26,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 74,
     "long_min": 7,
     "ew": -1,
@@ -10329,7 +10329,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 503,
@@ -10341,7 +10341,7 @@
     "year": 1943,
     "hour": 9,
     "minute": 45,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 93,
     "long_min": 57,
     "ew": -1,
@@ -10350,7 +10350,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 504,
@@ -10362,7 +10362,7 @@
     "year": 1960,
     "hour": 11,
     "minute": 15,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 9,
     "long_min": 11,
     "ew": 1,
@@ -10371,7 +10371,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 505,
@@ -10383,7 +10383,7 @@
     "year": 1958,
     "hour": 8,
     "minute": 11,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 117,
     "long_min": 52,
     "ew": -1,
@@ -10392,7 +10392,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 506,
@@ -10404,7 +10404,7 @@
     "year": 1913,
     "hour": 18,
     "minute": 0,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 85,
     "long_min": 46,
     "ew": -1,
@@ -10413,7 +10413,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 507,
@@ -10425,7 +10425,7 @@
     "year": 1981,
     "hour": 13,
     "minute": 51,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 117,
     "long_min": 45,
     "ew": -1,
@@ -10434,7 +10434,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 508,
@@ -10446,7 +10446,7 @@
     "year": 1948,
     "hour": 12,
     "minute": 53,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 77,
     "long_min": 2,
     "ew": -1,
@@ -10455,7 +10455,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 509,
@@ -10467,7 +10467,7 @@
     "year": 1915,
     "hour": 22,
     "minute": 0,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 119,
     "long_min": 47,
     "ew": -1,
@@ -10476,7 +10476,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 510,
@@ -10488,7 +10488,7 @@
     "year": 1961,
     "hour": 15,
     "minute": 56,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 92,
     "long_min": 28,
     "ew": -1,
@@ -10497,7 +10497,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 511,
@@ -10509,7 +10509,7 @@
     "year": 1963,
     "hour": 15,
     "minute": 21,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 86,
     "long_min": 21,
     "ew": -1,
@@ -10518,7 +10518,7 @@
     "ns": 1,
     "entry_date": "2026-07-01",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 512,
@@ -10530,7 +10530,7 @@
     "year": 1934,
     "hour": 14,
     "minute": 10,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 12,
     "long_min": 31,
     "ew": 1,
@@ -10539,7 +10539,7 @@
     "ns": 1,
     "entry_date": "2026-07-03",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 513,
@@ -10551,7 +10551,7 @@
     "year": 1921,
     "hour": 11,
     "minute": 0,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 78,
     "long_min": 47,
     "ew": -1,
@@ -10560,7 +10560,7 @@
     "ns": 1,
     "entry_date": "2026-07-03",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 514,
@@ -10572,7 +10572,7 @@
     "year": 1925,
     "hour": 6,
     "minute": 30,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 81,
     "long_min": 42,
     "ew": -1,
@@ -10581,7 +10581,7 @@
     "ns": 1,
     "entry_date": "2026-07-03",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 515,
@@ -10593,7 +10593,7 @@
     "year": 1930,
     "hour": 18,
     "minute": 5,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 3,
     "long_min": 12,
     "ew": -1,
@@ -10602,7 +10602,7 @@
     "ns": 1,
     "entry_date": "2026-07-03",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 516,
@@ -10614,7 +10614,7 @@
     "year": 1935,
     "hour": 3,
     "minute": 25,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 2,
     "long_min": 17,
     "ew": 1,
@@ -10623,7 +10623,7 @@
     "ns": 1,
     "entry_date": "2026-07-03",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 517,
@@ -10635,7 +10635,7 @@
     "year": 1962,
     "hour": 20,
     "minute": 45,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 74,
     "long_min": 17,
     "ew": -1,
@@ -10644,7 +10644,7 @@
     "ns": 1,
     "entry_date": "2026-07-03",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 518,
@@ -10656,7 +10656,7 @@
     "year": 1968,
     "hour": 3,
     "minute": 12,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 117,
     "long_min": 10,
     "ew": -1,
@@ -10665,7 +10665,7 @@
     "ns": 1,
     "entry_date": "2026-07-03",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 519,
@@ -10677,7 +10677,7 @@
     "year": 1936,
     "hour": 18,
     "minute": 25,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 79,
     "long_min": 53,
     "ew": -1,
@@ -10686,7 +10686,7 @@
     "ns": 1,
     "entry_date": "2026-07-03",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 520,
@@ -10698,7 +10698,7 @@
     "year": 1936,
     "hour": 20,
     "minute": 2,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 29,
     "ew": -1,
@@ -10707,7 +10707,7 @@
     "ns": 1,
     "entry_date": "2026-07-03",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 522,
@@ -10719,7 +10719,7 @@
     "year": 1897,
     "hour": 2,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 13,
     "long_min": 16,
     "ew": 1,
@@ -10728,7 +10728,7 @@
     "ns": 1,
     "entry_date": "2026-07-04",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 523,
@@ -10740,7 +10740,7 @@
     "year": 1932,
     "hour": 2,
     "minute": 30,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 0,
     "long_min": 8,
     "ew": -1,
@@ -10749,7 +10749,7 @@
     "ns": 1,
     "entry_date": "2026-07-04",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 524,
@@ -10761,7 +10761,7 @@
     "year": 1962,
     "hour": 8,
     "minute": 14,
-    "timezone": -8.0,
+    "timezone": -8,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -10770,7 +10770,7 @@
     "ns": 1,
     "entry_date": "2026-07-04",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 525,
@@ -10782,7 +10782,7 @@
     "year": 1948,
     "hour": 8,
     "minute": 0,
-    "timezone": 1.0,
+    "timezone": 1,
     "long_deg": 1,
     "long_min": 42,
     "ew": 1,
@@ -10791,7 +10791,7 @@
     "ns": 1,
     "entry_date": "2026-07-04",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 526,
@@ -10803,7 +10803,7 @@
     "year": 1969,
     "hour": 1,
     "minute": 37,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 74,
     "long_min": 3,
     "ew": -1,
@@ -10812,7 +10812,7 @@
     "ns": 1,
     "entry_date": "2026-07-04",
     "bio": "Erica Schimidt\r\n8 de junho de 1975 cônjuge",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 527,
@@ -10824,7 +10824,7 @@
     "year": 1975,
     "hour": 9,
     "minute": 9,
-    "timezone": -7.0,
+    "timezone": -7,
     "long_deg": 118,
     "long_min": 15,
     "ew": -1,
@@ -10833,7 +10833,7 @@
     "ns": 1,
     "entry_date": "2026-07-10",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 528,
@@ -10845,7 +10845,7 @@
     "year": 1963,
     "hour": 6,
     "minute": 31,
-    "timezone": -6.0,
+    "timezone": -6,
     "long_deg": 96,
     "long_min": 56,
     "ew": -1,
@@ -10854,7 +10854,7 @@
     "ns": 1,
     "entry_date": "2026-07-10",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 529,
@@ -10866,7 +10866,7 @@
     "year": 1988,
     "hour": 23,
     "minute": 55,
-    "timezone": -3.0,
+    "timezone": -3,
     "long_deg": 51,
     "long_min": 14,
     "ew": -1,
@@ -10875,7 +10875,7 @@
     "ns": -1,
     "entry_date": "2026-07-11",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 530,
@@ -10887,7 +10887,7 @@
     "year": 1921,
     "hour": 10,
     "minute": 0,
-    "timezone": 2.0,
+    "timezone": 2,
     "long_deg": 19,
     "long_min": 56,
     "ew": 1,
@@ -10896,7 +10896,7 @@
     "ns": 1,
     "entry_date": "2026-07-27",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 531,
@@ -10908,7 +10908,7 @@
     "year": 1948,
     "hour": 21,
     "minute": 14,
-    "timezone": 0.0,
+    "timezone": 0,
     "long_deg": 0,
     "long_min": 8,
     "ew": -1,
@@ -10917,7 +10917,7 @@
     "ns": 1,
     "entry_date": "2026-07-27",
     "bio": "Pai - Mountbatten, Philip\r\nMãe - Elizabeth II, Queen",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 532,
@@ -10929,7 +10929,7 @@
     "year": 1958,
     "hour": 19,
     "minute": 33,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 87,
     "long_min": 21,
     "ew": -1,
@@ -10938,7 +10938,7 @@
     "ns": 1,
     "entry_date": "2026-07-29",
     "bio": "Death by Homicide 25 June 2009 at 2:26 PM\r\nChild Sexual Abuse Perpetration 21 April 2004 \r\nHealth : Accident (Non-fatal) 27 January 1984 at 6:30 PM",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 533,
@@ -10950,7 +10950,7 @@
     "year": 1917,
     "hour": 11,
     "minute": 0,
-    "timezone": -4.0,
+    "timezone": -4,
     "long_deg": 54,
     "long_min": 39,
     "ew": -1,
@@ -10959,7 +10959,7 @@
     "ns": -1,
     "entry_date": "2026-08-17",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 534,
@@ -10980,7 +10980,7 @@
     "ns": 1,
     "entry_date": "2026-08-18",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 535,
@@ -10992,7 +10992,7 @@
     "year": 1951,
     "hour": 4,
     "minute": 30,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 71,
     "long_min": 4,
     "ew": -1,
@@ -11001,7 +11001,7 @@
     "ns": 1,
     "entry_date": "2026-08-18",
     "bio": "American suicide case by jumping who was last seen on 6 December 1987, 3:30 PM EST; a few days later her car and purse were found with footsteps in the snow leading to a small bridge over the river. Her body has still not been found as of March 1988.",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 536,
@@ -11013,7 +11013,7 @@
     "year": 1952,
     "hour": 0,
     "minute": 30,
-    "timezone": -5.0,
+    "timezone": -5,
     "long_deg": 73,
     "long_min": 45,
     "ew": -1,
@@ -11022,7 +11022,7 @@
     "ns": 1,
     "entry_date": "2026-08-18",
     "bio": "Death 5 June 1996",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 537,
@@ -11034,7 +11034,7 @@
     "year": 1967,
     "hour": 9,
     "minute": 45,
-    "timezone": 10.0,
+    "timezone": 10,
     "long_deg": 146,
     "long_min": 32,
     "ew": 1,
@@ -11043,7 +11043,7 @@
     "ns": -1,
     "entry_date": "2026-08-18",
     "bio": "",
-    "dst": 0
+    "local": ""
   },
   {
     "ID": 538,
@@ -11064,6 +11064,153 @@
     "ns": 1,
     "entry_date": "2026-08-18",
     "bio": "14 Aug 1578  morte em guerra.\r\nSebastião subiu ao trono aos 14 anos. Uma espécie de recluso, ele se tornou um déspota egocêntrico.",
-    "dst": 0
+    "local": ""
+  },
+  {
+    "ID": 539,
+    "entered_by": "rico",
+    "name": "Wayne Gacy, John",
+    "sex": "m",
+    "month": 3,
+    "day": 17,
+    "year": 1942,
+    "hour": 0,
+    "minute": 29,
+    "timezone": -5,
+    "long_deg": 87,
+    "long_min": 39,
+    "ew": -1,
+    "lat_deg": 41,
+    "lat_min": 51,
+    "ns": 1,
+    "entry_date": "2026-08-22",
+    "bio": "",
+    "local": ""
+  },
+  {
+    "entered_by": "rico",
+    "name": "Fritzl, Joseph",
+    "sex": "m",
+    "month": 4,
+    "day": 9,
+    "year": 1935,
+    "hour": 16,
+    "minute": 17,
+    "timezone": "1",
+    "long_deg": 14,
+    "long_min": 52,
+    "ew": 1,
+    "lat_deg": 48,
+    "lat_min": 7,
+    "ns": 1,
+    "local": "",
+    "entry_date": "2026-08-24",
+    "bio": "Preso em 26 de abril de 2008.\r\nEm 19 de março de 2009, um júri no tribunal de St. Pölten o condenou à prisão perpétua\r\nEsposa Rosemarie Fritzl nasceu em 23 de setembro de 1939.\r\nEla se casou com Josef Fritzl em 1956, quando tinha 17 anos.\r\nO caso de incesto de Fritzl veio à tona no final de abril de 2008, quando uma mulher austríaca de 42 anos, Elisabeth Fritzl, disse à polícia que havia sido presa, estuprada, abusada sexualmente e agredida fisicamente por seu pai, Josef Fritzl, desde 1984. A polícia austríaca afirma que o seu pai a manteve numa adega insonorizada que se estende por baixo da casa e do jardim da família, numa aldeia perto da cidade de Amstetten, na Baixa Áustria, durante 24 anos, onde deu à luz um total de sete filhos, um dos quais morreu e todos os quais foram gerados por Josef Fritzl. Três deles foram presos com a mãe durante toda a vida - a filha Kerstin e os filhos Stefan e Felix, que tinham 19, 18 e 5 anos, respectivamente, quando foram encontrados.\r\nFoi descoberto porque a filha de 19 anos precisou ir para o hospital.\r\nEla (no caso, a filha Kerstin, de 19 anos) foi levada ao hospital em 19 de abril de 2008 em estado gravíssimo.\r\nNome\tData de nascimento\tObservação\r\nKerstin\t30 de agosto de 1988\tFicou no porão\r\nStefan\t1 de fevereiro de 1990\tFicou no porão\r\nLisa\t29 de agosto de 1992\tLevada para cima (com os avós)\r\nMonika\t26 de fevereiro de 1994\tLevada para cima (com os avós)\r\nMichael\t28 de abril de 1996\tGêmeo – morreu com cerca de 3 dias\r\nAlexander\t28 de abril de 1996\tGêmeo – levado para cima\r\nFelix\t16 de dezembro de 2002\tFicou no porão\r\nResumo:\r\n    • Os que ficaram no porão com a mãe até 2008: Kerstin, Stefan e Felix. \r\n    • Os que foram criados “em cima” por Josef e Rosemarie: Lisa, Monika e Alexander. \r\n    • Michael morreu logo após o nascimento (Josef foi condenado por homicídio por negligência nesse caso).",
+    "ID": 540
+  },
+  {
+    "entered_by": "rico",
+    "name": "Fritzl, Elisabeth",
+    "sex": "f",
+    "month": 4,
+    "day": 8,
+    "year": 1966,
+    "hour": 12,
+    "minute": 16,
+    "timezone": "1",
+    "long_deg": 14,
+    "long_min": 52,
+    "ew": 1,
+    "lat_deg": 48,
+    "lat_min": 7,
+    "ns": 1,
+    "local": "",
+    "entry_date": "2026-08-24",
+    "bio": "Fritzl, Joseph \r\nPai incestuoso a prendeu.\r\nSe livrou do pai em  26 de abril de 2008.\r\nFoi descoberto porque a filha de 19 anos precisou ir para o hospital.\r\nEla (no caso, a filha Kerstin, de 19 anos) foi levada ao hospital em 19 de abril de 2008 em estado gravíssimo.\r\nNome\tData de nascimento\tObservação\r\nKerstin\t30 de agosto de 1988\tFicou no porão\r\nStefan\t1 de fevereiro de 1990\tFicou no porão\r\nLisa\t29 de agosto de 1992\tLevada para cima (com os avós)\r\nMonika\t26 de fevereiro de 1994\tLevada para cima (com os avós)\r\nMichael\t28 de abril de 1996\tGêmeo – morreu com cerca de 3 dias\r\nAlexander\t28 de abril de 1996\tGêmeo – levado para cima\r\nFelix\t16 de dezembro de 2002\tFicou no porão\r\nResumo:\r\n    • Os que ficaram no porão com a mãe até 2008: Kerstin, Stefan e Felix. \r\n    • Os que foram criados “em cima” por Josef e Rosemarie: Lisa, Monika e Alexander. \r\n    • Michael morreu logo após o nascimento (Josef foi condenado por homicídio por negligência nesse caso).",
+    "ID": 541
+  },
+  {
+    "entered_by": "rico",
+    "name": "Fritzl, Rosemarie",
+    "sex": "f",
+    "month": 9,
+    "day": 23,
+    "year": 1939,
+    "hour": 18,
+    "minute": 44,
+    "timezone": "1",
+    "long_deg": 14,
+    "long_min": 52,
+    "ew": 1,
+    "lat_deg": 48,
+    "lat_min": 7,
+    "ns": 1,
+    "local": "",
+    "entry_date": "2026-08-24",
+    "bio": "",
+    "ID": 542
+  },
+  {
+    "entered_by": "rico",
+    "name": "Fritzl, Kerstin",
+    "sex": "m",
+    "month": 8,
+    "day": 30,
+    "year": 1988,
+    "hour": 18,
+    "minute": 47,
+    "timezone": "2",
+    "long_deg": 14,
+    "long_min": 52,
+    "ew": 1,
+    "lat_deg": 48,
+    "lat_min": 7,
+    "ns": 1,
+    "local": "",
+    "entry_date": "2026-08-24",
+    "bio": "",
+    "ID": 543
+  },
+  {
+    "ID": 544,
+    "entered_by": "rico",
+    "name": "Hemminga, Sixto ab",
+    "sex": "m",
+    "month": 2,
+    "day": 17,
+    "year": 1533,
+    "hour": 1,
+    "minute": 23,
+    "timezone": -0.40583333,
+    "long_deg": 6,
+    "long_min": 5,
+    "ew": 1,
+    "lat_deg": 53,
+    "lat_min": 0,
+    "ns": 1,
+    "entry_date": "2026-08-29",
+    "bio": "Astrólogo frísio (De Astrologia Discursus). Data original 7/2/1533 no calendário JULIANO; salva aqui como 17/2/1533 no gregoriano proléptico (mesmo instante real, JD idêntico) pra funcionar com o pipeline atual (calc-core.js assume gregoriano). Fonte: tonylouis.wordpress.com/2025/03/15/the-birth-chart-of-sexto-ab-hemminga-frisio/",
+    "local": "Gorredijk, Netherlands"
+  },
+  {
+    "ID": 545,
+    "entered_by": "rico",
+    "name": "Hemminga, Sixto ab(Morin)",
+    "sex": "m",
+    "month": 2,
+    "day": 17,
+    "year": 1533,
+    "hour": 0,
+    "minute": 25,
+    "timezone": -0.40583333,
+    "long_deg": 6,
+    "long_min": 5,
+    "ew": 1,
+    "lat_deg": 53,
+    "lat_min": 0,
+    "ns": 1,
+    "entry_date": "2026-08-29",
+    "bio": "Retificação de Morin (Astrologia Gallica, Livro 22): horário ajustado a partir do original (tela dizia 1:23 AM, ~58min depois) pra bater com Asc 21 Escorpião 30' e MC 13 Virgem 37' citados por Morin, baseado na direção do quadrado de Vênus (regente do 7) ao MC coincidindo com o casamento de 2/8/1563. Ver registro ID 544 pro mapa original (não retificado) de Sixto.",
+    "local": "Gorredijk, Netherlands"
   }
 ]

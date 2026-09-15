@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astro-Databank — Etapa 2: Busca no Banco Calculado</title>
+<style>
+  :root{--bg:#0f1115;--panel:#1a1d24;--border:#2a2e38;--text:#e4e6eb;--muted:#8b90a0;--accent:#5b8def;--ok:#4caf50;--warn:#e0a53c;--err:#e05c5c;}
+  *{box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:24px;line-height:1.5;}
+  .wrap{max-width:920px;margin:0 auto;}
+  h1{font-size:1.4rem;margin-bottom:4px;}
+  h2{font-size:1.05rem;margin:0 0 12px;}
+  .sub{color:var(--muted);font-size:0.9rem;margin-bottom:24px;}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px;}
+  .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  select,input[type=number],input[type=text]{background:#0f1115;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-size:0.88rem;}
+  input[type=file]{color:var(--text);}
+  button{background:var(--accent);color:#fff;border:none;border-radius:6px;padding:9px 16px;font-size:0.9rem;cursor:pointer;}
+  button:disabled{background:#3a3f4b;cursor:not-allowed;}
+  button.secondary{background:#2a2e38;}
+  button.danger{background:#5a2626;}
+  #status{color:var(--warn);font-size:0.85rem;min-height:1.2em;margin-top:6px;}
+  progress{width:100%;height:16px;accent-color:var(--accent);}
+  .cond{border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px;background:#14161c;}
+  .cond-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .cond-head .tag{color:var(--accent);font-weight:600;font-size:0.85rem;}
+  label{font-size:0.78rem;color:var(--muted);display:block;margin-bottom:2px;}
+  .field{display:flex;flex-direction:column;min-width:130px;}
+  #resultados{margin-top:12px;}
+  .res-item{border-bottom:1px solid var(--border);padding:10px 4px;font-size:0.88rem;}
+  .res-item .nome{font-weight:600;}
+  .res-item .matched{color:var(--muted);font-size:0.8rem;margin-top:4px;}
+  .stats{display:flex;gap:24px;margin-top:10px;font-size:0.88rem;}
+  .stats b{color:var(--accent);}
+  .small{font-size:0.78rem;color:var(--muted);}
+  .badge-ok{color:var(--ok);} .badge-err{color:var(--err);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Astro-Databank — Etapa 2: Busca no Banco Calculado</h1>
+  <div class="sub">Carrega o <code>banco_calculado.json</code> gerado na Etapa 1 e busca por condições astrológicas
+  — tudo local, sem servidor.</div>
+
+  <div class="panel">
+    <h2>1. Banco calculado</h2>
+    <div class="row">
+      <input type="text" id="bancoUrl" placeholder="URL do banco_calculado.json (mesmo domínio do site)"
+        value="https://astrorico.github.io/banco_calculado.json" style="flex:1;">
+      <button class="secondary" id="btnCarregarUrl">Carregar da URL</button>
+    </div>
+    <div class="row" style="margin-top:8px;">
+      <input type="file" id="bancoInput" accept=".json">
+      <span id="bancoInfo" class="small"></span>
+      <span class="small">(alternativa offline)</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>2. Condições</h2>
+    <div id="condicoesList"></div>
+    <div class="row" style="margin-top:8px;">
+      <button class="secondary" id="btnAddCond">+ adicionar condição</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="row">
+      <button id="btnBuscar" disabled>Buscar</button>
+      <span id="status"></span>
+    </div>
+    <div style="margin-top:10px;">
+      <progress id="prog" value="0" max="100" style="display:none;"></progress>
+    </div>
+    <div class="stats">
+      <div>Total no banco: <b id="stTotal">0</b></div>
+      <div>Verificados: <b id="stChecked">0</b></div>
+      <div>Encontrados: <b id="stFound">0</b></div>
+    </div>
+    <div id="resultados"></div>
+  </div>
+</div>
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+//  eb_search_engine.js — Motor de busca (Etapa 2), port de eb_search_lib.php
+//
+//  Consome um registro do banco calculado gerado pela Etapa 1
+//  (etapa1_gerador_banco.html) e avalia as mesmas condições de busca do
+//  sistema PHP original (ebEvalOne / ebEvalConditions).
+//
+//  DECISÕES / LACUNAS EM RELAÇÃO AO PHP ORIGINAL (documentadas, não
+//  escondidas — ver estado_atual.md):
+//
+//  1. MC (índice 'mc' usado nas condições) = Asc+90° (nonagesimal), FIEL ao
+//     PHP original — não é o MC astronômico verdadeiro. O MC verdadeiro
+//     também está disponível como opção separada de busca ('mc_astro',
+//     CI.MC_ASTRO), lido direto do campo `mc` do banco. Extensão em relação
+//     ao PHP original, que só expunha o nonagesimal.
+//  2. TN (nó lunar "verdadeiro" no PHP) aqui é o nó MÉDIO (snode+180) —
+//     o banco calculado só guarda o nó médio. Aproximação aceita.
+//  3. NN (Nó Sul) = snode do banco diretamente (nó sul médio).
+//  4. Declinação (dec[]) NÃO está no banco calculado. Condições que
+//     dependem dela (aspecto paralelo/contraparalelo, dignidade
+//     'out_of_bounds', heliac 'out_of_bounds') retornam null (sem match)
+//     em vez de dar erro. Se precisar dessas condições, a Etapa 1 precisa
+//     ser estendida para calcular e salvar declinação.
+//  5. Urano/Netuno/Plutão: estão no array `lon` (o banco já os calcula),
+//     mas — igual ao PHP original — NÃO são endereçáveis por nome nas
+//     condições de busca (PLANET_IDX do PHP não os inclui). Ficam
+//     disponíveis só para eventual fórmula de lote.
+//  6. Lilith (apogeu médio): não calculado na Etapa 1. Referências a 'LI'
+//     retornam null.
+//  7. Lotes: os 45 lotes de buildLotesHTML() (AstroRico_V20.html) + Fortuna
+//     e Espírito estão disponíveis (ids 1-47, ver posFromBancoRecord). Todos
+//     são deriváveis dos campos já salvos no banco, sem precisar reprocessar
+//     a efeméride. Lotes personalizados do usuário (rico_lotesarabesSite2.lot)
+//     continuam fora do escopo.
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ── Índices de longitude (mesmo esquema do CI do PHP, pra compatibilidade) ──
+const CI = {
+  SU:0, MO:1, ME:2, VE:3, MA:4, JU:5, SA:6, UR:7, NE:8, PL:9,
+  LI:11, TN:12, AC:15, MC:50, DSC:51, IC:52, NN:53, MC_ASTRO:54
+};
+
+// Chaves endereçáveis por nome nas condições — mesmo escopo do PHP
+// eb_search.php (sem urano/netuno/plutão/lilith, igual ao original).
+const PLANET_IDX = {
+  sun: CI.SU, moon: CI.MO, mercury: CI.ME, venus: CI.VE, mars: CI.MA,
+  jupiter: CI.JU, saturn: CI.SA, tn: CI.TN, asc: CI.AC, mc: CI.MC,
+  dsc: CI.DSC, ic: CI.IC, nn: CI.NN, mc_astro: CI.MC_ASTRO,
+};
+
+const SIGN_IDX = {
+  aries:0, taurus:1, gemini:2, cancer:3, leo:4, virgo:5, libra:6,
+  scorpio:7, sagittarius:8, capricorn:9, aquarius:10, pisces:11
+};
+
+const ASP_ANG = { conjunction:0, sextile:60, square:90, trine:120, opposition:180 };
+const ASP_ORB = { conjunction:8, sextile:6, square:8, trine:8, opposition:8 };
+
+const norm360 = v => ((v % 360) + 360) % 360;
+
+// ── Reconstrói o objeto `pos` (equivalente ao ebComputePositions do PHP) a
+//    partir de UM registro do banco calculado da Etapa 1. ──────────────────
+//  `record` = array posicional; `campos` = nomes dos campos na mesma ordem
+//  (vêm juntos no JSON gerado pela Etapa 1: {campos:[...], registros:[...]}).
+function posFromBancoRecord(record, campos) {
+  const r = {};
+  campos.forEach((nome, i) => { r[nome] = record[i]; });
+
+  const lon = {};
+  lon[CI.SU]=r.sol; lon[CI.MO]=r.lua; lon[CI.ME]=r.mer; lon[CI.VE]=r.ven;
+  lon[CI.MA]=r.mar; lon[CI.JU]=r.jup; lon[CI.SA]=r.sat; lon[CI.UR]=r.ura;
+  lon[CI.NE]=r.net; lon[CI.PL]=r.plu;
+  lon[CI.LI] = null;                          // Lilith — não calculado
+  lon[CI.TN] = norm360(r.snode + 180);         // nó médio (aprox. de TN)
+  lon[CI.AC] = r.asc;
+  lon[CI.MC] = norm360(r.asc + 90);            // nonagesimal, fiel ao PHP
+  lon[CI.MC_ASTRO] = r.mc;                     // MC astronômico verdadeiro (campo `mc` do banco)
+  lon[CI.DSC] = norm360(r.asc + 180);
+  lon[CI.IC]  = norm360(r.asc + 270);
+  lon[CI.NN]  = r.snode;                       // nó sul médio
+
+  const spd = {};
+  spd[CI.SU]=r.solV; spd[CI.MO]=r.luaV; spd[CI.ME]=r.merV; spd[CI.VE]=r.venV;
+  spd[CI.MA]=r.marV; spd[CI.JU]=r.jupV; spd[CI.SA]=r.satV; spd[CI.UR]=r.uraV;
+  spd[CI.NE]=r.netV; spd[CI.PL]=r.pluV; spd[CI.TN]=0;
+
+  // Casas iguais, derivadas do ASC (decisão já tomada — ver estado_atual.md)
+  const hc = {};
+  for (let n = 1; n <= 12; n++) hc[n] = norm360(r.asc + 30 * (n - 1));
+
+  // Lotes: Fortuna (id 1) e Espírito (id 2) vêm prontos do banco; os demais
+  // (ids 3-47) são portados de buildLotesHTML() do AstroRico_V20.html e
+  // calculados na Etapa 1 (etapa1_gerador_banco.html) a partir dos mesmos
+  // campos já salvos (sol/lua/mer/ven/mar/jup/sat/asc/syz/fortuna/espirito).
+  const lots_lon = { 1: r.fortuna, 2: r.espirito };
+  lots_lon[3] = r.hyleg;
+  lots_lon[4] = r.vinculo;
+  lots_lon[5] = r.afinidade;
+  lots_lon[6] = r.maeD;
+  lots_lon[7] = r.maeN;
+  lots_lon[8] = r.maeD2;
+  lots_lon[9] = r.maeN2;
+  lots_lon[10] = r.paiD;
+  lots_lon[11] = r.paiN;
+  lots_lon[12] = r.menina;
+  lots_lon[13] = r.menino;
+  lots_lon[14] = r.filho;
+  lots_lon[15] = r.irmao;
+  lots_lon[16] = r.irmao2D;
+  lots_lon[17] = r.irmao2N;
+  lots_lon[18] = r.primeira;
+  lots_lon[19] = r.substancia;
+  lots_lon[20] = r.terceira;
+  lots_lon[21] = r.quarta;
+  lots_lon[22] = r.quinta;
+  lots_lon[23] = r.sexta;
+  lots_lon[24] = r.setima;
+  lots_lon[25] = r.oitava;
+  lots_lon[26] = r.viagem;
+  lots_lon[27] = r.decima;
+  lots_lon[28] = r.onze;
+  lots_lon[29] = r.inimigos;
+  lots_lon[30] = r.exaltacao;
+  lots_lon[31] = r.prazerD;
+  lots_lon[32] = r.prazerN;
+  lots_lon[33] = r.amigos;
+  lots_lon[34] = r.servidao;
+  lots_lon[35] = r.trapacaD;
+  lots_lon[36] = r.trapacaN;
+  lots_lon[37] = r.doencaD;
+  lots_lon[38] = r.doencaN;
+  lots_lon[39] = r.dividaD;
+  lots_lon[40] = r.dividaN;
+  lots_lon[41] = r.casamentoD;
+  lots_lon[42] = r.casamentoN;
+  lots_lon[43] = r.erosPaulus;
+  lots_lon[44] = r.necessidadePaulus;
+  lots_lon[45] = r.erosValens;
+  lots_lon[46] = r.necessidadeValens;
+  lots_lon[47] = r.loteBase;
+  const lots_by_name = {
+    'Fortuna':  { both: { id: 1, lot_name: 'Fortuna' } },
+    'Espírito': { both: { id: 2, lot_name: 'Espírito' } },
+    'Hyleg': { both: { id: 3, lot_name: 'Hyleg' } },
+    'Vinculo': { both: { id: 4, lot_name: 'Vinculo' } },
+    'Afinidade': { both: { id: 5, lot_name: 'Afinidade' } },
+    'Mae-D': { both: { id: 6, lot_name: 'Mae-D' } },
+    'Mae-N': { both: { id: 7, lot_name: 'Mae-N' } },
+    'Mae-D2': { both: { id: 8, lot_name: 'Mae-D2' } },
+    'Mae-N2': { both: { id: 9, lot_name: 'Mae-N2' } },
+    'Pai-D': { both: { id: 10, lot_name: 'Pai-D' } },
+    'Pai-N': { both: { id: 11, lot_name: 'Pai-N' } },
+    'Menina': { both: { id: 12, lot_name: 'Menina' } },
+    'Menino': { both: { id: 13, lot_name: 'Menino' } },
+    'Filho': { both: { id: 14, lot_name: 'Filho' } },
+    'Irmão': { both: { id: 15, lot_name: 'Irmão' } },
+    'Irmao2-D': { both: { id: 16, lot_name: 'Irmao2-D' } },
+    'Irmao2-N': { both: { id: 17, lot_name: 'Irmao2-N' } },
+    'Primeira': { both: { id: 18, lot_name: 'Primeira' } },
+    'Substancia': { both: { id: 19, lot_name: 'Substancia' } },
+    'Terceira': { both: { id: 20, lot_name: 'Terceira' } },
+    'Quarta': { both: { id: 21, lot_name: 'Quarta' } },
+    'Quinta': { both: { id: 22, lot_name: 'Quinta' } },
+    'Sexta': { both: { id: 23, lot_name: 'Sexta' } },
+    'Setima': { both: { id: 24, lot_name: 'Setima' } },
+    'Oitava': { both: { id: 25, lot_name: 'Oitava' } },
+    'Viagem': { both: { id: 26, lot_name: 'Viagem' } },
+    'Decima': { both: { id: 27, lot_name: 'Decima' } },
+    'Onze': { both: { id: 28, lot_name: 'Onze' } },
+    'Inimigos': { both: { id: 29, lot_name: 'Inimigos' } },
+    'Lote da Exaltação': { both: { id: 30, lot_name: 'Lote da Exaltação' } },
+    'Prazer-D': { both: { id: 31, lot_name: 'Prazer-D' } },
+    'Prazer-N': { both: { id: 32, lot_name: 'Prazer-N' } },
+    'Amigos': { both: { id: 33, lot_name: 'Amigos' } },
+    'Servidao': { both: { id: 34, lot_name: 'Servidao' } },
+    'Trapaca-D': { both: { id: 35, lot_name: 'Trapaca-D' } },
+    'Trapaca-N': { both: { id: 36, lot_name: 'Trapaca-N' } },
+    'Doenca-D': { both: { id: 37, lot_name: 'Doenca-D' } },
+    'Doenca-N': { both: { id: 38, lot_name: 'Doenca-N' } },
+    'Divida-D': { both: { id: 39, lot_name: 'Divida-D' } },
+    'Divida-N': { both: { id: 40, lot_name: 'Divida-N' } },
+    'Casamento-D': { both: { id: 41, lot_name: 'Casamento-D' } },
+    'Casamento-N': { both: { id: 42, lot_name: 'Casamento-N' } },
+    'Eros (Paulus)': { both: { id: 43, lot_name: 'Eros (Paulus)' } },
+    'Necessidade (Paulus)': { both: { id: 44, lot_name: 'Necessidade (Paulus)' } },
+    'Eros (Valens)': { both: { id: 45, lot_name: 'Eros (Valens)' } },
+    'Necessidade (Valens)': { both: { id: 46, lot_name: 'Necessidade (Valens)' } },
+    'Lote de Base': { both: { id: 47, lot_name: 'Lote de Base' } },
+  };
+
+  return {
+    title: r.title,
+    lon, spd, hc,
+    dec: {},          // não disponível no banco — condições de dec. retornam null
+    hpos: {},          // não usado por ebResolveLon (parâmetro ocioso no PHP também)
+    lots_lon,
+    lots_by_name,
+    is_day: !!r.diurno,
+    hourKnown: !!r.hourKnown,
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  Tabelas de dignidade — port literal de ebBuildDignityTables (linhas 687-726)
+// ═══════════════════════════════════════════════════════════════════════════
+function ebBuildDignityTables() {
+  return {
+    domicile: {
+      sun:[4], moon:[3], mercury:[2,5], venus:[1,6], mars:[0,7],
+      jupiter:[8,11], saturn:[9,10],
+    },
+    exaltation: { sun:19, moon:33, mercury:165, venus:357, mars:298, jupiter:105, saturn:201 },
+    detriment: {
+      sun:[10], moon:[9], mercury:[8,11], venus:[0,7], mars:[1,6],
+      jupiter:[2,5], saturn:[3,4],
+    },
+    fall: { sun:199, moon:273, mercury:345, venus:177, mars:118, jupiter:285, saturn:21 },
+  };
+}
+
+// ── Triplicidade / termos / faces — port literal (linhas 728-763) ──────────
+function ebGetTriplicity(sign, sunLon) {
+  const isDay = (sunLon >= 0 && sunLon < 180);
+  const fire=[0,4,8], earth=[1,5,9], air=[2,6,10], water=[3,7,11];
+  if (fire.includes(sign))  return isDay ? 'sun'    : 'jupiter';
+  if (earth.includes(sign)) return isDay ? 'venus'  : 'moon';
+  if (air.includes(sign))   return isDay ? 'saturn' : 'mercury';
+  if (water.includes(sign)) return isDay ? 'venus'  : 'mars';
+  return '';
+}
+
+const EGYPTIAN_TERMS = [
+  [['jupiter',6],['venus',14],['mercury',21],['mars',26],['saturn',30]],
+  [['venus',8],['mercury',15],['jupiter',22],['saturn',26],['mars',30]],
+  [['mercury',7],['jupiter',14],['venus',21],['saturn',25],['mars',30]],
+  [['mars',6],['jupiter',13],['mercury',20],['venus',27],['saturn',30]],
+  [['jupiter',6],['venus',11],['saturn',18],['mercury',24],['mars',30]],
+  [['mercury',7],['venus',17],['jupiter',21],['mars',28],['saturn',30]],
+  [['saturn',6],['mercury',14],['jupiter',21],['venus',28],['mars',30]],
+  [['mars',7],['venus',11],['mercury',19],['jupiter',24],['saturn',30]],
+  [['jupiter',12],['venus',17],['mercury',21],['saturn',26],['mars',30]],
+  [['mercury',7],['jupiter',14],['venus',22],['saturn',26],['mars',30]],
+  [['mercury',7],['venus',13],['jupiter',20],['mars',25],['saturn',30]],
+  [['venus',12],['jupiter',16],['mercury',19],['mars',28],['saturn',30]],
+];
+function ebGetTerm(sign, deg) {
+  for (const [planet, limit] of EGYPTIAN_TERMS[sign]) {
+    if (deg < limit) return planet;
+  }
+  return '';
+}
+
+function ebGetFace(sign, deg) {
+  const order = ['mars','sun','venus','mercury','moon','saturn','jupiter'];
+  const start = [4,3,2,1,0,6,5,4,3,2,1,0];
+  return order[(start[sign] + Math.floor(deg/10)) % 7];
+}
+
+// ── Casa que contém uma longitude, dado hc[1..12] — port de ebFindHouse ────
+function ebFindHouse(lon, hc) {
+  for (let h = 1; h <= 12; h++) {
+    const next = hc[(h % 12) + 1];
+    const cusp = hc[h];
+    if (cusp <= next) { if (lon >= cusp && lon < next) return h; }
+    else               { if (lon >= cusp || lon < next) return h; }
+  }
+  return 1;
+}
+
+// ── Fase (separação angular em fração de ciclo) — port de ebCheckPhase ─────
+function ebCheckPhase(sep, phase) {
+  if (phase === 'any') return true;
+  const [divStr, numStr] = phase.split('_');
+  const div = parseInt(divStr || '2', 10);
+  const num = parseInt(numStr || '1', 10);
+  const size = 360.0 / div;
+  const from = size * (num - 1);
+  const to = from + size;
+  return sep >= from && sep < to;
+}
+
+function ebIsPeregrine(p, sign, deg, sunLon, DIG) {
+  if ((DIG.domicile[p]  || []).includes(sign)) return false;
+  if ((DIG.detriment[p] || []).includes(sign)) return false;
+  if (DIG.exaltation[p] !== undefined && Math.floor(DIG.exaltation[p]/30) === sign) return false;
+  if (DIG.fall[p]       !== undefined && Math.floor(DIG.fall[p]/30) === sign) return false;
+  if (ebGetTriplicity(sign, sunLon) === p) return false;
+  if (ebGetTerm(sign, deg) === p) return false;
+  if (ebGetFace(sign, deg) === p) return false;
+  return true;
+}
+
+// ── Dignidade essencial — port de ebCheckDignity. Ramos que dependem de
+//    declinação (out_of_bounds) retornam false aqui (ver lacuna #4). ───────
+function ebCheckDignity(planet, lon, sunLon, speed, dignity, DIG) {
+  if (dignity === 'any') return true;
+  const sign = Math.floor(lon/30) % 12;
+  const deg = ((lon % 30) + 30) % 30;
+  let sep = Math.abs(lon - sunLon); if (sep > 180) sep = 360 - sep;
+
+  if (dignity === 'cazimi')     return sep <= 0.2833;
+  if (dignity === 'combust')    return sep <= 8.5  && sep > 0.2833;
+  if (dignity === 'under_rays') return sep <= 15.0 && sep > 8.5;
+  if (dignity === 'oriental')   return speed > 0 && sunLon > lon;
+  if (dignity === 'occidental') return speed > 0 && sunLon < lon;
+  if (dignity === 'retrograde') return speed < 0;
+
+  if (dignity === 'domicile')   return (DIG.domicile[planet]  || []).includes(sign);
+  if (dignity === 'detriment')  return (DIG.detriment[planet] || []).includes(sign);
+  if (dignity === 'exaltation') return DIG.exaltation[planet] !== undefined && Math.floor(DIG.exaltation[planet]/30) === sign;
+  if (dignity === 'fall')       return DIG.fall[planet] !== undefined && Math.floor(DIG.fall[planet]/30) === sign;
+  if (dignity === 'peregrine')  return ebIsPeregrine(planet, sign, deg, sunLon, DIG);
+  if (dignity === 'triplicity') return ebGetTriplicity(sign, sunLon) === planet;
+  if (dignity === 'term')       return ebGetTerm(sign, deg) === planet;
+  if (dignity === 'face')       return ebGetFace(sign, deg) === planet;
+  return false;
+}
+
+// ── Almuten / planeta dominante — port de ebAlmuten / ebGetDominantPlanet ──
+function ebAlmuten(points, isDay, DIG) {
+  const scores = {sun:0,moon:0,mercury:0,venus:0,mars:0,jupiter:0,saturn:0};
+  for (const lon of points) {
+    const sign = Math.floor(lon/30) % 12;
+    const deg = ((lon % 30) + 30) % 30;
+    for (const [p, signs] of Object.entries(DIG.domicile)) if (signs.includes(sign)) scores[p] += 5;
+    for (const [p, absDeg] of Object.entries(DIG.exaltation)) if (Math.floor(absDeg/30) === sign) scores[p] += 4;
+    const trip = ebGetTriplicity(sign, isDay ? 0 : 180);
+    if (trip && scores[trip] !== undefined) scores[trip] += 3;
+    const term = ebGetTerm(sign, deg);
+    if (term && scores[term] !== undefined) scores[term] += 2;
+    const face = ebGetFace(sign, deg);
+    if (face && scores[face] !== undefined) scores[face] += 1;
+  }
+  return Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+}
+
+function ebGetDominantPlanet(lon, hc, isDay, DIG) {
+  const scores = {sun:0,moon:0,mercury:0,venus:0,mars:0,jupiter:0,saturn:0};
+  for (const p of Object.keys(scores)) {
+    const idx = PLANET_IDX[p];
+    if (lon[idx] === undefined || lon[idx] === null) continue;
+    const plon = lon[idx];
+    const sign = Math.floor(plon/30) % 12;
+    const deg = ((plon % 30) + 30) % 30;
+    if ((DIG.domicile[p] || []).includes(sign)) scores[p] += 5;
+    if (DIG.exaltation[p] !== undefined && Math.floor(DIG.exaltation[p]/30) === sign) scores[p] += 4;
+    if (ebGetTriplicity(sign, isDay ? 0 : 180) === p) scores[p] += 3;
+    if (ebGetTerm(sign, deg) === p) scores[p] += 2;
+    if (ebGetFace(sign, deg) === p) scores[p] += 1;
+    const h = ebFindHouse(plon, hc);
+    if ([1,4,7,10].includes(h)) scores[p] += 4;
+    else if ([2,5,8,11].includes(h)) scores[p] += 2;
+  }
+  return Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+}
+
+// ── Resolve longitude conforme "usar" (self/disp/alm_trad/alm_site) ────────
+function ebResolveLon(lon, usar, allLon, lots, DIG) {
+  if (usar === 'self') return lon;
+  const sign = Math.floor(lon/30) % 12;
+  if (usar === 'disp') {
+    for (const [planet, signs] of Object.entries(DIG.domicile)) {
+      if (signs.includes(sign)) {
+        const idx = PLANET_IDX[planet];
+        return (idx !== undefined && allLon[idx] != null) ? allLon[idx] : null;
+      }
+    }
+    return null;
+  }
+  if (usar === 'alm_trad' || usar === 'alm_site') {
+    const isDay = (allLon[CI.SU] ?? 0) >= 0 && (allLon[CI.SU] ?? 0) < 180;
+    const winner = ebAlmuten([lon], isDay, DIG);
+    const idx = PLANET_IDX[winner];
+    return (idx !== undefined && allLon[idx] != null) ? allLon[idx] : null;
+  }
+  return lon;
+}
+
+function ebGetPlanetLon(key, lon, lots) {
+  if (key.startsWith('lot_')) {
+    const lid = parseInt(key.slice(4), 10);
+    return lots[lid] != null ? lots[lid] : null;
+  }
+  const idx = PLANET_IDX[key];
+  return (idx !== undefined && lon[idx] != null) ? lon[idx] : null;
+}
+
+// helper: grau → "5°23' ♐"
+const SIGN_GLYPHS = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+function fmtLon(l) {
+  const s = Math.floor(l/30) % 12;
+  const d = ((l % 30) + 30) % 30;
+  const deg = Math.floor(d);
+  const min = Math.floor((d - deg) * 60);
+  return `${deg}°${min}' ${SIGN_GLYPHS[s]}`;
+}
+
+const ASP_SYM = {conjunction:'☌', sextile:'⚹', square:'□', trine:'△', opposition:'☍'};
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  ebEvalOne — port literal de eb_search_lib.php linhas 200-552 (9 tipos de
+//  condição). Retorna string com o detalhe do match, ou null se não bateu.
+// ═══════════════════════════════════════════════════════════════════════════
+function ebEvalOne(cond, pos, DIG) {
+  const { lon, spd, hc, dec, lots_lon: lots, lots_by_name } = pos;
+  const t = cond.type;
+
+  // ── Signo ──────────────────────────────────────────────────────────────
+  if (t === 'signo') {
+    const planet = cond.planet ?? 'any';
+    const sign = cond.sign ?? 'any';
+    const usar = cond.usar ?? 'self';
+    const list = planet === 'any' ? Object.keys(PLANET_IDX) : [planet];
+    for (const p of list) {
+      const idx = PLANET_IDX[p];
+      if (idx === undefined || lon[idx] == null) continue;
+      const checkLon = ebResolveLon(lon[idx], usar, lon, lots, DIG);
+      if (checkLon === null) continue;
+      if (sign === 'any') return `${p}: ${fmtLon(checkLon)}`;
+      if (Math.floor(checkLon/30) % 12 === (SIGN_IDX[sign] ?? -1)) return `${p}: ${fmtLon(checkLon)}`;
+    }
+    return null;
+  }
+
+  // ── Casa ───────────────────────────────────────────────────────────────
+  if (t === 'casa') {
+    const planet = cond.planet ?? 'any';
+    const house = cond.house ?? 'any';
+    const usar = cond.usar ?? 'self';
+    const list = planet === 'any' ? Object.keys(PLANET_IDX) : [planet];
+    for (const p of list) {
+      let rawLon;
+      const cuspM = /^cusp(\d+)$/.exec(p);
+      if (cuspM) rawLon = hc[parseInt(cuspM[1],10)] ?? null;
+      else {
+        const idx = PLANET_IDX[p];
+        rawLon = (idx !== undefined && lon[idx] != null) ? lon[idx] : null;
+      }
+      if (rawLon === null) continue;
+      const checkLon = ebResolveLon(rawLon, usar, lon, lots, DIG);
+      if (checkLon === null) continue;
+      const hNum = ebFindHouse(checkLon, hc);
+      let matched = false;
+      if (house === 'angular') matched = [1,4,7,10].includes(hNum);
+      else if (house === 'succedent') matched = [2,5,8,11].includes(hNum);
+      else if (house === 'cadent') matched = [3,6,9,12].includes(hNum);
+      else if (house === 'above_horizon') matched = hNum >= 7;
+      else if (house === 'below_horizon') matched = hNum <= 6;
+      else matched = (house === 'any' || hNum === parseInt(house,10));
+      if (matched) return `${p}: ${fmtLon(checkLon)} H${hNum}`;
+    }
+    return null;
+  }
+
+  // ── Aspecto ────────────────────────────────────────────────────────────
+  if (t === 'aspecto') {
+    const aspk = cond.aspect ?? 'any';
+    const planetA = cond.planet ?? cond.planetA ?? 'any';
+    const planetB = cond.planet_b ?? cond.planetB ?? 'any';
+    const usarA = cond.usar_a ?? 'self';
+    const usarB = cond.usar_b ?? 'self';
+    const custOrb = (cond.orb !== undefined && cond.orb !== null) ? parseFloat(cond.orb) : null;
+    const dir = cond.direction ?? 'any';
+
+    const ALL = Object.keys(PLANET_IDX);
+    const isDec = ['parallel','contraparallel'].includes(aspk);
+    if (isDec) return null; // lacuna #4 — declinação não disponível no banco
+    const asps = aspk === 'any' ? Object.keys(ASP_ANG) : [aspk];
+    const pp1List = planetA === 'any' ? ALL : [planetA];
+    const pp2List = planetB === 'any' ? ALL : [planetB];
+
+    for (const pp1 of pp1List) {
+      let l1, s1;
+      const cuspM = /^cusp(\d+)$/.exec(pp1);
+      if (cuspM) {
+        const raw1 = hc[parseInt(cuspM[1],10)] ?? null;
+        l1 = raw1 !== null ? ebResolveLon(raw1, usarA, lon, lots, DIG) : null;
+        s1 = 0.0;
+      } else {
+        const idx1 = PLANET_IDX[pp1];
+        const raw1 = (idx1 !== undefined && lon[idx1] != null) ? lon[idx1] : null;
+        l1 = raw1 !== null ? ebResolveLon(raw1, usarA, lon, lots, DIG) : null;
+        s1 = (idx1 !== undefined && spd[idx1] != null) ? spd[idx1] : 0.0;
+      }
+
+      for (const pp2 of pp2List) {
+        if (pp1 === pp2) continue;
+        if (planetA === 'any' && planetB === 'any' && pp1 >= pp2) continue;
+
+        const idx2 = PLANET_IDX[pp2];
+        const l2raw = (idx2 !== undefined && lon[idx2] != null) ? lon[idx2] : null;
+        let l2 = l2raw !== null ? ebResolveLon(l2raw, usarB, lon, lots, DIG) : null;
+        let s2 = (idx2 !== undefined && spd[idx2] != null) ? spd[idx2] : 0.0;
+        let pp2Label = pp2;
+
+        if (l2 === null && pp2 !== 'any') {
+          const nameLots2 = lots_by_name[pp2];
+          if (nameLots2) {
+            const isDay2 = pos.is_day ?? true;
+            const lot2 = isDay2
+              ? (nameLots2.day ?? nameLots2.both ?? Object.values(nameLots2)[0])
+              : (nameLots2.night ?? nameLots2.both ?? Object.values(nameLots2)[0]);
+            if (lot2 && lots[lot2.id] != null) {
+              l2 = lots[lot2.id];
+              s2 = 0.0;
+              pp2Label = `${pp2} ${fmtLon(l2)}`;
+            }
+          }
+        }
+
+        if (l1 === null || l2 === null) continue;
+        let sep = Math.abs(l1 - l2); if (sep > 180) sep = 360 - sep;
+
+        if (aspk === 'none') {
+          let has = false;
+          for (const [a, ang] of Object.entries(ASP_ANG)) {
+            if (Math.abs(sep - ang) <= (custOrb ?? (ASP_ORB[a] ?? 8))) { has = true; break; }
+          }
+          if (!has) return `${pp1} sem asp ${pp2Label} (sep:${sep.toFixed(1)}°)`;
+          continue;
+        }
+
+        for (const a of asps) {
+          const ang = ASP_ANG[a]; if (ang === undefined) continue;
+          const orb = custOrb ?? (ASP_ORB[a] ?? 8);
+          const diff = Math.abs(sep - ang);
+          if (diff > orb) continue;
+          if (dir !== 'any') {
+            let sepT = Math.abs((l1+s1) - (l2+s2)); if (sepT > 180) sepT = 360 - sepT;
+            const applying = Math.abs(sepT - ang) < Math.abs(sep - ang);
+            if (dir === 'applying' && !applying) continue;
+            if (dir === 'separating' && applying) continue;
+          }
+          const sym = ASP_SYM[a] ?? a;
+          return `${pp1} ${sym} ${pp2Label} (sep:${sep.toFixed(1)}° orb:${diff.toFixed(1)}°)`;
+        }
+      }
+    }
+    return null;
+  }
+
+  // ── Dignidade ──────────────────────────────────────────────────────────
+  if (t === 'dignidade') {
+    const planet = cond.planet ?? 'any';
+    const dignity = cond.dignity ?? 'any';
+    const list = planet === 'any' ? ['sun','moon','mercury','venus','mars','jupiter','saturn'] : [planet];
+    for (const p of list) {
+      const idx = PLANET_IDX[p];
+      if (idx === undefined || lon[idx] == null) continue;
+      if (dignity === 'out_of_bounds') continue; // lacuna #4 — sem declinação
+      if (ebCheckDignity(p, lon[idx], lon[CI.SU] ?? 0, spd[idx] ?? 0, dignity, DIG))
+        return `${p} ${dignity} ${fmtLon(lon[idx])}`;
+    }
+    return null;
+  }
+
+  // ── Helíaco ────────────────────────────────────────────────────────────
+  if (t === 'heliac') {
+    const planet = cond.planet ?? 'any';
+    const condition = cond.condition ?? 'any';
+    const list = planet === 'any' ? ['moon','mercury','venus','mars','jupiter','saturn'] : [planet];
+    for (const p of list) {
+      const idx = PLANET_IDX[p];
+      if (idx === undefined || lon[idx] == null) continue;
+      const sunLon = lon[CI.SU] ?? 0;
+      let sep = Math.abs(lon[idx] - sunLon); if (sep > 180) sep = 360 - sep;
+      if (condition === 'any') return `${p} sep☉:${sep.toFixed(1)}°`;
+      if (condition === 'cazimi' && sep <= 0.2833) return `${p} cazimi sep:${sep.toFixed(2)}°`;
+      if (condition === 'combust' && sep <= 8.5 && sep > 0.2833) return `${p} combusto sep:${sep.toFixed(1)}°`;
+      if (condition === 'under_rays' && sep <= 15.0 && sep > 8.5) return `${p} sob raios sep:${sep.toFixed(1)}°`;
+      if (condition === 'oriental' && (spd[idx] ?? 0) > 0 && sunLon > lon[idx]) return `${p} oriental`;
+      if (condition === 'occidental' && (spd[idx] ?? 0) > 0 && sunLon < lon[idx]) return `${p} ocidental`;
+      if (condition === 'retrograde' && (spd[idx] ?? 0) < 0) return `${p} ℞`;
+      // 'out_of_bounds' — lacuna #4, sem declinação: sem match
+    }
+    return null;
+  }
+
+  // ── Fase ───────────────────────────────────────────────────────────────
+  if (t === 'fase') {
+    const phase = cond.phase ?? 'any';
+    const paKey = cond.planet_a ?? 'moon';
+    const pbKey = cond.planet_b ?? 'sun';
+    const usarA = cond.usar_a ?? 'self';
+    const usarB = cond.usar_b ?? 'self';
+
+    let rawA;
+    const cuspM = /^cusp(\d+)$/.exec(paKey);
+    if (cuspM) rawA = hc[parseInt(cuspM[1],10)] ?? null;
+    else { const idxA = PLANET_IDX[paKey]; rawA = idxA !== undefined ? (lon[idxA] ?? null) : null; }
+    const idxB = PLANET_IDX[pbKey];
+    const rawB = idxB !== undefined ? (lon[idxB] ?? null) : null;
+    if (rawA === null || rawB === null) return null;
+
+    const lonA = ebResolveLon(rawA, usarA, lon, lots, DIG);
+    const lonB = ebResolveLon(rawB, usarB, lon, lots, DIG);
+    if (lonA === null || lonB === null) return null;
+
+    const sep = norm360(lonA - lonB);
+    if (!ebCheckPhase(sep, phase)) return null;
+    return `${paKey} sep ${pbKey}:${sep.toFixed(1)}°`;
+  }
+
+  // ── Lotes ──────────────────────────────────────────────────────────────
+  if (t === 'lotes') {
+    const lotName = cond.lot_name ?? '';
+    const sign = cond.sign ?? 'any';
+    const house = cond.house ?? 'any';
+    const usar = cond.usar ?? 'self';
+    const isDay = pos.is_day ?? true;
+
+    if (lotName === 'any' || lotName === '') {
+      for (const [lid, lotLonVal] of Object.entries(lots)) {
+        if (lotLonVal == null) continue;
+        const checkLon = ebResolveLon(lotLonVal, usar, lon, lots, DIG);
+        if (checkLon === null) continue;
+        if (sign !== 'any' && Math.floor(checkLon/30)%12 !== (SIGN_IDX[sign] ?? -1)) continue;
+        if (house !== 'any' && ebFindHouse(checkLon,hc) !== parseInt(house,10)) continue;
+        return `lote#${lid} ${fmtLon(checkLon)} H${ebFindHouse(checkLon,hc)}`;
+      }
+      return null;
+    }
+
+    let lotLon;
+    if (cond.lot_id !== undefined) {
+      const lid = parseInt(cond.lot_id,10);
+      if (!lid || lots[lid] == null) return null;
+      lotLon = lots[lid];
+    } else {
+      const nameLots = lots_by_name[lotName];
+      if (!nameLots) return null;
+      const lot = isDay
+        ? (nameLots.day ?? nameLots.both ?? Object.values(nameLots)[0])
+        : (nameLots.night ?? nameLots.both ?? Object.values(nameLots)[0]);
+      if (!lot || lots[lot.id] == null) return null;
+      lotLon = lots[lot.id];
+    }
+
+    const checkLon = ebResolveLon(lotLon, usar, lon, lots, DIG);
+    if (checkLon === null) return null;
+    if (sign !== 'any' && Math.floor(checkLon/30)%12 !== (SIGN_IDX[sign] ?? -1)) return null;
+    if (house !== 'any' && ebFindHouse(checkLon,hc) !== parseInt(house,10)) return null;
+    return `${lotName}: ${fmtLon(checkLon)} H${ebFindHouse(checkLon,hc)}`;
+  }
+
+  // ── Dominante ──────────────────────────────────────────────────────────
+  if (t === 'dominante') {
+    const expected = cond.planet ?? 'sun';
+    const dom = ebGetDominantPlanet(lon, hc, pos.is_day ?? true, DIG);
+    return dom === expected ? `dominante: ${dom}` : null;
+  }
+
+  // ── Posição (at position) ────────────────────────────────────────────
+  if (t === 'posicao') {
+    const planet = cond.planet ?? 'any';
+    const usar = cond.usar ?? 'self';
+    const target = parseFloat(cond.longitude ?? 0);
+    const orb = Math.max(0.1, parseFloat(cond.orb ?? 1.0));
+    const list = planet === 'any' ? Object.keys(PLANET_IDX) : [planet];
+    for (const p of list) {
+      let raw;
+      const cuspM = /^cusp(\d+)$/.exec(p);
+      if (cuspM) raw = hc[parseInt(cuspM[1],10)] ?? null;
+      else { const idx = PLANET_IDX[p]; raw = (idx !== undefined && lon[idx] != null) ? lon[idx] : null; }
+      if (raw === null) continue;
+      const check = ebResolveLon(raw, usar, lon, lots, DIG);
+      if (check === null) continue;
+      let diff = Math.abs(check - target) % 360.0;
+      if (diff > 180.0) diff = 360.0 - diff;
+      if (diff <= orb) return `${p}: ${fmtLon(check)} (orbe: ${diff.toFixed(2)}°)`;
+    }
+    return null;
+  }
+
+  // ── Natal (trânsito × posição natal) ────────────────────────────────
+  if (t === 'natal') {
+    const natalLonArr = pos.natal_lon ?? null;
+    if (natalLonArr === null) return null;
+
+    const aspk = cond.aspect ?? 'any';
+    const planetA = cond.planet ?? 'any';
+    const planetB = cond.natal_planet ?? 'any';
+    const usarA = cond.usar_a ?? 'self';
+    const custOrb = (cond.orb !== undefined && cond.orb !== null) ? parseFloat(cond.orb) : null;
+
+    const ALL = Object.keys(PLANET_IDX);
+    const asps = aspk === 'any' ? Object.keys(ASP_ANG) : [aspk];
+    const pp1List = planetA === 'any' ? ALL : [planetA];
+    const pp2List = planetB === 'any' ? ALL : [planetB];
+
+    for (const pp1 of pp1List) {
+      const idx1 = PLANET_IDX[pp1];
+      const raw1 = (idx1 !== undefined && lon[idx1] != null) ? lon[idx1] : null;
+      if (raw1 === null) continue;
+      const l1 = ebResolveLon(raw1, usarA, lon, lots, DIG);
+      if (l1 === null) continue;
+
+      for (const pp2 of pp2List) {
+        const idx2 = PLANET_IDX[pp2];
+        const l2 = (idx2 !== undefined && natalLonArr[idx2] != null) ? natalLonArr[idx2] : null;
+        if (l2 === null) continue;
+
+        let sep = Math.abs(l1 - l2); if (sep > 180) sep = 360 - sep;
+        for (const a of asps) {
+          const ang = ASP_ANG[a]; if (ang === undefined) continue;
+          const orb = custOrb ?? (ASP_ORB[a] ?? 8);
+          const diff = Math.abs(sep - ang);
+          if (diff > orb) continue;
+          const sym = ASP_SYM[a] ?? a;
+          return `trâns.${pp1} ${sym} natal.${pp2} (sep:${sep.toFixed(1)}° orb:${diff.toFixed(1)}°)`;
+        }
+      }
+    }
+    return null;
+  }
+
+  return null;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  ebEvalConditions — port literal de eb_search_lib.php linhas 169-198.
+//  Suporta grupos recursivos (AND/OR/NOT/FIND).
+// ═══════════════════════════════════════════════════════════════════════════
+function ebEvalConditions(conditions, pos, DIG) {
+  let result = null;
+  const matched = [];
+  for (const cond of conditions) {
+    const op = cond.op ?? 'AND';
+    if (cond.type === 'group') {
+      const sub = cond.conditions ?? [];
+      const [match, subMatched] = ebEvalConditions(sub, pos, DIG);
+      if (op === 'FIND' || result === null) result = match;
+      else if (op === 'AND') result = result && match;
+      else if (op === 'OR')  result = result || match;
+      else if (op === 'NOT') result = result && !match;
+      if (match) matched.push(...subMatched);
+      continue;
+    }
+    const detail = ebEvalOne(cond, pos, DIG);
+    const match = detail !== null;
+    if (op === 'FIND' || result === null) result = match;
+    else if (op === 'AND') result = result && match;
+    else if (op === 'OR')  result = result || match;
+    else if (op === 'NOT') result = result && !match;
+    if (match) matched.push(`${cond.label ?? '?'} → ${detail}`);
+  }
+  return [result ?? false, matched];
+}
+
+// ── Exports (uso via <script type="module"> ou concatenado inline) ─────────
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    posFromBancoRecord, ebEvalOne, ebEvalConditions, ebBuildDignityTables,
+    ebFindHouse, CI, PLANET_IDX, SIGN_IDX, ASP_ANG, ASP_ORB,
+  };
+}
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+// UI da Etapa 2 — condition builder + execução da busca via eb_search_engine
+// (funções ebEvalConditions, posFromBancoRecord, ebBuildDignityTables e
+// PLANET_IDX/SIGN_IDX já estão definidas globalmente pelo script anterior,
+// já que este arquivo roda no browser sem module.exports).
+// ═══════════════════════════════════════════════════════════════════════
+
+const TIPOS = [
+  {value:'signo',     label:'Signo'},
+  {value:'casa',      label:'Casa'},
+  {value:'aspecto',   label:'Aspecto'},
+  {value:'dignidade', label:'Dignidade'},
+  {value:'heliac',    label:'Helíaco'},
+  {value:'fase',      label:'Fase'},
+  {value:'lotes',     label:'Lotes'},
+  {value:'dominante', label:'Dominante'},
+  {value:'posicao',   label:'Posição (grau fixo)'},
+];
+// Obs.: tipo 'natal' (trânsito × mapa natal de referência) não está nesta
+// UI — precisaria de um segundo mapa (radix) pra comparar, fora do escopo
+// de "busca no banco". O motor (eb_search_engine.js) já suporta, se algum
+// dia quiser adicionar essa tela.
+
+const PLANETAS_OPCOES = [
+  {value:'any', label:'Qualquer'},
+  {value:'sun', label:'Sol'}, {value:'moon', label:'Lua'},
+  {value:'mercury', label:'Mercúrio'}, {value:'venus', label:'Vênus'},
+  {value:'mars', label:'Marte'}, {value:'jupiter', label:'Júpiter'},
+  {value:'saturn', label:'Saturno'}, {value:'tn', label:'Nodo (médio)'},
+  {value:'asc', label:'Ascendente'}, {value:'mc', label:'MC (nonagesimal)'},
+  {value:'mc_astro', label:'MC (astronômico)'},
+  {value:'dsc', label:'Descendente'}, {value:'ic', label:'IC'},
+  {value:'nn', label:'Nodo Sul'},
+];
+// Nota: Urano/Netuno/Plutão não são endereçáveis por nome — mesma
+// limitação do PHP original (ver comentário em eb_search_engine.js).
+
+const SIGNOS_OPCOES = [
+  {value:'any',label:'Qualquer'},
+  {value:'aries',label:'Áries'},{value:'taurus',label:'Touro'},
+  {value:'gemini',label:'Gêmeos'},{value:'cancer',label:'Câncer'},
+  {value:'leo',label:'Leão'},{value:'virgo',label:'Virgem'},
+  {value:'libra',label:'Libra'},{value:'scorpio',label:'Escorpião'},
+  {value:'sagittarius',label:'Sagitário'},{value:'capricorn',label:'Capricórnio'},
+  {value:'aquarius',label:'Aquário'},{value:'pisces',label:'Peixes'},
+];
+
+const USAR_OPCOES = [
+  {value:'self',label:'Posição própria'},
+  {value:'disp',label:'Dispositor'},
+  {value:'alm_trad',label:'Almuten (tradicional)'},
+  {value:'alm_site',label:'Almuten (variante site)'},
+];
+
+const DIGNIDADES_OPCOES = [
+  'domicile','detriment','exaltation','fall','peregrine','triplicity','term','face',
+  'cazimi','combust','under_rays','oriental','occidental','retrograde'
+];
+// 'out_of_bounds' omitido — depende de declinação, indisponível no banco.
+
+const ASPECTOS_OPCOES = ['any','conjunction','sextile','square','trine','opposition','none'];
+// 'parallel'/'contraparallel' omitidos — dependem de declinação.
+
+let condicoes = [];  // [{id, type, op, ...campos}]
+let condSeq = 0;
+let banco = null;    // {campos, registros}
+
+function selectHtml(id, opcoes, valorAtual, labelFn) {
+  return `<select id="${id}">` + opcoes.map(o => {
+    const v = typeof o === 'string' ? o : o.value;
+    const l = labelFn ? labelFn(o) : (typeof o === 'string' ? o : o.label);
+    return `<option value="${v}" ${v===valorAtual?'selected':''}>${l}</option>`;
+  }).join('') + `</select>`;
+}
+
+function camposParaTipo(c) {
+  const p = c; // atalho
+  switch (c.type) {
+    case 'signo': return `
+      <div class="field"><label>Planeta</label>${selectHtml(`f_${c.id}_planet`, PLANETAS_OPCOES, p.planet||'any')}</div>
+      <div class="field"><label>Signo</label>${selectHtml(`f_${c.id}_sign`, SIGNOS_OPCOES, p.sign||'any')}</div>
+      <div class="field"><label>Usar</label>${selectHtml(`f_${c.id}_usar`, USAR_OPCOES, p.usar||'self')}</div>`;
+    case 'casa': return `
+      <div class="field"><label>Planeta</label>${selectHtml(`f_${c.id}_planet`, PLANETAS_OPCOES, p.planet||'any')}</div>
+      <div class="field"><label>Casa</label>${selectHtml(`f_${c.id}_house`,
+        [{value:'any',label:'Qualquer'},...Array.from({length:12},(_,i)=>({value:String(i+1),label:'Casa '+(i+1)})),
+         {value:'angular',label:'Angular (1,4,7,10)'},{value:'succedent',label:'Sucedente (2,5,8,11)'},
+         {value:'cadent',label:'Cadente (3,6,9,12)'},{value:'above_horizon',label:'Acima do horizonte'},
+         {value:'below_horizon',label:'Abaixo do horizonte'}], p.house||'any')}</div>
+      <div class="field"><label>Usar</label>${selectHtml(`f_${c.id}_usar`, USAR_OPCOES, p.usar||'self')}</div>`;
+    case 'aspecto': return `
+      <div class="field"><label>Planeta A</label>${selectHtml(`f_${c.id}_planetA`, PLANETAS_OPCOES, p.planetA||'any')}</div>
+      <div class="field"><label>Aspecto</label>${selectHtml(`f_${c.id}_aspect`, ASPECTOS_OPCOES, p.aspect||'any',
+        v=>({any:'Qualquer',conjunction:'Conjunção',sextile:'Sextil',square:'Quadratura',trine:'Trígono',opposition:'Oposição',none:'Sem aspecto'}[v]||v))}</div>
+      <div class="field"><label>Planeta B</label>${selectHtml(`f_${c.id}_planetB`, PLANETAS_OPCOES, p.planetB||'any')}</div>
+      <div class="field"><label>Orbe (° opcional)</label><input type="number" id="f_${c.id}_orb" value="${p.orb??''}" step="0.5" min="0" style="width:80px;"></div>
+      <div class="field"><label>Direção</label>${selectHtml(`f_${c.id}_direction`,
+        [{value:'any',label:'Qualquer'},{value:'applying',label:'Aplicativo'},{value:'separating',label:'Separativo'}], p.direction||'any')}</div>`;
+    case 'dignidade': return `
+      <div class="field"><label>Planeta</label>${selectHtml(`f_${c.id}_planet`,
+        [{value:'any',label:'Qualquer'},{value:'sun',label:'Sol'},{value:'moon',label:'Lua'},{value:'mercury',label:'Mercúrio'},
+         {value:'venus',label:'Vênus'},{value:'mars',label:'Marte'},{value:'jupiter',label:'Júpiter'},{value:'saturn',label:'Saturno'}],
+        p.planet||'any')}</div>
+      <div class="field"><label>Dignidade</label>${selectHtml(`f_${c.id}_dignity`, DIGNIDADES_OPCOES, p.dignity||'domicile')}</div>`;
+    case 'heliac': return `
+      <div class="field"><label>Planeta</label>${selectHtml(`f_${c.id}_planet`,
+        [{value:'any',label:'Qualquer'},{value:'moon',label:'Lua'},{value:'mercury',label:'Mercúrio'},{value:'venus',label:'Vênus'},
+         {value:'mars',label:'Marte'},{value:'jupiter',label:'Júpiter'},{value:'saturn',label:'Saturno'}], p.planet||'any')}</div>
+      <div class="field"><label>Condição</label>${selectHtml(`f_${c.id}_condition`,
+        ['any','cazimi','combust','under_rays','oriental','occidental','retrograde'], p.condition||'any')}</div>`;
+    case 'fase': return `
+      <div class="field"><label>Planeta A</label>${selectHtml(`f_${c.id}_planetA`, PLANETAS_OPCOES, p.planetA||'moon')}</div>
+      <div class="field"><label>Planeta B</label>${selectHtml(`f_${c.id}_planetB`, PLANETAS_OPCOES, p.planetB||'sun')}</div>
+      <div class="field"><label>Fase (div_num)</label>${selectHtml(`f_${c.id}_phase`,
+        [{value:'any',label:'Qualquer'},{value:'2_1',label:'Crescente (0-180°)'},{value:'2_2',label:'Minguante (180-360°)'},
+         {value:'8_1',label:'Octante 1 (Novilúnio)'},{value:'8_2',label:'Octante 2'},{value:'8_3',label:'Octante 3 (Quarto Crescente)'},
+         {value:'8_4',label:'Octante 4'},{value:'8_5',label:'Octante 5 (Lua Cheia)'},{value:'8_6',label:'Octante 6'},
+         {value:'8_7',label:'Octante 7 (Quarto Minguante)'},{value:'8_8',label:'Octante 8'}], p.phase||'any')}</div>`;
+    case 'lotes': return `
+      <div class="field"><label>Lote</label>${selectHtml(`f_${c.id}_lotName`,
+        [{value:'any',label:'Qualquer'},{value:'Fortuna',label:'Fortuna'},{value:'Espírito',label:'Espírito'},
+        {value:'Hyleg',label:'Hyleg'},{value:'Vinculo',label:'Vinculo'},{value:'Afinidade',label:'Afinidade'},{value:'Mae-D',label:'Mae-D'},{value:'Mae-N',label:'Mae-N'},{value:'Mae-D2',label:'Mae-D2'},{value:'Mae-N2',label:'Mae-N2'},{value:'Pai-D',label:'Pai-D'},{value:'Pai-N',label:'Pai-N'},{value:'Menina',label:'Menina'},{value:'Menino',label:'Menino'},{value:'Filho',label:'Filho'},{value:'Irmão',label:'Irmão'},{value:'Irmao2-D',label:'Irmao2-D'},{value:'Irmao2-N',label:'Irmao2-N'},{value:'Primeira',label:'Primeira'},{value:'Substancia',label:'Substancia'},{value:'Terceira',label:'Terceira'},{value:'Quarta',label:'Quarta'},{value:'Quinta',label:'Quinta'},{value:'Sexta',label:'Sexta'},{value:'Setima',label:'Setima'},{value:'Oitava',label:'Oitava'},{value:'Viagem',label:'Viagem'},{value:'Decima',label:'Decima'},{value:'Onze',label:'Onze'},{value:'Inimigos',label:'Inimigos'},{value:'Lote da Exaltação',label:'Lote da Exaltação'},{value:'Prazer-D',label:'Prazer-D'},{value:'Prazer-N',label:'Prazer-N'},{value:'Amigos',label:'Amigos'},{value:'Servidao',label:'Servidao'},{value:'Trapaca-D',label:'Trapaca-D'},{value:'Trapaca-N',label:'Trapaca-N'},{value:'Doenca-D',label:'Doenca-D'},{value:'Doenca-N',label:'Doenca-N'},{value:'Divida-D',label:'Divida-D'},{value:'Divida-N',label:'Divida-N'},{value:'Casamento-D',label:'Casamento-D'},{value:'Casamento-N',label:'Casamento-N'},{value:'Eros (Paulus)',label:'Eros (Paulus)'},{value:'Necessidade (Paulus)',label:'Necessidade (Paulus)'},{value:'Eros (Valens)',label:'Eros (Valens)'},{value:'Necessidade (Valens)',label:'Necessidade (Valens)'},{value:'Lote de Base',label:'Lote de Base'}], p.lotName||'Fortuna')}</div>
+      <div class="field"><label>Signo</label>${selectHtml(`f_${c.id}_sign`, SIGNOS_OPCOES, p.sign||'any')}</div>
+      <div class="field"><label>Casa</label>${selectHtml(`f_${c.id}_house`,
+        [{value:'any',label:'Qualquer'},...Array.from({length:12},(_,i)=>({value:String(i+1),label:'Casa '+(i+1)}))], p.house||'any')}</div>`;
+    case 'dominante': return `
+      <div class="field"><label>Planeta esperado</label>${selectHtml(`f_${c.id}_planet`,
+        [{value:'sun',label:'Sol'},{value:'moon',label:'Lua'},{value:'mercury',label:'Mercúrio'},{value:'venus',label:'Vênus'},
+         {value:'mars',label:'Marte'},{value:'jupiter',label:'Júpiter'},{value:'saturn',label:'Saturno'}], p.planet||'sun')}</div>`;
+    case 'posicao': return `
+      <div class="field"><label>Planeta</label>${selectHtml(`f_${c.id}_planet`, PLANETAS_OPCOES, p.planet||'any')}</div>
+      <div class="field"><label>Longitude alvo (0-360°)</label><input type="number" id="f_${c.id}_longitude" value="${p.longitude??0}" step="0.5" min="0" max="360" style="width:100px;"></div>
+      <div class="field"><label>Orbe (°)</label><input type="number" id="f_${c.id}_orb" value="${p.orb??1}" step="0.5" min="0.1" style="width:80px;"></div>`;
+    default: return '';
+  }
+}
+
+function renderCondicoes() {
+  const el = document.getElementById('condicoesList');
+  el.innerHTML = condicoes.map((c, i) => `
+    <div class="cond" data-id="${c.id}">
+      <div class="cond-head">
+        <div class="row">
+          ${i>0 ? `<div class="field" style="min-width:80px;"><label>Operador</label>${selectHtml(`op_${c.id}`, [{value:'AND',label:'E'},{value:'OR',label:'OU'},{value:'NOT',label:'E NÃO'}], c.op||'AND')}</div>` : ''}
+          <div class="field" style="min-width:150px;"><label>Tipo</label>${selectHtml(`type_${c.id}`, TIPOS, c.type)}</div>
+        </div>
+        <button class="danger" data-remove="${c.id}">remover</button>
+      </div>
+      <div class="row">${camposParaTipo(c)}</div>
+    </div>
+  `).join('');
+
+  // listeners
+  el.querySelectorAll('[data-remove]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      condicoes = condicoes.filter(c => c.id !== parseInt(btn.dataset.remove,10));
+      renderCondicoes();
+    });
+  });
+  condicoes.forEach(c => {
+    const typeSel = document.getElementById(`type_${c.id}`);
+    if (typeSel) typeSel.addEventListener('change', (e) => { c.type = e.target.value; renderCondicoes(); });
+    const opSel = document.getElementById(`op_${c.id}`);
+    if (opSel) opSel.addEventListener('change', (e) => { c.op = e.target.value; });
+  });
+  atualizarBotaoBuscar();
+}
+
+function coletarCondicoes() {
+  // Lê os <select>/<input> atuais de volta pro objeto `condicoes` antes de
+  // montar as condições que vão pro motor de busca.
+  return condicoes.map(c => {
+    const get = (suf) => { const e = document.getElementById(`f_${c.id}_${suf}`); return e ? e.value : undefined; };
+    const base = { type: c.type, op: c.op || 'AND', label: TIPOS.find(t=>t.value===c.type)?.label || c.type };
+    switch (c.type) {
+      case 'signo': return {...base, planet:get('planet'), sign:get('sign'), usar:get('usar')};
+      case 'casa': return {...base, planet:get('planet'), house:get('house'), usar:get('usar')};
+      case 'aspecto': return {...base, planet:get('planetA'), planet_b:get('planetB'), aspect:get('aspect'),
+        orb: get('orb') ? parseFloat(get('orb')) : null, direction:get('direction')};
+      case 'dignidade': return {...base, planet:get('planet'), dignity:get('dignity')};
+      case 'heliac': return {...base, planet:get('planet'), condition:get('condition')};
+      case 'fase': return {...base, planet_a:get('planetA'), planet_b:get('planetB'), phase:get('phase')};
+      case 'lotes': return {...base, lot_name:get('lotName'), sign:get('sign'), house:get('house')};
+      case 'dominante': return {...base, planet:get('planet')};
+      case 'posicao': return {...base, planet:get('planet'), longitude:parseFloat(get('longitude')||0), orb:parseFloat(get('orb')||1)};
+      default: return base;
+    }
+  });
+}
+
+function atualizarBotaoBuscar() {
+  document.getElementById('btnBuscar').disabled = !(banco && condicoes.length > 0);
+}
+
+document.getElementById('btnAddCond').addEventListener('click', () => {
+  condicoes.push({ id: ++condSeq, type: 'signo', op: 'AND' });
+  renderCondicoes();
+});
+
+document.getElementById('bancoInput').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const status = document.getElementById('status');
+  status.textContent = 'Carregando banco...';
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      banco = JSON.parse(reader.result);
+      document.getElementById('bancoInfo').textContent =
+        `${file.name} — ${banco.registros.length} registros, ${banco.campos.length} campos.`;
+      document.getElementById('stTotal').textContent = banco.registros.length;
+      status.textContent = '';
+      atualizarBotaoBuscar();
+    } catch (err) {
+      status.textContent = 'Erro ao ler o banco: ' + err.message;
+      status.className = 'badge-err';
+    }
+  };
+  reader.readAsText(file);
+});
+
+document.getElementById('btnCarregarUrl').addEventListener('click', async () => {
+  const url = document.getElementById('bancoUrl').value.trim();
+  if (!url) return;
+  const status = document.getElementById('status');
+  status.className = '';
+  status.textContent = 'Baixando banco (0%)...';
+  try {
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const total = parseInt(resp.headers.get('Content-Length') || '0', 10);
+    let recebido = 0;
+    const reader = resp.body.getReader();
+    const chunks = [];
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      recebido += value.length;
+      if (total) {
+        status.textContent = `Baixando banco (${Math.round(recebido / total * 100)}%)...`;
+      } else {
+        status.textContent = `Baixando banco (${(recebido / 1e6).toFixed(1)} MB)...`;
+      }
+    }
+    status.textContent = 'Processando JSON...';
+    const bytes = new Uint8Array(recebido);
+    let offset = 0;
+    for (const c of chunks) { bytes.set(c, offset); offset += c.length; }
+    const texto = new TextDecoder('utf-8').decode(bytes);
+    banco = JSON.parse(texto);
+    document.getElementById('bancoInfo').textContent =
+      `URL — ${banco.registros.length} registros, ${banco.campos.length} campos.`;
+    document.getElementById('stTotal').textContent = banco.registros.length;
+    status.textContent = '';
+    atualizarBotaoBuscar();
+  } catch (err) {
+    status.textContent = 'Erro ao carregar da URL: ' + err.message;
+    status.className = 'badge-err';
+  }
+});
+
+async function executarBusca() {
+  const status = document.getElementById('status');
+  const prog = document.getElementById('prog');
+  const resEl = document.getElementById('resultados');
+  const stChecked = document.getElementById('stChecked');
+  const stFound = document.getElementById('stFound');
+
+  const conds = coletarCondicoes();
+  if (conds.length === 0) return;
+
+  const DIG = ebBuildDignityTables();
+  const total = banco.registros.length;
+  let checked = 0, found = 0;
+  resEl.innerHTML = '';
+  prog.style.display = 'block';
+  prog.value = 0;
+  status.textContent = 'Buscando...';
+  status.className = '';
+
+  const resultados = [];
+  const t0 = performance.now();
+
+  for (let i = 0; i < total; i++) {
+    const rec = banco.registros[i];
+    const pos = posFromBancoRecord(rec, banco.campos);
+    const [match, matched] = ebEvalConditions(conds, pos, DIG);
+    checked++;
+    if (match) {
+      found++;
+      resultados.push({ title: pos.title, matched });
+    }
+    if (i % 500 === 0) {
+      stChecked.textContent = checked;
+      stFound.textContent = found;
+      prog.value = (checked/total)*100;
+      await new Promise(r => setTimeout(r, 0));
+    }
+  }
+
+  stChecked.textContent = checked;
+  stFound.textContent = found;
+  prog.value = 100;
+  const dt = ((performance.now()-t0)/1000).toFixed(1);
+  status.textContent = `Concluído em ${dt}s.`;
+  status.className = 'badge-ok';
+
+  resEl.innerHTML = resultados.map(r => `
+    <div class="res-item">
+      <div class="nome">${r.title}</div>
+      <div class="matched">${r.matched.join(' · ')}</div>
+    </div>
+  `).join('') || '<div class="small">Nenhum registro encontrado.</div>';
+}
+
+document.getElementById('btnBuscar').addEventListener('click', executarBusca);
+
+// Começa com uma condição em branco pra facilitar
+condicoes.push({ id: ++condSeq, type: 'signo', op: 'AND' });
+renderCondicoes();
+</script>
+</body>
+</html>
